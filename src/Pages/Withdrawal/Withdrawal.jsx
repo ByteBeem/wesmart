@@ -53,7 +53,7 @@ function Withdraw({ showSidebar, active, closeSidebar }) {
     const token = localStorage.getItem("token");
     if (token) {
       axios
-        .get("https://spinz-servers-17da09bbdb53.herokuapp.com/getBalance2", {
+        .get("https://mainp-server-c7a5046a3a01.herokuapp.com/balance", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
