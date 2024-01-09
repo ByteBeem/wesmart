@@ -15,7 +15,7 @@ const Navbar = ({ showSidebar }) => {
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
-    console.log('storedToken',storedToken);
+    
     
 
     if (storedToken) {
@@ -32,11 +32,11 @@ const Navbar = ({ showSidebar }) => {
       headers: { Authorization: `Bearer ${storedToken}` },
     })
     .then((response) => {
-     const balance = response.data.balance; 
+     const balance = response.data; 
 
-   
-    if (balance) {
-      setUserData(balance);
+      if (balance !== undefined) {
+        setUserData({ balance }); 
+      }
     })
     .catch((error) => {
       console.error("Error fetching user data:", error);
