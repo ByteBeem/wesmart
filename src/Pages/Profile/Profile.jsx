@@ -24,9 +24,8 @@ function Profile({ showSidebar, active, closeSidebar }) {
 
   const fullName = userData.name;
   const cellphone = userData.cell;
-  const balance = userData.balance;
   const surname = userData.surname;
-  const ID = "*************";
+  const ID = "Unverified";
 
   const handleWithdraw = () => {
     navigate("/withdraw");
@@ -90,13 +89,15 @@ function Profile({ showSidebar, active, closeSidebar }) {
   const fetchUserData = (token) => {
     setLoading(true);
     axios
-      .get("https://spinz-servers-17da09bbdb53.herokuapp.com/getUserData", {
+      .get("https://mainp-server-c7a5046a3a01.herokuapp.com/getUserData", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
-        if (response.data.length > 0) {
-    setUserData(response.data[0]);
-  }
+        const info = response.data; 
+
+      if (balance !== undefined) {
+        setUserData(info ); 
+      }
         setLoading(false);
       })
       .catch((error) => {});
@@ -127,7 +128,7 @@ function Profile({ showSidebar, active, closeSidebar }) {
               <span>Surname:</span>
               <div className="text_item">{surname}</div>
 
-              <span>ID Number:</span>
+              <span>Account Status:</span>
               <div className="text_item">{ID}</div>
 
               <span>Phone:</span>
