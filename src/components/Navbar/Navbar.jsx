@@ -15,6 +15,7 @@ const Navbar = ({ showSidebar }) => {
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
+    console.log('storedToken',storedToken);
     
 
     if (storedToken) {
@@ -24,10 +25,11 @@ const Navbar = ({ showSidebar }) => {
   }, [setToken]);
 
  const fetchUserData = (token) => {
+   const storedToken = localStorage.getItem("token");
   setLoading(true);
   axios
     .get(" https://mainp-server-c7a5046a3a01.herokuapp.com/balance", {
-      headers: { Authorization: `Bearer ${token}` },
+      headers: { Authorization: `Bearer ${storedToken}` },
     })
     .then((response) => {
       if (response.data.length > 0) {
