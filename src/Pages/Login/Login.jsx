@@ -94,12 +94,7 @@ function Login() {
       if (response.status === 200) {
         setToken(response.data.token);
         storeTokenInLocalStorage(response.data.token);
-        console.log(response.data.token);
-
-        setUserData(response.data.token);
-        localStorage.setItem("token", response.data.token);
-        localStorage.setItem("token", response.token);
-       console.log(response.token);
+        
         navigate("/dashboard");
 
         setErrors((prevErrors) => ({
