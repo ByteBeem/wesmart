@@ -95,7 +95,7 @@ function Profile({ showSidebar, active, closeSidebar }) {
       .then((response) => {
         const info = response.data; 
 
-      if (balance !== undefined) {
+      if (info !== undefined) {
         setUserData(info ); 
       }
         setLoading(false);
