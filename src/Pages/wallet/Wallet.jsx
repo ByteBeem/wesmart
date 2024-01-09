@@ -26,14 +26,16 @@ const Wallet = ({ showSidebar, active, closeSidebar }) => {
   const fetchUserData = (token) => {
     setLoading(true);
     axios
-      .get("https://spinz-servers-17da09bbdb53.herokuapp.com/getUserData", {
+      .get("https://mainp-server-c7a5046a3a01.herokuapp.com/balance", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
         
-        if (response.data.length > 0) {
-    setUserData(response.data[0]);
-  }
+const balance = response.data; 
+
+      if (balance !== undefined) {
+        setUserData( balance );
+      }
         setLoading(false);
       })
       .catch((error) => {
