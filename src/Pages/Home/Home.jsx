@@ -94,7 +94,22 @@ const Home = ({ showSidebar, active, closeSidebar }) => {
     setShowModal(true);
     
   };
-
+const buttonStyle = {
+    backgroundColor: 'green',
+    padding: '15px 20px', 
+    fontSize: '1.5rem',
+    color: '#fff',
+    border: 'none',
+    borderRadius: '10px',
+    cursor: 'pointer',
+    outline: 'none',
+    fontFamily: 'Montserrat, sans-serif',
+    position: 'relative',
+    display: 'inline-block',
+    overflow: 'hidden',
+    letterSpacing: '4px',
+    transition: '0.5s',
+  };
   
 
   return (
@@ -110,6 +125,9 @@ const Home = ({ showSidebar, active, closeSidebar }) => {
           {showModal && <Modal visible={showModal} closeModal={closeModal} content={{ label: modalContent.label, price: modalContent.price}} />}
           
         </div>
+        <button style={buttonStyle} onClick={() => console.log('Button clicked')}>
+      Solo Mining
+    </button>
       </div>
     </div>
   );
