@@ -145,31 +145,7 @@ function Profile({ showSidebar, active, closeSidebar }) {
           Delete Account
         </Link>
 
- <div className="activity">
-          <span>Activity</span>
-          {activities.length > 0 ? (
-            <table className="activity-table">
-              <thead>
-                <tr>
-                  <th>Date</th>
-                  <th>Type</th>
-                  <th>Info</th>
-                </tr>
-              </thead>
-              <tbody>
-                {activities.reverse().map(({ id, date_time, activity_description, activity_details, result }) => (
-                  <tr key={id} className={result === 'fail' ? 'fail' : ''}>
-                    <td id="time">{new Date(date_time).toLocaleString()}</td>
-                    <td id="title">{activity_description}</td>
-                    <td id="body">{activity_details}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          ) : (
-            <p>No Activities Yet</p>
-          )}
-        </div>
+
       </div>
     </div>
   );
