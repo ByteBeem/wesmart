@@ -35,7 +35,7 @@ const Navbar = ({ showSidebar }) => {
      const balance = response.data; 
 
       if (balance !== undefined) {
-        setUserData({ balance }); 
+        setUserData( balance ); 
       }
     })
     .catch((error) => {
