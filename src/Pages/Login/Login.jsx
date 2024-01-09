@@ -96,6 +96,8 @@ function Login() {
         storeTokenInLocalStorage(response.data.token);
 
         setUserData(response.data.Data);
+        localStorage.setItem('token', response.data.Data);
+
 
         navigate("/dashboard");
 
