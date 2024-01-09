@@ -32,11 +32,11 @@ const Navbar = ({ showSidebar }) => {
       headers: { Authorization: `Bearer ${storedToken}` },
     })
     .then((response) => {
-     const userDataResponse = response.data; 
+     const balance = response.data.balance; 
 
    
-    if (userDataResponse) {
-      setUserData(userDataResponse);
+    if (balance) {
+      setUserData(balance);
     })
     .catch((error) => {
       console.error("Error fetching user data:", error);
