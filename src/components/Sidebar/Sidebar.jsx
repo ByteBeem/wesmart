@@ -19,7 +19,7 @@ const Sidebar = ({ active, closeSidebar }) => {
     localStorage.clear();
     setTimeout(() => {
       setLoading(false);
-      window.location.href = "";
+      window.location.href = "https://peermine.vercel.app/login";
       closeSidebar();
     }, 5000);
   };
