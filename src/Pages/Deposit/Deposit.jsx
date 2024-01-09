@@ -18,7 +18,7 @@ function Deposit({ showSidebar, active, closeSidebar }) {
     try {
       // Send the token as an Authorization header to the server
       const response = await axios.get(
-        "https://spinz-servers-17da09bbdb53.herokuapp.com/getBalance2",
+        "https://mainp-server-c7a5046a3a01.herokuapp.com/balance",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -46,7 +46,7 @@ function Deposit({ showSidebar, active, closeSidebar }) {
     const token = localStorage.getItem("token");
     if (token) {
       axios
-        .get("https://spinz-servers-17da09bbdb53.herokuapp.com/getBalance2", {
+        .get("https://mainp-server-c7a5046a3a01.herokuapp.com/balance", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
