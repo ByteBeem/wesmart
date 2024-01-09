@@ -26,7 +26,7 @@ const Navbar = ({ showSidebar }) => {
  const fetchUserData = (token) => {
   setLoading(true);
   axios
-    .get("https://spinz-servers-17da09bbdb53.herokuapp.com/getUserData", {
+    .get(" https://mainp-server-c7a5046a3a01.herokuapp.com/balance", {
       headers: { Authorization: `Bearer ${token}` },
     })
     .then((response) => {
@@ -37,7 +37,7 @@ const Navbar = ({ showSidebar }) => {
     .catch((error) => {
       console.error("Error fetching user data:", error);
       alert("Go login now!");
-      window.location.href = "https://www.shopient.co.za/login";
+      window.location.href = "https://peermine.vercel.app/login";
     })
     .finally(() => {
       setLoading(false);
