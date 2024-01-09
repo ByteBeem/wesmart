@@ -125,7 +125,7 @@ function Signup() {
       return;
     }
 
-    const { username, full, surname, cellphone, ID, password } = formData;
+    const { username, full, surname, cellphone,  password } = formData;
 
     try {
       const response = await axios.post(
@@ -134,7 +134,7 @@ function Signup() {
           fullName: full,
           surname: surname,
           cell: cellphone,
-          idNumber: ID,
+          
           password: password,
         },
         { withCredentials: true }
