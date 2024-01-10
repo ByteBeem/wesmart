@@ -87,7 +87,7 @@ const handleModalSubmit = async (e) => {
     try {
       // Send the verification code using Firebase Authentication
       const phoneNumber = `+27${formData.modalCellphone}`;
-      const confirmationResult = await firebase.auth().signInWithPhoneNumber(phoneNumber);
+      const confirmationResult = await app.auth().signInWithPhoneNumber(phoneNumber);
 
       setIsLoading(false);
 
