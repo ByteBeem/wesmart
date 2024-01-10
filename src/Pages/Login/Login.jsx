@@ -90,7 +90,7 @@ function Login() {
     const { cellphone, password } = formData;
 
     try {
-      // Check if the user wants to log in using the phone number only
+     
       if (isModalOpen) {
         handleModalSubmit(e);
         return;
@@ -194,7 +194,7 @@ function Login() {
         </span>
       </div>
 
-      {/* Modal */}
+    
       {isModalOpen && (
         <div className="modal">
           <div className="modal-content">
