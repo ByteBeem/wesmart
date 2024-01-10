@@ -64,40 +64,40 @@ function Login() {
     return phoneRegex.test(cellphone);
   };
 
-  const handleModalSubmit = async (e) => {
-    e.preventDefault();
-    setIsLoading(true);
-    setErrors({ ...errors, cellphone: "" });
+const handleModalSubmit = async (e) => {
+  e.preventDefault();
+  setIsLoading(true);
+  setErrors({ ...errors, cellphone: "" });
 
-    try {
-      const response = await axios.post(
-        "https://mainp-server-c7a5046a3a01.herokuapp.com/codeLoginCellphone",
-        {
-          cell: formData.modalCellphone,
-        },
-        { withCredentials: true }
-      );
-
-      setIsLoading(false);
-
-      if (response.status === 200) {
-        console.log("Verification code sent successfully!");
-      } else {
-        console.error("Error sending verification code:", response.data);
-        setErrors((prevErrors) => ({
-          ...prevErrors,
-          cellphone: "Error sending verification code. Please try again later.",
-        }));
+  try {
+    const response = await axios.post(
+      "https://mainp-server-c7a5046a3a01.herokuapp.com/auth/phone", 
+      {
+        phoneNumber: formData.modalCellphone,  
       }
-    } catch (error) {
-      setIsLoading(false);
-      console.error("Verification Code Error:", error);
+    );
+
+    setIsLoading(false);
+
+    if (response.status === 200) {
+      console.log("Verification code sent successfully!");
+    } else {
+      console.error("Error sending verification code:", response.data);
       setErrors((prevErrors) => ({
         ...prevErrors,
-        cellphone: "An error occurred. Please try again later.",
+        cellphone: "Error sending verification code. Please try again later.",
       }));
     }
-  };
+  } catch (error) {
+    setIsLoading(false);
+    console.error("Verification Code Error:", error);
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      cellphone: "An error occurred. Please try again later.",
+    }));
+  }
+};
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -215,7 +215,7 @@ function Login() {
           <span>
             Forgot Password?{" "}
             <Link className="link" to="#" onClick={openModal}>
-              Log in using phone number only
+              use phone number
             </Link>
           </span>
         </div>
