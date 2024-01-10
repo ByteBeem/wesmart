@@ -5,8 +5,8 @@ import axios from "axios";
 import { useAuth } from "../../components/AuthContext";
 import Typed from "typed.js";
 import DOMPurify from "dompurify";
-import firebase from "firebase/app";
-import "firebase/auth";
+import { initializeApp } from 'firebase/app';
+import { getAuth } from 'firebase/auth';
 
 function Login() {
   const { setToken, setUserData } = useAuth();
@@ -22,7 +22,8 @@ function Login() {
   appId: "1:618794481354:web:7e194fda97868d3f67a633",
   measurementId: "G-BSXNHC5DHS"
 };
-firebase.initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
   const sanitizeText = (text) => {
     return DOMPurify.sanitize(text);
