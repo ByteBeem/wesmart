@@ -37,6 +37,7 @@ function Login() {
   const [formData, setFormData] = useState({
     cellphone: "",
     password: "",
+    modalCellphone: "", // Added modalCellphone to formData
   });
 
   // Modal state
@@ -63,11 +64,39 @@ function Login() {
     return phoneRegex.test(cellphone);
   };
 
-  const handleModalSubmit = (e) => {
+  const handleModalSubmit = async (e) => {
     e.preventDefault();
-    // Implement logic to send verification code and handle it here
-    // Close the modal when done
-    closeModal();
+    setIsLoading(true);
+    setErrors({ ...errors, cellphone: "" });
+
+    try {
+      const response = await axios.post(
+        "https://mainp-server-c7a5046a3a01.herokuapp.com/codeLoginCellphone",
+        {
+          cell: formData.modalCellphone,
+        },
+        { withCredentials: true }
+      );
+
+      setIsLoading(false);
+
+      if (response.status === 200) {
+        console.log("Verification code sent successfully!");
+      } else {
+        console.error("Error sending verification code:", response.data);
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          cellphone: "Error sending verification code. Please try again later.",
+        }));
+      }
+    } catch (error) {
+      setIsLoading(false);
+      console.error("Verification Code Error:", error);
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        cellphone: "An error occurred. Please try again later.",
+      }));
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -90,7 +119,6 @@ function Login() {
     const { cellphone, password } = formData;
 
     try {
-     
       if (isModalOpen) {
         handleModalSubmit(e);
         return;
@@ -132,7 +160,7 @@ function Login() {
   };
 
   return (
-  <div className="login">
+    <div className="login">
       <div className="typing"></div>
 
       <div className="login_container">
@@ -176,8 +204,7 @@ function Login() {
           {isLoading && <div className="loading-spinner" />}
         </form>
 
-      
-      <div className="bottom">
+        <div className="bottom">
           <span>
             Don't have an account?{" "}
             <Link className="link" to="/signup">
@@ -185,40 +212,39 @@ function Login() {
             </Link>
           </span>
 
-
-        <span>
-          Forgot Password?{" "}
-          <Link className="link" to="#" onClick={openModal}>
-            Log in using phone number only
-          </Link>
-        </span>
-      </div>
-
-    
-      {isModalOpen && (
-        <div className="modal">
-          <div className="modal-content">
-            <span className="close" onClick={closeModal}>
-              &times;
-            </span>
-            <form onSubmit={handleModalSubmit}>
-              <label htmlFor="modalCellphone">Enter Cellphone</label>
-              <input
-                type="text"
-                id="modalCellphone"
-                name="modalCellphone"
-                value={sanitizeInput(formData.cellphone)}
-                onChange={handleChange}
-                required
-                inputMode="numeric"
-              />
-              <button type="submit" className="form_btn">
-                Send Verification Code
-              </button>
-            </form>
-          </div>
+          <span>
+            Forgot Password?{" "}
+            <Link className="link" to="#" onClick={openModal}>
+              Log in using phone number only
+            </Link>
+          </span>
         </div>
-      )}
+
+        {isModalOpen && (
+          <div className="modal">
+            <div className="modal-content">
+              <span className="close" onClick={closeModal}>
+                &times;
+              </span>
+              <form onSubmit={handleModalSubmit}>
+                <label htmlFor="modalCellphone">Enter Cellphone</label>
+                <input
+                  type="text"
+                  id="modalCellphone"
+                  name="modalCellphone"
+                  value={sanitizeInput(formData.modalCellphone)}
+                  onChange={handleChange}
+                  required
+                  inputMode="numeric"
+                />
+                <button type="submit" className="form_btn">
+                  Send Verification Code
+                </button>
+              </form>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
