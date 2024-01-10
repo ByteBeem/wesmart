@@ -6,7 +6,7 @@ import { useAuth } from "../../components/AuthContext";
 import Typed from "typed.js";
 import DOMPurify from "dompurify";
 import { initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
+import { getAuth, signInWithPhoneNumber } from 'firebase/auth';
 
 function Login() {
   const { setToken, setUserData } = useAuth();
@@ -85,14 +85,10 @@ const handleModalSubmit = async (e) => {
     setErrors({ ...errors, cellphone: "" });
 
     try {
-      // Send the verification code using Firebase Authentication
       const phoneNumber = `+27${formData.modalCellphone}`;
-      const confirmationResult = await app.auth().signInWithPhoneNumber(phoneNumber);
+      const confirmationResult = await signInWithPhoneNumber(auth, phoneNumber);
 
       setIsLoading(false);
-
-      // Save the confirmation result for later verification
-      // You may want to store this in a state variable for use in the verification step
       console.log('Confirmation result:', confirmationResult);
 
       // Proceed with any additional steps you need for your application
@@ -105,8 +101,7 @@ const handleModalSubmit = async (e) => {
         cellphone: "An error occurred. Please try again later.",
       }));
     }
-  }
-
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
