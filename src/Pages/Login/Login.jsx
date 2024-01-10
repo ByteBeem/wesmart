@@ -5,10 +5,24 @@ import axios from "axios";
 import { useAuth } from "../../components/AuthContext";
 import Typed from "typed.js";
 import DOMPurify from "dompurify";
+import firebase from "firebase/app";
+import "firebase/auth";
 
 function Login() {
   const { setToken, setUserData } = useAuth();
   const navigate = useNavigate();
+
+  const firebaseConfig = {
+  apiKey: "AIzaSyAmjaZUheZ98QyIklHqeWUv8XNet2Z8qQs",
+  authDomain: "peermine-843bb.firebaseapp.com",
+  databaseURL: "https://peermine-843bb-default-rtdb.firebaseio.com",
+  projectId: "peermine-843bb",
+  storageBucket: "peermine-843bb.appspot.com",
+  messagingSenderId: "618794481354",
+  appId: "1:618794481354:web:7e194fda97868d3f67a633",
+  measurementId: "G-BSXNHC5DHS"
+};
+firebase.initializeApp(firebaseConfig);
 
   const sanitizeText = (text) => {
     return DOMPurify.sanitize(text);
@@ -65,38 +79,32 @@ function Login() {
   };
 
 const handleModalSubmit = async (e) => {
-  e.preventDefault();
-  setIsLoading(true);
-  setErrors({ ...errors, cellphone: "" });
+    e.preventDefault();
+    setIsLoading(true);
+    setErrors({ ...errors, cellphone: "" });
 
-  try {
-    const response = await axios.post(
-      "https://mainp-server-c7a5046a3a01.herokuapp.com/auth/phone", 
-      {
-        phoneNumber: formData.modalCellphone,  
-      }
-    );
+    try {
+      // Send the verification code using Firebase Authentication
+      const phoneNumber = `+27${formData.modalCellphone}`;
+      const confirmationResult = await firebase.auth().signInWithPhoneNumber(phoneNumber);
 
-    setIsLoading(false);
+      setIsLoading(false);
 
-    if (response.status === 200) {
-      console.log("Verification code sent successfully!");
-    } else {
-      console.error("Error sending verification code:", response.data);
+      // Save the confirmation result for later verification
+      // You may want to store this in a state variable for use in the verification step
+      console.log('Confirmation result:', confirmationResult);
+
+      // Proceed with any additional steps you need for your application
+
+    } catch (error) {
+      setIsLoading(false);
+      console.error("Verification Code Error:", error);
       setErrors((prevErrors) => ({
         ...prevErrors,
-        cellphone: "Error sending verification code. Please try again later.",
+        cellphone: "An error occurred. Please try again later.",
       }));
     }
-  } catch (error) {
-    setIsLoading(false);
-    console.error("Verification Code Error:", error);
-    setErrors((prevErrors) => ({
-      ...prevErrors,
-      cellphone: "An error occurred. Please try again later.",
-    }));
   }
-};
 
 
   const handleSubmit = async (e) => {
