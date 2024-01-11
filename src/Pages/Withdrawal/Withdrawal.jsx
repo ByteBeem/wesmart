@@ -81,7 +81,7 @@ function Withdraw({ showSidebar, active, closeSidebar }) {
       return;
     }
 
-    if (isNaN(iD)) {
+    if (!iD) {
       setError("Enter passowrd");
       setLoading(false);
       return;
