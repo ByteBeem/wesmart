@@ -141,7 +141,7 @@ const handleModalSubmit = async (e) => {
 
       if (response.status === 200) {
         setToken(response.data.token);
-        // ... (rest of your login logic)
+       navigate("/dashboard");
       } else if (response.status === 201) {
         setErrors((prevErrors) => ({
           ...prevErrors,
