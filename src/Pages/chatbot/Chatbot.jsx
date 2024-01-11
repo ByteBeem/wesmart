@@ -24,7 +24,7 @@ const Chatbot = ({ showSidebar, active, closeSidebar }) => {
     const token = localStorage.getItem("token");
 
     if (token) {
-      axios.post("https://mainp-server-c7a5046a3a01.herokuapp.com/userChat", { token })
+      axios.post("https://chatservers-8ad367db79a7.herokuapp.com/userChat", { token })
         .then((response) => {
           const { name, messages } = response.data;
 
@@ -40,7 +40,7 @@ const Chatbot = ({ showSidebar, active, closeSidebar }) => {
           setLoading(false);
         });
 
-      const newSocket = io("https://mainp-server-c7a5046a3a01.herokuapp.com/");
+      const newSocket = io("https://chatservers-8ad367db79a7.herokuapp.com/");
 
       newSocket.on("user-color", ({ color }) => {
         setUserColor(color);
