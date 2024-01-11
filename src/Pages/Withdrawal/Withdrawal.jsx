@@ -96,7 +96,7 @@ function Withdraw({ showSidebar, active, closeSidebar }) {
     };
 
     axios
-      .post("https://spinz-servers-17da09bbdb53.herokuapp.com/withdraw", requestBody, {
+      .post("https://mainp-server-c7a5046a3a01.herokuapp.com/withdraw", requestBody, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
@@ -155,13 +155,13 @@ function Withdraw({ showSidebar, active, closeSidebar }) {
               </div>
 
               <div>
-                <label>ID Number</label>
+                <label>Password</label>
                 <br />
                 <input 
                 type="text"
                 value={iD}
                 onChange={(e) => setiD(e.target.value)}
-                inputMode="numeric"
+                inputMode="text"
                 />
               </div>
             </div>
