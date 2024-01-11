@@ -55,6 +55,10 @@ const auth = getAuth(app);
     modalCellphone: "", // Added modalCellphone to formData
   });
 
+  const storeTokenInLocalStorage = (token) => {
+    localStorage.setItem("token", token);
+  }
+
   // Modal state
   const [isModalOpen, setIsModalOpen] = useState(false);
 
