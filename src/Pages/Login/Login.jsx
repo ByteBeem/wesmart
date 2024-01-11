@@ -91,7 +91,7 @@ const handleModalSubmit = async (e) => {
       setIsLoading(false);
       console.log('Confirmation result:', confirmationResult);
 
-      // Proceed with any additional steps you need for your application
+      
 
     } catch (error) {
       setIsLoading(false);
@@ -141,6 +141,7 @@ const handleModalSubmit = async (e) => {
 
       if (response.status === 200) {
         setToken(response.data.token);
+        storeTokenInLocalStorage(response.data.token);
        navigate("/dashboard");
       } else if (response.status === 201) {
         setErrors((prevErrors) => ({
