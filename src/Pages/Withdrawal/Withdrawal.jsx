@@ -75,6 +75,12 @@ function Withdraw({ showSidebar, active, closeSidebar }) {
 
     const token = localStorage.getItem("token");
 
+    if(!token){
+      setError("Go login again please");
+      setLoading(false);
+      return;
+    }
+
     if (isNaN(amount) || amount <= 0) {
       setError("Invalid withdrawal amount");
       setLoading(false);
