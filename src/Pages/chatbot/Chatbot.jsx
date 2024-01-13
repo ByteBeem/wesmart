@@ -162,13 +162,21 @@ const handleImageUpload = () => {
     // You may use a library like MediaRecorder to record audio
   };
 
+  const chatContainerRef = useRef(null);
+
+  useEffect(() => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    }
+  }, [messages]);
+
   return (
     <div className="chatbot">
       <Sidebar active={active} closeSidebar={closeSidebar} />
 
       <div className="content">
         <Navbar showSidebar={showSidebar} />
-        <div className="chatbot-container">
+        <div className="chatbot-container" ref={chatContainerRef}>
           {loading && <div className="overlay">Connecting...</div>}
 
           <ul className="chat-messages">
