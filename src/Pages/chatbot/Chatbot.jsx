@@ -40,7 +40,11 @@ const Chatbot = ({ showSidebar, active, closeSidebar }) => {
           setLoading(false);
         });
 
-      const newSocket = io("https://chatservers-8ad367db79a7.herokuapp.com/");
+
+      const token = localStorage.getItem("token");
+const newSocket = io("https://chatservers-8ad367db79a7.herokuapp.com/", {
+  query: { token: token }
+});
 
       newSocket.on("user-color", ({ color }) => {
         setUserColor(color);
