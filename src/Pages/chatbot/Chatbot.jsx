@@ -21,8 +21,12 @@ const Chatbot = ({ showSidebar, active, closeSidebar }) => {
   };
 
   useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
+    const intervalId = setInterval(() => {
+      scrollToBottom();
+    }, 1000);
+
+    return () => clearInterval(intervalId);
+  }, [scrollToBottom]);
 
   function handleImage(e){
     console.log(e.target.files);
@@ -179,7 +183,7 @@ const handleImageUpload = () => {
 
       <div className="content">
         <Navbar showSidebar={showSidebar} />
-        <div className="chatbot-container" >
+        <div className="chatbot-container"ref={chatContainerRef} >
           {loading && <div className="overlay">Connecting...</div>}
 
           <ul className="chat-messages">
