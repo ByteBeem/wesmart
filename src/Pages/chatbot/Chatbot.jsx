@@ -20,47 +20,47 @@ const Chatbot = ({ showSidebar, active, closeSidebar }) => {
     setImage(e.target.files[0])
   }
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
+ useEffect(() => {
+  const token = localStorage.getItem("token");
 
-    if (token) {
-      axios.post("https://chatservers-8ad367db79a7.herokuapp.com/userChat", { token })
-        .then((response) => {
-          const { name, messages } = response.data;
+  if (token) {
+    axios.post("https://chatservers-8ad367db79a7.herokuapp.com/userChat", { token })
+      .then((response) => {
+        const { name, messages } = response.data;
 
-          localStorage.setItem("user_name", name);
+        localStorage.setItem("user_name", name);
 
-          const sortedMessages = messages.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+        const sortedMessages = messages.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
 
-          setMessages(sortedMessages);
-          setLoading(false);
-        })
-        .catch((error) => {
-          console.error("Error fetching user name:", error);
-          setLoading(false);
-        });
-
-
-      const token = localStorage.getItem("token");
-const newSocket = io("https://chatservers-8ad367db79a7.herokuapp.com/", {
-  query: { token: token }
-});
-
-      newSocket.on("user-color", ({ color }) => {
-        setUserColor(color);
-      });
-
-      newSocket.on("connect", () => {
+        setMessages(sortedMessages);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching user name:", error);
         setLoading(false);
       });
 
-      setSocket(newSocket);
+    // Use the token here to set up the Socket.IO connection
+    const newSocket = io("https://chatservers-8ad367db79a7.herokuapp.com/", {
+      query: { token: token }
+    });
 
-      return () => {
-        newSocket.disconnect();
-      };
-    }
-  }, []);
+    newSocket.on("user-color", ({ color }) => {
+      setUserColor(color);
+    });
+
+    newSocket.on("connect", () => {
+      setLoading(false);
+    });
+
+    setSocket(newSocket);
+
+    return () => {
+      newSocket.disconnect();
+    };
+  }
+}, []);
+
 
   useEffect(() => {
     if (!socket) return;
