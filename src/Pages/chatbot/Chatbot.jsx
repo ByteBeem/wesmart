@@ -162,11 +162,14 @@ const handleImageUpload = () => {
     // You may use a library like MediaRecorder to record audio
   };
 
-  const chatContainerRef = useRef(null);
+const chatContainerRef = useRef(null);
 
   useEffect(() => {
     if (chatContainerRef.current) {
-      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+      
+      setTimeout(() => {
+        chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+      }, 0);
     }
   }, [messages]);
 
