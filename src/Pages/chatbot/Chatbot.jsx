@@ -14,6 +14,15 @@ const Chatbot = ({ showSidebar, active, closeSidebar }) => {
   const [socket, setSocket] = useState(null);
   const [loading, setLoading] = useState(true);
   const [image , setImage]=useState(null);
+  const chatContainerRef = useRef(null);
+
+  const scrollToBottom = () => {
+    chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
   function handleImage(e){
     console.log(e.target.files);
@@ -162,24 +171,15 @@ const handleImageUpload = () => {
     // You may use a library like MediaRecorder to record audio
   };
 
-const chatContainerRef = useRef(null);
 
-  useEffect(() => {
-    if (chatContainerRef.current) {
-      
-      setTimeout(() => {
-        chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
-      }, 0);
-    }
-  }, [messages]);
 
   return (
-    <div className="chatbot">
+    <div className="chatbot" ref={chatContainerRef}>
       <Sidebar active={active} closeSidebar={closeSidebar} />
 
       <div className="content">
         <Navbar showSidebar={showSidebar} />
-        <div className="chatbot-container" ref={chatContainerRef}>
+        <div className="chatbot-container" >
           {loading && <div className="overlay">Connecting...</div>}
 
           <ul className="chat-messages">
