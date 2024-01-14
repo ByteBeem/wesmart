@@ -8,12 +8,11 @@ import { IoIosPaper } from "react-icons/io";
 
 const Navbar = ({ showSidebar }) => {
   const [userData, setUserData] = useState({});
-  const [currencyData, setCurrencyData] = useState({});
   const [loading, setLoading] = useState(true);
   const { setToken } = useAuth();
 
   const balance = userData.balance;
-  const currency = currencyData.currency;
+  const currency = userData.currency;
 
 
   useEffect(() => {
@@ -36,14 +35,6 @@ const Navbar = ({ showSidebar }) => {
     })
     .then((response) => {
      const balance = response.data; 
-
-      if(balance.currency === "USD"){
-        const currency="$";
-        setcurrencyData(currency);
-      } else{
-        const currency="R";
-        setcurrencyData(currency);
-      }
       
       if (balance !== undefined ) {
         setUserData( balance ); 
@@ -59,6 +50,11 @@ const Navbar = ({ showSidebar }) => {
     });
 };
 
+  const getCurrencySymbol = () => {
+  
+    return currency === 'USD' ? '$' : 'R';
+  };
+
 
   return (
     <header>
@@ -68,7 +64,7 @@ const Navbar = ({ showSidebar }) => {
       <ul className="games_filter">
         <li>
           <div className="balance">
-            {loading ? "Loading..." : `${currency}${balance.toString()}`}
+             {loading ? "Loading..." : `${getCurrencySymbol()}${balance.toString()}`}
           </div>
         </li>
       </ul>
