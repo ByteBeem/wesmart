@@ -8,11 +8,12 @@ import { IoIosPaper } from "react-icons/io";
 
 const Navbar = ({ showSidebar }) => {
   const [userData, setUserData] = useState({});
+  const [currencyData, setcurrencyData] = useState({});
   const [loading, setLoading] = useState(true);
   const { setToken } = useAuth();
 
   const balance = userData.balance;
-  const currency = userData.currency;
+  const currency = currencyData.currency;
 
 
   useEffect(() => {
@@ -36,7 +37,15 @@ const Navbar = ({ showSidebar }) => {
     .then((response) => {
      const balance = response.data; 
 
-      if (balance !== undefined) {
+      if(balance.currency === "USD"){
+        const currency="$";
+        setcurrencyData(currency);
+      } else{
+        const currency="R";
+        setcurrencyData(currency);
+      }
+      
+      if (balance !== undefined ) {
         setUserData( balance ); 
       }
     })
