@@ -12,6 +12,8 @@ const Navbar = ({ showSidebar }) => {
   const { setToken } = useAuth();
 
   const balance = userData.balance;
+  const currency = userData.currency;
+
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
@@ -57,7 +59,7 @@ const Navbar = ({ showSidebar }) => {
       <ul className="games_filter">
         <li>
           <div className="balance">
-            {loading ? "Loading..." : `R${balance}`}
+            {loading ? "Loading..." : `${currency}${balance.toString()}`}
           </div>
         </li>
       </ul>
