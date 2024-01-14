@@ -8,7 +8,7 @@ import { IoIosPaper } from "react-icons/io";
 
 const Navbar = ({ showSidebar }) => {
   const [userData, setUserData] = useState({});
-  const [currencyData, setcurrencyData] = useState({});
+  const [currencyData, setCurrencyData] = useState({});
   const [loading, setLoading] = useState(true);
   const { setToken } = useAuth();
 
