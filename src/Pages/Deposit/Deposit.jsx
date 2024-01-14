@@ -80,6 +80,12 @@ function Deposit({ showSidebar, active, closeSidebar }) {
       return;
     }
 
+        if ( amount <= 10) {
+      setError("Min amount is R10");
+      setLoading(false);
+      return;
+    }
+
     const requestBody = {
       amount: parseFloat(amount),
     };
