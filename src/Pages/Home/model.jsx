@@ -57,7 +57,7 @@ export default function Modal({ visible, closeModal, content }) {
       <div className="modal-content">
         <h2 className="modal-title">Disclaimer</h2>
         <p className="modal-text">
-          Hola, today you decided to choose <b>{content.label}</b> as your mining pool. To continue, you agree to pay a fee of <b>R{content.price}</b>.
+          Hola, looks like you want signals of <b>{content.label}</b> for the next 5 min. To continue, you agree to pay a fee of <b>R{content.price}</b>.
         </p>
   
         {showLoadingSpinner ? (
