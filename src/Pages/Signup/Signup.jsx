@@ -24,6 +24,7 @@ function Signup() {
     ID: "",
     password: "",
     confirmPassword: "",
+    currency: "ZAR",
   });
 
   const [isLoading, setIsLoading] = useState(false);
@@ -34,6 +35,7 @@ function Signup() {
     ID: "",
     password: "",
     confirmPassword: "",
+    currency: "",
   });
 
   const handleChange = (e) => {
@@ -80,6 +82,7 @@ function Signup() {
       ID: "",
       password: "",
       confirmPassword: "",
+      currency: "",
     });
 
     // Validate the cellphone number
@@ -125,7 +128,7 @@ function Signup() {
       return;
     }
 
-    const { username, full, surname, cellphone,  password } = formData;
+    const { full, surname, cellphone, password, currency } = formData;
 
     try {
       const response = await axios.post(
@@ -134,7 +137,7 @@ function Signup() {
           fullName: full,
           surname: surname,
           cell: cellphone,
-          
+          currency: currency,
           password: password,
         },
         { withCredentials: true }
@@ -213,7 +216,22 @@ function Signup() {
               <p className="error-message">{errors.cellphone}</p>
             )}
           </div>
-         
+         <div className="input-group">
+            <label htmlFor="currency">Currency: </label>
+            <select
+              id="currency"
+              name="currency"
+              value={formData.currency}
+              onChange={handleChange}
+              required
+            >
+              <option value="ZAR">ZAR (South African Rand)</option>
+              <option value="USD">USD (US Dollar)</option>
+            </select>
+            {errors.currency && (
+              <p className="error-message">{errors.currency}</p>
+            )}
+          </div>
           <div className="input-group">
             <label htmlFor="password">Password: </label>
             <input
