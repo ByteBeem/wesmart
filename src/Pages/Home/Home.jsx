@@ -64,6 +64,26 @@ const EasyWinSection = ({  decideButtons   }) => {
     { label: "USDCAD", price: "200", className: "glowButton blueButton", onClick: () => decideButtons("USDCAD", "10") },
     { label: "CADCHF", price: "80", className: "glowButton blueButton", onClick: () => decideButtons("CADCHF", "10") },
   ];
+
+  const redMinesButtonsUSD = [
+    { label: "XAUUSD", className: "glowButtonAviator redButton", onClick: () => decideButtons("XAUUSD", "10") },
+    { label: "GBPJPY", className: "glowButtonAviator redButton", onClick: () => decideButtons("GBPJPY", "10") },
+    { label: "USDJPY", className: "glowButtonAviator redButton",onClick: () => decideButtons("USDJPY", "10") },
+    { label: "NASDAQ", className: "glowButtonAviator redButton", onClick: () => decideButtons("NASDAQ", "10") },
+    { label: "EURUSD", className: "glowButtonAviator redButton", onClick: () => decideButtons("EURUSD", "10") },
+    { label: "NZDJPY", className: "glowButtonAviator redButton", onClick: () => decideButtons("NZDJPY", "10") },
+    { label: "EURCHF", className: "glowButtonAviator redButton", onClick: () => decideButtons("EURCHF", "10") },  
+  ];
+
+  const blueMinesButtonsUSD = [
+    { label: "USDJPY", price: "20", className: "glowButton blueButton", onClick: () => decideButtons("USDJPY", "1") },
+    { label: "USDCHF", price: "40", className: "glowButton blueButton", onClick: () => decideButtons("USDCHF", "1") },
+    { label: "AUDJPY", price: "50", className: "glowButton blueButton", onClick: () => decideButtons("AUDJPY", "1") },
+    { label: "CADJPY", price: "100", className: "glowButton blueButton", onClick: () => decideButtons("CADJPY", "1") },
+    { label: "EURGBP", price: "10", className: "glowButton blueButton", onClick: () => decideButtons("EURGBP", "1") },
+    { label: "USDCAD", price: "200", className: "glowButton blueButton", onClick: () => decideButtons("USDCAD", "1") },
+    { label: "CADCHF", price: "80", className: "glowButton blueButton", onClick: () => decideButtons("CADCHF", "1") },
+  ];
   
   
   
