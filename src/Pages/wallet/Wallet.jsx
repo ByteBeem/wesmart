@@ -16,15 +16,15 @@ const Wallet = ({ showSidebar, active, closeSidebar }) => {
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
-    const storedCurrency = localStorage.getItem("currency");
+    
 
     if (storedToken) {
       setToken(storedToken);
-      fetchUserData(storedToken, storedCurrency);
+      fetchUserData(storedToken);
     }
   }, [setToken]);
 
-  const fetchUserData = (token, currency) => {
+  const fetchUserData = (token) => {
     setLoading(true);
     axios
       .get("https://mainp-server-c7a5046a3a01.herokuapp.com/balance", {
@@ -34,14 +34,19 @@ const Wallet = ({ showSidebar, active, closeSidebar }) => {
         
 const balance = response.data; 
 
-      if (userData !== undefined) {
-          setUserData({ ...userData, currency });
+      if (balance !== undefined) {
+          setUserData(balance);
         }
         setLoading(false);
       })
       .catch((error) => {
         setLoading(false);
       });
+  };
+
+  const getCurrencySymbol = () => {
+    
+    return currency === 'USD' ? '$' : 'R';
   };
 
   return (
@@ -59,7 +64,7 @@ const balance = response.data;
           )}
 
           <span>Account Balance:</span>
-         <div className="balance">{`${userData.currency}${userData.balance || 0}`}</div>
+         <div className="balance">{`${getCurrencySymbol()}${balance.balance.toString()}`}</div>
 
 
           <Link className="form_btn" to="/deposit">
