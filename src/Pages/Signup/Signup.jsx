@@ -220,6 +220,7 @@ function Signup() {
             <label htmlFor="currency">Currency: </label>
             <select
               id="currency"
+              className="dropdown"
               name="currency"
               value={formData.currency}
               onChange={handleChange}
