@@ -16,14 +16,15 @@ const Wallet = ({ showSidebar, active, closeSidebar }) => {
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
+    const storedCurrency = localStorage.getItem("currency");
 
     if (storedToken) {
       setToken(storedToken);
-      fetchUserData(storedToken);
+      fetchUserData(storedToken, storedCurrency);
     }
   }, [setToken]);
 
-  const fetchUserData = (token) => {
+  const fetchUserData = (token, currency) => {
     setLoading(true);
     axios
       .get("https://mainp-server-c7a5046a3a01.herokuapp.com/balance", {
@@ -33,9 +34,9 @@ const Wallet = ({ showSidebar, active, closeSidebar }) => {
         
 const balance = response.data; 
 
-      if (balance !== undefined) {
-        setUserData( balance );
-      }
+      if (userData !== undefined) {
+          setUserData({ ...userData, currency });
+        }
         setLoading(false);
       })
       .catch((error) => {
@@ -58,7 +59,7 @@ const balance = response.data;
           )}
 
           <span>Account Balance:</span>
-          <div className="balance">{`R${userData.balance || 0}`}</div>
+         <div className="balance">{`${userData.currency}${userData.balance || 0}`}</div>
 
           <Link className="form_btn" to="/withdraw">
             Withdraw
