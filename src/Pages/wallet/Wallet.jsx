@@ -13,6 +13,8 @@ const Wallet = ({ showSidebar, active, closeSidebar }) => {
   const { setToken } = useAuth();
   const [userData, setUserData] = useState({ balance: 0 });
   const [loading, setLoading] = useState(false);
+  const currency = userData.currency;
+  const balance = userData.balance;
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
@@ -64,7 +66,7 @@ const balance = response.data;
           )}
 
           <span>Account Balance:</span>
-         <div className="balance">{`${getCurrencySymbol()}${balance.balance.toString()}`}</div>
+         <div className="balance">{`${getCurrencySymbol()}${balance.toString()}`}</div>
 
 
           <Link className="form_btn" to="/deposit">
