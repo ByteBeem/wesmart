@@ -50,10 +50,12 @@ const Navbar = ({ showSidebar }) => {
     });
 };
 
-  const getCurrencySymbol = () => {
-  
-    return currency === 'USD' ? '$' : 'R';
-  };
+const getCurrencySymbol = () => {
+  const symbol = currency === 'USD' ? '$' : 'R';
+  localStorage.setItem("currency", currency);
+  return symbol;
+};
+
 
 
   return (
