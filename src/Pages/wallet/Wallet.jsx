@@ -61,9 +61,7 @@ const balance = response.data;
           <span>Account Balance:</span>
          <div className="balance">{`${userData.currency}${userData.balance || 0}`}</div>
 
-          <Link className="form_btn" to="/withdraw">
-            Withdraw
-          </Link>
+
           <Link className="form_btn" to="/deposit">
             Deposit
           </Link>
