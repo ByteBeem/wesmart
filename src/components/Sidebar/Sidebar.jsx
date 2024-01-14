@@ -55,24 +55,14 @@ const Sidebar = ({ active, closeSidebar }) => {
           <span>Wallet</span>
         </Link>
 
-        <Link
-          onClick={() => setActiveItem("forex")}
-          className={activeItem === "forex" ? "link active" : "link"}
-          to="/forex"
-        >
-          <FaHandHoldingDollar className="icon" />
-          <span>Mining</span>
-        </Link>
+        
 
         <Link className="link" to="/profile">
           <FaUser className="icon" />
           <span>Profile</span>
         </Link>
 
-        <Link className="link" to="/chat">
-          <IoIosChatbubbles className="icon" />
-          <span>Chat</span>
-        </Link>
+        
 
         <Link
           className="link"
