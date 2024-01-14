@@ -46,23 +46,23 @@ const MinesSection = ({ title, buttons }) => {
 const EasyWinSection = ({  decideButtons   }) => {
   
   const redMinesButtons = [
-    { label: "Phoenix", className: "glowButtonAviator redButton", onClick: () => decideButtons("Phoenix", "20") },
-    { label: "Spectra", className: "glowButtonAviator redButton", onClick: () => decideButtons("Spectra", "40") },
-    { label: "Aurora", className: "glowButtonAviator redButton",onClick: () => decideButtons("Aurora", "50") },
-    { label: "Vortex", className: "glowButtonAviator redButton", onClick: () => decideButtons("Vortex", "100") },
-    { label: "Infinity", className: "glowButtonAviator redButton", onClick: () => decideButtons("Infinity", "10") },
-    { label: "Harmony", className: "glowButtonAviator redButton", onClick: () => decideButtons("Harmony", "200") },
-    { label: "Quantum", className: "glowButtonAviator redButton", onClick: () => decideButtons("Quantum", "80") },  
+    { label: "XAUUSD", className: "glowButtonAviator redButton", onClick: () => decideButtons("XAUUSD", "10") },
+    { label: "GBPJPY", className: "glowButtonAviator redButton", onClick: () => decideButtons("GBPJPY", "10") },
+    { label: "USDJPY", className: "glowButtonAviator redButton",onClick: () => decideButtons("USDJPY", "10") },
+    { label: "NASDAQ", className: "glowButtonAviator redButton", onClick: () => decideButtons("NASDAQ", "10") },
+    { label: "EURUSD", className: "glowButtonAviator redButton", onClick: () => decideButtons("EURUSD", "10") },
+    { label: "NZDJPY", className: "glowButtonAviator redButton", onClick: () => decideButtons("NZDJPY", "10") },
+    { label: "EURCHF", className: "glowButtonAviator redButton", onClick: () => decideButtons("EURCHF", "10") },  
   ];
 
   const blueMinesButtons = [
-    { label: "Lapis", price: "20", className: "glowButton blueButton", onClick: () => decideButtons("Lapis", "20") },
-    { label: "Sapphire", price: "40", className: "glowButton blueButton", onClick: () => decideButtons("Sapphire", "40") },
-    { label: "Whispers", price: "50", className: "glowButton blueButton", onClick: () => decideButtons("Whispers", "50") },
-    { label: "Cobalt", price: "100", className: "glowButton blueButton", onClick: () => decideButtons("Cobalt", "100") },
-    { label: "Cascade", price: "10", className: "glowButton blueButton", onClick: () => decideButtons("Cascade", "10") },
-    { label: "Royal", price: "200", className: "glowButton blueButton", onClick: () => decideButtons("Royal", "200") },
-    { label: "Bluefall", price: "80", className: "glowButton blueButton", onClick: () => decideButtons("Bluefall", "80") },
+    { label: "USDJPY", price: "20", className: "glowButton blueButton", onClick: () => decideButtons("USDJPY", "10") },
+    { label: "USDCHF", price: "40", className: "glowButton blueButton", onClick: () => decideButtons("USDCHF", "10") },
+    { label: "AUDJPY", price: "50", className: "glowButton blueButton", onClick: () => decideButtons("AUDJPY", "10") },
+    { label: "CADJPY", price: "100", className: "glowButton blueButton", onClick: () => decideButtons("CADJPY", "10") },
+    { label: "EURGBP", price: "10", className: "glowButton blueButton", onClick: () => decideButtons("EURGBP", "10") },
+    { label: "USDCAD", price: "200", className: "glowButton blueButton", onClick: () => decideButtons("USDCAD", "10") },
+    { label: "CADCHF", price: "80", className: "glowButton blueButton", onClick: () => decideButtons("CADCHF", "10") },
   ];
   
   
