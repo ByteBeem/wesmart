@@ -41,7 +41,7 @@ const Home = () => {
       <Sidebar active={active} closeSidebar={closeSidebar} />
       <div className="home_container">
         <Navbar />
-        <div className="content">
+        
           <div className="videos-container">
             {loading ? (
               <p>Loading...</p>
@@ -63,7 +63,7 @@ const Home = () => {
                 ))}
               </div>
             )}
-          </div>
+         
         </div>
       </div>
     </div>
