@@ -56,7 +56,7 @@ const balance = response.data;
       <Sidebar active={active} closeSidebar={closeSidebar} />
 
       <div className="wallet_container">
-        <Navbar showSidebar={showSidebar} />
+
 
         <div className="account_info">
           {loading && (
@@ -69,8 +69,8 @@ const balance = response.data;
          <div className="balance">{`${getCurrencySymbol()}${balance.toString()}`}</div>
 
 
-          <Link className="form_btn" to="/deposit">
-            Deposit
+          <Link className="form_btn" to="/withdraw">
+            Withdraw
           </Link>
         </div>
       </div>
