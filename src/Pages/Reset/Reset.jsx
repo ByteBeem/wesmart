@@ -10,7 +10,7 @@ function Reset({ showSidebar, active, closeSidebar }) {
   const [successMessage, setSuccessMessage] = useState(null);
   const [videoFile, setVideoFile] = useState(null);
 
-  const userId = localstorage.getItem("userId");
+  const userId = localStorage.getItem("userId");
 
   const handleFileChange = (event) => {
     setVideoFile(event.target.files[0]);
