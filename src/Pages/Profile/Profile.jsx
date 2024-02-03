@@ -113,7 +113,7 @@ function Profile({ showSidebar, active, closeSidebar }) {
       <Sidebar active={active} closeSidebar={closeSidebar} />
 
       <div className="profile_container">
-        <Navbar showSidebar={showSidebar} />
+
 
         <div className="top">
           <div className="user_info">
@@ -128,8 +128,7 @@ function Profile({ showSidebar, active, closeSidebar }) {
               <span>Surname:</span>
               <div className="text_item">{surname}</div>
 
-              <span>Account Status:</span>
-              <div className="text_item">{ID}</div>
+              
 
               <span>Phone:</span>
               <div className="text_item">{cellphone}</div>
@@ -138,7 +137,7 @@ function Profile({ showSidebar, active, closeSidebar }) {
         </div>
 
         <Link className="form_btn" to="/reset">
-          Change Password
+          Post Video
         </Link>
 
       <Link className="form_btn" to="#">
