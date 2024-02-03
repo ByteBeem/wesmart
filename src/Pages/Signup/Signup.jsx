@@ -1,6 +1,6 @@
 import React, { useState , useEffect } from "react";
 import "./Signup.scss";
-import logo from "../../assets/451318-2678002944.2012c53cb3a99822f296.jpg";
+import logo from "../../assets/451318-2678002944.jpg";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
