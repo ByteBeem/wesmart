@@ -216,23 +216,7 @@ function Signup() {
               <p className="error-message">{errors.cellphone}</p>
             )}
           </div>
-         <div className="input-group">
-            <label htmlFor="currency">Currency: </label>
-            <select
-              id="currency"
-              className="dropdown"
-              name="currency"
-              value={formData.currency}
-              onChange={handleChange}
-              required
-            >
-              <option value="ZAR">ZAR (South African Rand)</option>
-              <option value="USD">USD (US Dollar)</option>
-            </select>
-            {errors.currency && (
-              <p className="error-message">{errors.currency}</p>
-            )}
-          </div>
+
           <div className="input-group">
             <label htmlFor="password">Password: </label>
             <input
