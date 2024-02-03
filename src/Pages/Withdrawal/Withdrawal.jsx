@@ -127,7 +127,7 @@ function Withdraw({ showSidebar, active, closeSidebar }) {
       <Sidebar active={active} closeSidebar={closeSidebar} />
 
       <div className="withdraw_container">
-        <Navbar showSidebar={showSidebar} />
+
 
         <div className="content">
           <div className="balance_info">
