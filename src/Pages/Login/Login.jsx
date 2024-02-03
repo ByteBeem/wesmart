@@ -52,11 +52,16 @@ const auth = getAuth(app);
   const [formData, setFormData] = useState({
     cellphone: "",
     password: "",
-    modalCellphone: "", // Added modalCellphone to formData
+    modalCellphone: "", 
   });
 
   const storeTokenInLocalStorage = (token) => {
     localStorage.setItem("token", token);
+  }
+
+  const storeUserIdInLocalStorage = (userId) => {
+    localStorage.setItem("userId", userId);
+    console.log("id" ,  userId);
   }
 
   // Modal state
@@ -146,6 +151,7 @@ const handleModalSubmit = async (e) => {
       if (response.status === 200) {
         setToken(response.data.token);
         storeTokenInLocalStorage(response.data.token);
+        storeUserIdInLocalStorage(response.data.userId);
        navigate("/dashboard");
       } else if (response.status === 201) {
         setErrors((prevErrors) => ({
