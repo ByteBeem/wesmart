@@ -22,7 +22,7 @@ const Navbar = ({ showSidebar }) => {
 
     if (storedToken) {
       setToken(storedToken);
-      fetchUserData(storedToken);
+      
     }
   }, [setToken]);
 
