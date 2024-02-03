@@ -18,6 +18,11 @@ const Wallet = ({ showSidebar, active, closeSidebar }) => {
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
+
+    if(!storedToken){
+      alert("Something went wrong. Please login again!");
+        window.location.href = "login";
+    }
     
 
     if (storedToken) {
