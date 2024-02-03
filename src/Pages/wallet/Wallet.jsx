@@ -47,6 +47,10 @@ const balance = response.data;
         setLoading(false);
       })
       .catch((error) => {
+         
+      alert("Something went wrong. Please login again!");
+        window.location.href = "login";
+    
         setLoading(false);
       });
   };
