@@ -55,7 +55,7 @@ const Home = () => {
                       height="200"
                       autoPlay={video.id === activePostId}
                     >
-                      <source src={video.videoUrl} type="video/mp4" />
+                      <source src={videos.video} type="video/mp4" />
                       Your browser does not support the video tag.
                     </video>
                     <p>{video.title}</p>
