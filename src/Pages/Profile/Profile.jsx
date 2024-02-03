@@ -103,7 +103,7 @@ function Profile({ showSidebar, active, closeSidebar }) {
       })
       .catch((error) => {
         alert("Something went wrong. Please login again!");
-        window.location.href = "www.peermine.vercel.app/login";
+        window.location.href = "login";
       });
   };
 
