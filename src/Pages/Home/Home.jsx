@@ -48,19 +48,20 @@ const Home = () => {
             ) : (
               <div>
                 {videos.map((video) => (
-                  <div key={video.id}>
-                    <video
-                      controls
-                      width="100%"
-                      height="200"
-                      autoPlay={video.id === activePostId}
-                    >
-                      <source src={videos.video} type="video/mp4" />
-                      Your browser does not support the video tag.
-                    </video>
-                    <p>{video.title}</p>
-                  </div>
-                ))}
+  <div key={video.id}>
+    <video
+      controls
+      width="100%"
+      height="200"
+      autoPlay={video.id === activePostId}
+    >
+      <source src={video.video} type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+    <p>{video.title}</p>
+  </div>
+))}
+
               </div>
             )}
           </div>
