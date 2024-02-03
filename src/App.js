@@ -59,7 +59,7 @@ function App() {
               }
             />
             <Route
-              path="reset"
+              path="upload"
               element={
                 <Reset
                   showSidebar={showSidebar}
