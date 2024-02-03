@@ -3,12 +3,11 @@ import "./Reset.scss";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import axios from "axios"; // Import Axios for making HTTP requests
 
-function Reset({ showSidebar, active, closeSidebar }) {
+function Reset({ active, closeSidebar }) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
-  const [videoFile, setVideoFile] = useState(null); 
-
+  const [videoFile, setVideoFile] = useState(null);
   const userId = localStorage.getItem("userId");
 
   const handleChange = (e) => {
@@ -17,11 +16,6 @@ function Reset({ showSidebar, active, closeSidebar }) {
     }
   };
 
-  useEffect(() => {
-    console.log("Video File:", videoFile);
-  }, [videoFile]);
-
- useEffect(() => {
   const uploadVideo = async () => {
     try {
       setIsLoading(true);
@@ -59,9 +53,9 @@ function Reset({ showSidebar, active, closeSidebar }) {
     }
   };
 
-  uploadVideo(); 
-}, [videoFile]);
-
+  useEffect(() => {
+    console.log("Video File:", videoFile);
+  }, [videoFile]);
 
   return (
     <div className="reset">
