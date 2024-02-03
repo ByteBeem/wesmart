@@ -42,26 +42,25 @@ const Home = () => {
       <div className="home_container">
         <Navbar />
         <div className="content">
-          <div className="videos">
+          <div className="videos-container">
             {loading ? (
               <p>Loading...</p>
             ) : (
-              <div>
+              <div className="videos">
                 {videos.map((video) => (
-  <div key={video.id}>
-    <video
-      controls
-      width="100%"
-      height="200"
-      autoPlay={video.id === activePostId}
-    >
-      <source src={video.video} type="video/mp4" />
-      Your browser does not support the video tag.
-    </video>
-    <p>{video.title}</p>
-  </div>
-))}
-
+                  <div key={video.id} className="video-item">
+                    <video
+                      controls
+                      width="100%"
+                      height="200"
+                      autoPlay={video.id === activePostId}
+                    >
+                      <source src={video.video} type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                    <p>{video.title}</p>
+                  </div>
+                ))}
               </div>
             )}
           </div>
