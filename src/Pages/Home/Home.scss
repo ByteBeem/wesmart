@@ -114,18 +114,19 @@
   max-height: 400px; /* Adjust the height as needed */
   overflow-y: auto;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     flex-direction: column; /* Switch to a column layout on smaller screens */
   }
 
   .video-item {
-    flex: 0 0 calc(33.33% - 20px); /* Adjust the width and gap as needed */
+    flex: 0 0 100%; /* Full width for all screen sizes */
 
-    @media (max-width: 768px) {
-      flex: 0 0 100%; /* Full width on smaller screens */
+    @media (min-width: 1000px) {
+      flex: 0 0 calc(33.33% - 20px); /* Adjust the width and gap as needed for larger screens */
     }
   }
 }
+
 
 
 .glowButton,
