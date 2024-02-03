@@ -10,7 +10,7 @@ const Home = () => {
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [activePostId, setActivePostId] = useState("");
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(3);
 
   const fetchVideos = async (pageNumber) => {
     try {
