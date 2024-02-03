@@ -40,7 +40,7 @@ const Home = () => {
     <div className="home">
       <Sidebar active={active} closeSidebar={closeSidebar} />
       <div className="home_container">
-        <Navbar />
+
         
           <div className="videos-container">
             {loading ? (
