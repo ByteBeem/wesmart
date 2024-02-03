@@ -114,14 +114,14 @@
   max-height: 700px; 
   overflow-y: auto;
 
-  @media (max-width: 1000px) {
+  @media (max-width: 900px) {
     flex-direction: column
   }
 
   .video-item {
     flex: 0 0 100%;
 
-    @media (min-width: 1000px) {
+    @media (min-width: 900px) {
       flex: 0 0 calc(33.33% - 20px); 
     }
   }
