@@ -107,7 +107,20 @@
   max-height: 800px;
   overflow-y: scroll;
 }
+.videos-container {
+  max-height: 400px; 
+  overflow-y: auto;
+}
 
+.videos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  .video-item {
+    flex: 0 0 calc(33.33% - 20px); 
+  }
+}
 
 .glowButton,
 .glowButtonAviator {
