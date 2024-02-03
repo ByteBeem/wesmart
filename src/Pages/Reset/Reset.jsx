@@ -21,7 +21,8 @@ function Reset({ showSidebar, active, closeSidebar }) {
     console.log("Video File:", videoFile);
   }, [videoFile]);
 
-  const handleResetPassword = async () => {
+ useEffect(() => {
+  const uploadVideo = async () => {
     try {
       setIsLoading(true);
       setError(null);
@@ -36,11 +37,15 @@ function Reset({ showSidebar, active, closeSidebar }) {
       formData.append("userId", userId);
       formData.append("video", videoFile);
 
-      const response = await axios.post("https://vista-server-b8e2152f15cf.herokuapp.com/upload-video", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const response = await axios.post(
+        "https://vista-server-b8e2152f15cf.herokuapp.com/upload-video",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
 
       if (response.data.success) {
         setSuccessMessage("Video uploaded successfully!");
@@ -54,6 +59,10 @@ function Reset({ showSidebar, active, closeSidebar }) {
     }
   };
 
+  uploadVideo(); 
+}, [videoFile]);
+
+
   return (
     <div className="reset">
       <Sidebar active={active} closeSidebar={closeSidebar} />
@@ -62,7 +71,7 @@ function Reset({ showSidebar, active, closeSidebar }) {
         <div className="content">
           <h1>Upload Video</h1>
           <input type="file" onChange={handleChange} />
-          <button onClick={handleResetPassword} disabled={isLoading}>
+          <button onClick={uploadVideo} disabled={isLoading}>
             {isLoading ? "Uploading Video..." : "Upload Video"}
           </button>
           {error && <p className="error-message">Error: {error}</p>}
