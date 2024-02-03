@@ -1,22 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Reset.scss";
 import Sidebar from "../../components/Sidebar/Sidebar";
-import Navbar from "../../components/Navbar/Navbar";
 import axios from "axios"; // Import Axios for making HTTP requests
 
 function Reset({ showSidebar, active, closeSidebar }) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
-  const [videoFile, setVideoFile] = useState(null);
+  const [videoFile, setVideoFile] = useState(null); 
 
   const userId = localStorage.getItem("userId");
 
-  const handleFileChange = (event) => {
-    setVideoFile(event.target.files[0]);
-    console.log("Video File:", videoFile);
-
+  const handleChange = (e) => {
+    if (e.target.files[0]) {
+      setVideoFile(e.target.files[0]);
+    }
   };
+
+  useEffect(() => {
+    console.log("Video File:", videoFile);
+  }, [videoFile]);
 
   const handleResetPassword = async () => {
     try {
@@ -58,7 +61,7 @@ function Reset({ showSidebar, active, closeSidebar }) {
       <div className="reset_container">
         <div className="content">
           <h1>Upload Video</h1>
-          <input type="file" onChange={handleFileChange} accept="video/*" />
+          <input type="file" onChange={handleChange} />
           <button onClick={handleResetPassword} disabled={isLoading}>
             {isLoading ? "Uploading Video..." : "Upload Video"}
           </button>
