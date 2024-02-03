@@ -1,51 +1,54 @@
 .reset {
   display: flex;
-  align-items: flex-start;
+  height: 100vh;
+}
 
-  .reset_container {
-    flex: 6;
+.reset_container {
+  flex-grow: 1;
+  padding: 20px;
+}
 
-    .content {
-      padding: 5rem 2rem 2rem 2rem;
-      .form {
-        background: var(--white);
-        padding: 1rem;
-        width: 70%;
+.content {
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+}
 
-        @media screen and (max-width: 700px) {
-          width: 100%;
-        }
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
 
-        div {
-          width: 100%;
-          display: flex;
-          align-items: flex-start;
-          flex-direction: column;
+input[type="file"] {
+  margin-bottom: 20px;
+}
 
-          label {
-            text-transform: capitalize;
-            font-size: 17px;
-            color: var(--primary-color);
-          }
+button {
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
 
-          input {
-            outline: 0;
-            border: 2px solid gray;
-            width: 100%;
-            border-radius: 5px;
-            margin: 0.5rem 0 1rem 0;
-            padding: 15px;
-            font-size: 15px;
-            background: transparent;
-          }
-        }
-
-        .form_btn {
-          border: 0;
-          outline: 0;
-          font-size: 1.3rem;
-        }
-      }
-    }
+  &:hover {
+    background-color: #45a049;
   }
+
+  &:disabled {
+    background-color: #ddd;
+    color: #555;
+    cursor: not-allowed;
+  }
+}
+
+.error-message {
+  color: #ff0000;
+  margin-top: 10px;
+}
+
+.success-message {
+  color: #008000;
+  margin-top: 10px;
 }
