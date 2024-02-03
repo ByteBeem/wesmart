@@ -38,13 +38,15 @@ function Profile({ showSidebar, active, closeSidebar }) {
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
 
-    if (storedToken) {
+    if (!storedToken) {
+      alert("Token not found. Please login!");
+      navigate("/login");
+    } else {
       setToken(storedToken);
-
       fetchActivities(storedToken);
       fetchUserData(storedToken);
     }
-  }, [setToken, setToken]);
+  }, [setToken, navigate]);
 
   const fetchActivities = async (token) => {
     try {
@@ -59,7 +61,7 @@ function Profile({ showSidebar, active, closeSidebar }) {
       );
 
       if (response.status === 206) {
-        alert("Token Expired Login again!");
+        alert("Token Expired. Please login again!");
         setLoading(false);
       } else {
         setActivities(response.data[0]);
@@ -76,11 +78,11 @@ function Profile({ showSidebar, active, closeSidebar }) {
             minute: "numeric",
             second: "numeric",
           });
-          setLoading(false);
         });
         setDates(formattedDates);
       }
     } catch (error) {
+      // Handle errors
     } finally {
       setLoading(false);
     }
@@ -93,14 +95,15 @@ function Profile({ showSidebar, active, closeSidebar }) {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
-        const info = response.data; 
-
-      if (info !== undefined) {
-        setUserData(info ); 
-      }
+        const info = response.data;
+        if (info !== undefined) {
+          setUserData(info);
+        }
         setLoading(false);
       })
-      .catch((error) => {});
+      .catch((error) => {
+        // Handle errors
+      });
   };
 
   return (
@@ -113,22 +116,17 @@ function Profile({ showSidebar, active, closeSidebar }) {
       <Sidebar active={active} closeSidebar={closeSidebar} />
 
       <div className="profile_container">
-
-
         <div className="top">
           <div className="user_info">
             <div className="profile_pic">
               <img src={UserProfile} alt="" />
             </div>
-
             <div className="text">
               <span>Fullname:</span>
               <div className="text_item">{fullName}</div>
 
               <span>Surname:</span>
               <div className="text_item">{surname}</div>
-
-              
 
               <span>Phone:</span>
               <div className="text_item">{cellphone}</div>
@@ -140,11 +138,9 @@ function Profile({ showSidebar, active, closeSidebar }) {
           Post Video
         </Link>
 
-      <Link className="form_btn" to="#">
+        <Link className="form_btn" to="#">
           Delete Account
         </Link>
-
-
       </div>
     </div>
   );
