@@ -108,19 +108,25 @@
   overflow-y: scroll;
 }
 .videos-container {
-  max-height: 400px; 
-  overflow-y: auto;
-}
-
-.videos {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  max-height: 400px; /* Adjust the height as needed */
+  overflow-y: auto;
+
+  @media (max-width: 768px) {
+    flex-direction: column; /* Switch to a column layout on smaller screens */
+  }
 
   .video-item {
-    flex: 0 0 calc(33.33% - 20px); 
+    flex: 0 0 calc(33.33% - 20px); /* Adjust the width and gap as needed */
+
+    @media (max-width: 768px) {
+      flex: 0 0 100%; /* Full width on smaller screens */
+    }
   }
 }
+
 
 .glowButton,
 .glowButtonAviator {
