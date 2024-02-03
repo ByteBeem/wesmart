@@ -14,6 +14,8 @@ function Reset({ showSidebar, active, closeSidebar }) {
 
   const handleFileChange = (event) => {
     setVideoFile(event.target.files[0]);
+    console.log("Video File:", videoFile);
+
   };
 
   const handleResetPassword = async () => {
