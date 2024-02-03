@@ -135,7 +135,7 @@ function Profile({ showSidebar, active, closeSidebar }) {
           </div>
         </div>
 
-        <Link className="form_btn" to="/reset">
+        <Link className="form_btn" to="/upload">
           Post Video
         </Link>
 
