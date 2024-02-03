@@ -111,18 +111,18 @@
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  max-height: 400px; /* Adjust the height as needed */
+  max-height: 700px; 
   overflow-y: auto;
 
   @media (max-width: 1000px) {
-    flex-direction: column; /* Switch to a column layout on smaller screens */
+    flex-direction: column
   }
 
   .video-item {
-    flex: 0 0 100%; /* Full width for all screen sizes */
+    flex: 0 0 100%;
 
     @media (min-width: 1000px) {
-      flex: 0 0 calc(33.33% - 20px); /* Adjust the width and gap as needed for larger screens */
+      flex: 0 0 calc(33.33% - 20px); 
     }
   }
 }
