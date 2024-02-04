@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import "./Reset.scss";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import axios from "axios";
-import {storage} from "./firebase";
-import {ref , uploadBytes} from "firebase/storage";
+import { storage } from "./firebase";
+import { ref, uploadBytes } from "firebase/storage";
 import { v4 as uuidv4 } from 'uuid';
 
 function Reset({ active, closeSidebar }) {
@@ -14,19 +14,9 @@ function Reset({ active, closeSidebar }) {
   const [uploadProgress, setUploadProgress] = useState(0);
   const userId = localStorage.getItem("userId");
 
-  
-const handleFileInput = (event) => {
-  const selectedFile = event.target.files[0];
-  const uniqueFileName = `${uuidv4()}-${selectedFile.name}`;
-
-  const videoRef = ref(storage, uniqueFileName);
-
-  uploadBytes(videoRef, selectedFile).then(() => {
-    alert("Uploaded");
-  }).catch((error) => {
-    console.error("Error uploading file:", error);
-  });
-};
+  const handleFileInput = (event) => {
+    setSelectFile(event.target.files[0]);
+  };
 
   const handleUpload = async () => {
     try {
@@ -39,29 +29,29 @@ const handleFileInput = (event) => {
         return;
       }
 
-      const formData = new FormData();
-      formData.append('video', selectFile);
+      // Include userId in the unique file name
+      const uniqueFileName = `${userId}-${uuidv4()}-${selectFile.name}`;
+      const videoRef = ref(storage, uniqueFileName);
 
-      const response = await axios.post(
-        "https://mainp-server-c7a5046a3a01.herokuapp.com/upload-video",
-        formData,
-        {
-          timeout: 600000,
-          onUploadProgress: (progressEvent) => {
-            const percentCompleted = Math.round(
-              (progressEvent.loaded * 100) / progressEvent.total
-            );
-            setUploadProgress(percentCompleted);
-          },
-        }
-      );
-
-      if (response.data.success) {
-        setSuccessMessage("Video uploaded successfully!");
-      } else {
-        setError("Error uploading video. Please try again.");
-      }
+      uploadBytes(videoRef, selectFile, {
+        onUploadProgress: (progressEvent) => {
+          const percentCompleted = Math.round(
+            (progressEvent.loaded * 100) / progressEvent.total
+          );
+          setUploadProgress(percentCompleted);
+        },
+        // Set a timeout for the upload (in milliseconds)
+        timeout: 600000,
+      })
+        .then(() => {
+          setSuccessMessage("Video uploaded successfully!");
+        })
+        .catch((error) => {
+          console.error("Error uploading file:", error);
+          setError("Error uploading video. Please try again.");
+        });
     } catch (error) {
+      console.error("Error uploading video:", error);
       setError("Error uploading video. Please try again.");
     } finally {
       setIsLoading(false);
