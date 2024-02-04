@@ -46,14 +46,14 @@ const Home = () => {
             {loading ? (
               <p>Loading...</p>
             ) : (
-              <div className="videos_container">
+              
           {videos.map((video) => (
             <div key={video.id} className="video_card">
               <video
                 src={video.video}
-                controls={false} 
+                controls={true} 
                 autoPlay={false} 
-                muted={true} 
+                muted={false} 
                 loop={true} 
               />
               
