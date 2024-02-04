@@ -67,24 +67,21 @@ const Home = () => {
     <div className="home">
       <Sidebar active={active} closeSidebar={closeSidebar} />
       <div className="home_container">
-        <div className="videos-container">
-          {loading ? (
-            <p>Loading...</p>
-          ) : (
-            videos.map((video) => (
-              <div key={video.id} className="video_card">
-                <video
-                  id={`video-${video.id}`}
-                  src={video.video}
-                  controls={true}
-                  autoPlay={false}
-                  muted={false}
-                  loop={true}
-                  onPlay={() => handleVideoView(video.id)}
-                />
-              </div>
-            ))
-          )}
+       <div className="videos_container">
+          {userVideos.map((video) => (
+            <div key={video.id} className="video_card">
+              <video
+                id={`video-${video.id}`}
+                src={video.video}
+                controls={true} 
+                autoPlay={false} 
+                muted={false} 
+                loop={true} 
+                onPlay={() => handleVideoView(video.id)}
+              />
+              
+            </div>
+          ))}
         </div>
       </div>
     </div>
