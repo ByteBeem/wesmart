@@ -33,6 +33,16 @@ function Reset({ active, closeSidebar }) {
       const response = await axios.post(
         "https://mainp-server-c7a5046a3a01.herokuapp.com/upload-video",
         formData,
+        {
+           timeout: 600000,
+          onUploadProgress: (progressEvent) => {
+      const percentCompleted = Math.round(
+        (progressEvent.loaded * 100) / progressEvent.total
+      );
+      console.log(`Upload Progress: ${percentCompleted}%`);
+
+        },
+        }
 
       );
 
