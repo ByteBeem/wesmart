@@ -40,8 +40,7 @@ function Reset({ active, closeSidebar }) {
           );
           setUploadProgress(percentCompleted);
         },
-        // Set a timeout for the upload (in milliseconds)
-        timeout: 600000,
+       
       })
         .then(() => {
           setSuccessMessage("Video uploaded successfully!");
