@@ -2,28 +2,15 @@ import React, { useState, useEffect } from "react";
 import "./Login.scss";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useAuth } from "../../components/AuthContext";
 import Typed from "typed.js";
 import DOMPurify from "dompurify";
-import { initializeApp } from 'firebase/app';
 import { getAuth, signInWithPhoneNumber } from 'firebase/auth';
+import { useAuth } from "../../components/AuthContext";
 
 function Login() {
   const { setToken, setUserData } = useAuth();
   const navigate = useNavigate();
-
-  const firebaseConfig = {
-  apiKey: "AIzaSyAmjaZUheZ98QyIklHqeWUv8XNet2Z8qQs",
-  authDomain: "peermine-843bb.firebaseapp.com",
-  databaseURL: "https://peermine-843bb-default-rtdb.firebaseio.com",
-  projectId: "peermine-843bb",
-  storageBucket: "peermine-843bb.appspot.com",
-  messagingSenderId: "618794481354",
-  appId: "1:618794481354:web:7e194fda97868d3f67a633",
-  measurementId: "G-BSXNHC5DHS"
-};
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+  const auth = getAuth(); // Initialize Firebase auth
 
   const sanitizeText = (text) => {
     return DOMPurify.sanitize(text);
@@ -34,7 +21,7 @@ const auth = getAuth(app);
   };
 
   useEffect(() => {
-    var typed = new Typed(".typing", {
+    const typed = new Typed(".typing", {
       strings: [sanitizeText("Login Now!"), "Welcome to Peermine"],
       typeSpeed: 90,
       backSpeed: 50,
@@ -52,7 +39,7 @@ const auth = getAuth(app);
   const [formData, setFormData] = useState({
     cellphone: "",
     password: "",
-    modalCellphone: "", 
+    modalCellphone: "",
   });
 
   const storeTokenInLocalStorage = (token) => {
@@ -61,7 +48,7 @@ const auth = getAuth(app);
 
   const storeUserIdInLocalStorage = (userId) => {
     localStorage.setItem("userId", userId);
-    console.log("id" ,  userId);
+    console.log("id", userId);
   }
 
   // Modal state
@@ -88,7 +75,7 @@ const auth = getAuth(app);
     return phoneRegex.test(cellphone);
   };
 
-const handleModalSubmit = async (e) => {
+  const handleModalSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     setErrors({ ...errors, cellphone: "" });
@@ -99,8 +86,6 @@ const handleModalSubmit = async (e) => {
 
       setIsLoading(false);
       console.log('Confirmation result:', confirmationResult);
-
-      
 
     } catch (error) {
       setIsLoading(false);
@@ -152,7 +137,7 @@ const handleModalSubmit = async (e) => {
         setToken(response.data.token);
         storeTokenInLocalStorage(response.data.token);
         storeUserIdInLocalStorage(response.data.userId);
-       navigate("/dashboard");
+        navigate("/dashboard");
       } else if (response.status === 201) {
         setErrors((prevErrors) => ({
           ...prevErrors,
