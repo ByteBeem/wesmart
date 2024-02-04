@@ -21,7 +21,7 @@ function Reset({ active, closeSidebar }) {
       setError(null);
       setSuccessMessage(null);
 
-      if (!videoFile) {
+      if (!selectFile) {
         setError("Please select a video file.");
         return;
       }
