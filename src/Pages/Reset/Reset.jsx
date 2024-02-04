@@ -19,8 +19,9 @@ function Reset({ active, closeSidebar }) {
   };
 
   const handleUpload = async () => {
+    setIsLoading(true);
     try {
-      setIsLoading(true);
+      
       setError(null);
       setSuccessMessage(null);
 
