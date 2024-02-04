@@ -40,7 +40,7 @@ function App() {
               }
             />
             <Route
-              path="Search"
+              path="books"
               element={
                 <Wallet
                   showSidebar={showSidebar}
@@ -50,7 +50,7 @@ function App() {
               }
             />
             <Route
-              path="books"
+              path="search"
               element={
                 <Profile
                   showSidebar={showSidebar}
