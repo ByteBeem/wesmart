@@ -10,52 +10,39 @@ function Reset({ active, closeSidebar }) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
-  const [selectFile, setSelectFile] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
   const [uploadProgress, setUploadProgress] = useState(0);
   const userId = localStorage.getItem("userId");
 
   const handleFileInput = (event) => {
-    setSelectFile(event.target.files[0]);
+    setSelectedFile(event.target.files[0]);
   };
 
   const handleUpload = async () => {
     setIsLoading(true);
-    try {
-      
-      setError(null);
-      setSuccessMessage(null);
+    setError(null);
+    setSuccessMessage(null);
 
-      if (!selectFile) {
-        setError("Please select a video file.");
-        return;
-      }
-
-      // Include userId in the unique file name
-      const uniqueFileName = `${userId}-${uuidv4()}-${selectFile.name}`;
-      const videoRef = ref(storage, uniqueFileName);
-
-      uploadBytes(videoRef, selectFile, {
-        onUploadProgress: (progressEvent) => {
-          const percentCompleted = Math.round(
-            (progressEvent.loaded * 100) / progressEvent.total
-          );
-          setUploadProgress(percentCompleted);
-        },
-       
-      })
-        .then(() => {
-          setSuccessMessage("Video uploaded successfully!");
-        })
-        .catch((error) => {
-          console.error("Error uploading file:", error);
-          setError("Error uploading video. Please try again.");
-        });
-    } catch (error) {
-      console.error("Error uploading video:", error);
-      setError("Error uploading video. Please try again.");
-    } finally {
+    if (!selectedFile) {
+      setError("Please select a video file.");
       setIsLoading(false);
+      return;
     }
+
+    // Include userId in the unique file name
+    const uniqueFileName = `${userId}-${uuidv4()}-${selectedFile.name}`;
+    const videoRef = ref(storage, uniqueFileName);
+
+    uploadBytes(videoRef, selectedFile)
+      .then(() => {
+        setSuccessMessage("Video uploaded successfully!");
+      })
+      .catch((uploadError) => {
+        setError(`Upload failed: ${uploadError.message}`);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   return (
@@ -68,9 +55,7 @@ function Reset({ active, closeSidebar }) {
           <input type="file" onChange={handleFileInput} />
           <button onClick={handleUpload} disabled={isLoading}>
             {isLoading
-              ? uploadProgress < 100
-                ? `Uploading Video (${uploadProgress}%)`
-                : "Processing, Please wait..."
+              ? "Processing, Please wait..."
               : "Upload Video"}
           </button>
           {error && <p className="error-message">Error: {error}</p>}
