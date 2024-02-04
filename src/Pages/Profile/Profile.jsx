@@ -33,6 +33,11 @@ function Profile({ showSidebar, active, closeSidebar }) {
     navigate("/deposit");
   };
 
+  const generateThumbnailUrl = (videoUrl) => {
+  const thumbnailUrl = videoUrl.replace(/\.mp4$/, '_thumbnail.jpg');
+  return thumbnailUrl;
+};
+
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
     const userId = localStorage.getItem("userId");
@@ -125,14 +130,22 @@ function Profile({ showSidebar, active, closeSidebar }) {
           Delete Account
         </Link>
 
-        <div className="videos_container">
-          {userVideos.map((video) => (
-            <div key={video.id} className="video_card">
-              <img src={video.thumbnail} alt={`Thumbnail for ${video.title}`} />
-              <div className="views_overlay">{`${video.views} Views`}</div>
-            </div>
-          ))}
-        </div>
+        
+<div className="videos_container">
+  {userVideos.map((video) => (
+    <div key={video.id} className="video_card">
+      
+      {video.video && (
+        <img
+          src={generateThumbnailUrl(video.video)}
+          alt={`Thumbnail for ${video.caption}`}
+        />
+      )}
+     
+      <div className="views_overlay">{`${video.views} Views`}</div>
+    </div>
+  ))}
+</div>
       </div>
     </div>
   );
