@@ -2,62 +2,23 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { useAuth } from "../../components/AuthContext";
 import { FiLoader } from "react-icons/fi";
 import Sidebar from "../../components/Sidebar/Sidebar";
-import Navbar from "../../components/Navbar/Navbar";
 import "./wallet.scss";
 import "../../App.scss";
 
 const Wallet = ({ showSidebar, active, closeSidebar }) => {
-  const { setToken } = useAuth();
-  const [userData, setUserData] = useState({ balance: 0 });
-  const [loading, setLoading] = useState(false);
-  const currency = userData.currency;
-  const balance = userData.balance;
+  // Assuming you have a list of books
+  const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    const storedToken = localStorage.getItem("token");
+    // Fetch your book data using axios or any other method
+    // Update the 'books' state with the fetched data
+  }, []);
 
-    if(!storedToken){
-      alert("Something went wrong. Please login again!");
-        window.location.href = "login";
-    }
-    
-
-    if (storedToken) {
-      setToken(storedToken);
-      fetchUserData(storedToken);
-    }
-  }, [setToken]);
-
-  const fetchUserData = (token) => {
-    setLoading(true);
-    axios
-      .get("https://mainp-server-c7a5046a3a01.herokuapp.com/balance", {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((response) => {
-        
-const balance = response.data; 
-
-      if (balance !== undefined) {
-          setUserData(balance);
-        }
-        setLoading(false);
-      })
-      .catch((error) => {
-         
-      alert("Something went wrong. Please login again!");
-        window.location.href = "login";
-    
-        setLoading(false);
-      });
-  };
-
-  const getCurrencySymbol = () => {
-    
-    return currency === 'USD' ? '$' : 'R';
+  const handleDownload = (bookId) => {
+    // Implement your download logic here
+    console.log("Downloading book with ID:", bookId);
   };
 
   return (
@@ -65,22 +26,21 @@ const balance = response.data;
       <Sidebar active={active} closeSidebar={closeSidebar} />
 
       <div className="wallet_container">
-
-
-        <div className="account_info">
-          {loading && (
-            <div className="overlay">
-              <FiLoader className="loading-spinner" />
-            </div>
+        
+        <div className="book-list">
+          <h2>Available Books</h2>
+          {books.length === 0 ? (
+            <p>Loading books...</p>
+          ) : (
+            <ul>
+              {books.map((book) => (
+                <li key={book.id}>
+                  <span>{book.title}</span>
+                  <button onClick={() => handleDownload(book.id)}>Download</button>
+                </li>
+              ))}
+            </ul>
           )}
-
-          <span>Account Balance:</span>
-         <div className="balance">{`${getCurrencySymbol()}${balance.toString()}`}</div>
-
-
-          <Link className="form_btn" to="/withdraw">
-            Withdraw
-          </Link>
         </div>
       </div>
     </div>
