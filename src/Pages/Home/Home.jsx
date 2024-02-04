@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "../../components/Navbar/Navbar";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import { useAuth } from "../../components/AuthContext";
 import axios from "axios";
@@ -7,9 +6,8 @@ import "./Home.scss";
 
 const Home = () => {
   const { active, closeSidebar } = useAuth();
-  const [videos, setVideos] = useState([]);
+  const [userVideos, setUserVideos] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [activePostId, setActivePostId] = useState("");
   const [page, setPage] = useState(3);
 
   const fetchVideos = async (pageNumber) => {
@@ -20,10 +18,9 @@ const Home = () => {
       const data = response.data;
 
       if (pageNumber === 1) {
-        setVideos(data);
-        setActivePostId(data.length > 0 ? data[0].id : "");
+        setUserVideos(data);
       } else {
-        setVideos((prevVideos) => [...prevVideos, ...data]);
+        setUserVideos((prevVideos) => [...prevVideos, ...data]);
       }
     } catch (error) {
       // Handle error
@@ -40,9 +37,7 @@ const Home = () => {
     const handleTimeUpdate = () => {
       const currentTime = videoElement.currentTime;
       if (currentTime >= 10) {
-        
         axios.post(`https://mainp-server-c7a5046a3a01.herokuapp.com/videos/${videoId}/views`);
-        
         videoElement.removeEventListener("timeupdate", handleTimeUpdate);
       }
     };
@@ -67,21 +62,24 @@ const Home = () => {
     <div className="home">
       <Sidebar active={active} closeSidebar={closeSidebar} />
       <div className="home_container">
-       <div className="videos_container">
-          {userVideos.map((video) => (
-            <div key={video.id} className="video_card">
-              <video
-                id={`video-${video.id}`}
-                src={video.video}
-                controls={true} 
-                autoPlay={false} 
-                muted={false} 
-                loop={true} 
-                onPlay={() => handleVideoView(video.id)}
-              />
-              
-            </div>
-          ))}
+        <div className="videos_container">
+          {loading ? (
+            <p>Loading...</p>
+          ) : (
+            userVideos.map((video) => (
+              <div key={video.id} className="video_card">
+                <video
+                  id={`video-${video.id}`}
+                  src={video.video}
+                  controls={true}
+                  autoPlay={false}
+                  muted={false}
+                  loop={true}
+                  onPlay={() => handleVideoView(video.id)}
+                />
+              </div>
+            ))
+          )}
         </div>
       </div>
     </div>
