@@ -16,8 +16,7 @@ import Activities from "../../Data/Activities";
 function Profile({ showSidebar, active, closeSidebar }) {
   const { setToken } = useAuth();
   const [userData, setUserData] = useState({});
-  const [activities, setActivities] = useState(Activities);
-  const [Dates, setDates] = useState([]);
+  const [userVideos, setUserVideos] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
@@ -25,7 +24,6 @@ function Profile({ showSidebar, active, closeSidebar }) {
   const fullName = userData.name;
   const cellphone = userData.cell;
   const surname = userData.surname;
-  const ID = "Unverified";
 
   const handleWithdraw = () => {
     navigate("/withdraw");
@@ -37,49 +35,29 @@ function Profile({ showSidebar, active, closeSidebar }) {
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
+    const userId = localStorage.getItem("userId");
 
     if (!storedToken) {
       alert("Token not found. Please login!");
       navigate("/login");
     } else {
       setToken(storedToken);
-      fetchActivities(storedToken);
+      fetchUserVideos(userId);
       fetchUserData(storedToken);
     }
   }, [setToken, navigate]);
 
-  const fetchActivities = async (token) => {
+  const fetchUserVideos = async (userId) => {
     try {
       setLoading(true);
       const response = await axios.get(
-        "https://spinz-servers-17da09bbdb53.herokuapp.com/activities",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+        `https://mainp-server-c7a5046a3a01.herokuapp.com/myVideos/${userId}`
       );
 
       if (response.status === 206) {
         alert("Token Expired. Please login again!");
-        setLoading(false);
       } else {
-        setActivities(response.data[0]);
-
-        const formattedDates = response.data.map((activity) => {
-          const date = activity.date_time;
-          const originalDate = new Date(date);
-          return originalDate.toLocaleString("en-US", {
-            weekday: "long",
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-            hour: "numeric",
-            minute: "numeric",
-            second: "numeric",
-          });
-        });
-        setDates(formattedDates);
+        setUserVideos(response.data);
       }
     } catch (error) {
       // Handle errors
@@ -99,11 +77,13 @@ function Profile({ showSidebar, active, closeSidebar }) {
         if (info !== undefined) {
           setUserData(info);
         }
-        setLoading(false);
       })
       .catch((error) => {
         alert("Something went wrong. Please login again!");
         window.location.href = "login";
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
@@ -135,6 +115,8 @@ function Profile({ showSidebar, active, closeSidebar }) {
           </div>
         </div>
 
+        
+
         <Link className="form_btn" to="/upload">
           Post Video
         </Link>
@@ -142,6 +124,15 @@ function Profile({ showSidebar, active, closeSidebar }) {
         <Link className="form_btn" to="#">
           Delete Account
         </Link>
+
+        <div className="videos_container">
+          {userVideos.map((video) => (
+            <div key={video.id} className="video_card">
+              <img src={video.thumbnail} alt={`Thumbnail for ${video.title}`} />
+              <div className="views_overlay">{`${video.views} Views`}</div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
