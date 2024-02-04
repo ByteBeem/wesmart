@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./Reset.scss";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import axios from "axios";
@@ -8,7 +8,7 @@ function Reset({ active, closeSidebar }) {
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
   const [selectFile, setSelectFile] = useState(null);
-  const [uploadProgress, setUploadProgress] = useState(0); // New state for upload progress
+  const [uploadProgress, setUploadProgress] = useState(0);
   const userId = localStorage.getItem("userId");
 
   const handleFileInput = (event) => {
@@ -38,7 +38,7 @@ function Reset({ active, closeSidebar }) {
             const percentCompleted = Math.round(
               (progressEvent.loaded * 100) / progressEvent.total
             );
-            setUploadProgress(percentCompleted); // Update the upload progress state
+            setUploadProgress(percentCompleted);
           },
         }
       );
@@ -65,7 +65,9 @@ function Reset({ active, closeSidebar }) {
           <input type="file" onChange={handleFileInput} />
           <button onClick={handleUpload} disabled={isLoading}>
             {isLoading
-              ? `Uploading Video (${uploadProgress}%)`
+              ? uploadProgress < 100
+                ? `Uploading Video (${uploadProgress}%)`
+                : "Processing, Please wait..."
               : "Upload Video"}
           </button>
           {error && <p className="error-message">Error: {error}</p>}
