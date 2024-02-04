@@ -30,7 +30,7 @@ const Home = () => {
   };
 
   const handleVideoView = async (videoId) => {
-    let startTime = Date.now(); // Timestamp when the video starts playing
+    let startTime = Date.now();
 
     const videoElement = document.getElementById(`video-${videoId}`);
 
@@ -38,6 +38,7 @@ const Home = () => {
       const currentTime = videoElement.currentTime;
       if (currentTime >= 10) {
         axios.post(`https://mainp-server-c7a5046a3a01.herokuapp.com/videos/${videoId}/views`);
+        console.log(videoId);
         videoElement.removeEventListener("timeupdate", handleTimeUpdate);
       }
     };
