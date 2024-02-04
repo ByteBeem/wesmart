@@ -10,6 +10,7 @@ import Deposit from "./Pages/Deposit/Deposit";
 import Chatbot from "./Pages/chatbot/Chatbot";
 import Wallet from "./Pages/wallet/Wallet";
 import Forex from "./Pages/Forex/Forex";
+import { Analytics } from '@vercel/analytics/react';
 // import Choice from "./components/choose";
 import Games from "./Pages/Games/games";
 import Withdraw from "./Pages/Withdrawal/Withdrawal";
@@ -30,6 +31,7 @@ function App() {
     <AuthProvider>
       <Router>
         <Logo />
+     <Analytics />
         <Routes>
           <Route path="login" element={<Login />} />
         </Routes>
