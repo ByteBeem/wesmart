@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 import { BiMoneyWithdraw } from "react-icons/bi";
 import { MdOutlinePayments } from "react-icons/md";
 import { FiLoader } from "react-icons/fi";
-import Activities from "../../Data/Activities";
+
 
 function Profile({ showSidebar, active, closeSidebar }) {
   const { setToken } = useAuth();
