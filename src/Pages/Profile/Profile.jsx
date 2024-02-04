@@ -133,7 +133,7 @@ function Profile({ showSidebar, active, closeSidebar }) {
             <div key={video.id} className="video_card">
               <video
                 src={video.video}
-                controls={false} 
+                controls={true} 
                 autoPlay={false}
                 muted={true} 
                 loop={true} 
