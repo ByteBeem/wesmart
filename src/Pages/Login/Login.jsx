@@ -4,13 +4,11 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Typed from "typed.js";
 import DOMPurify from "dompurify";
-import { getAuth, signInWithPhoneNumber } from 'firebase/auth';
 import { useAuth } from "../../components/AuthContext";
 
 function Login() {
   const { setToken, setUserData } = useAuth();
   const navigate = useNavigate();
-  const auth = getAuth(); // Initialize Firebase auth
 
   const sanitizeText = (text) => {
     return DOMPurify.sanitize(text);
@@ -81,15 +79,14 @@ function Login() {
     setErrors({ ...errors, cellphone: "" });
 
     try {
-      const phoneNumber = `+27${formData.modalCellphone}`;
-      const confirmationResult = await signInWithPhoneNumber(auth, phoneNumber);
+      // Your logic for modal submission
 
       setIsLoading(false);
-      console.log('Confirmation result:', confirmationResult);
+      // Additional logic if needed
 
     } catch (error) {
       setIsLoading(false);
-      console.error("Verification Code Error:", error);
+      console.error("Modal Submission Error:", error);
       setErrors((prevErrors) => ({
         ...prevErrors,
         cellphone: "An error occurred. Please try again later.",
