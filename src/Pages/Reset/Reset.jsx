@@ -31,7 +31,7 @@ function Reset({ active, closeSidebar }) {
       formData.append('video', selectFile);
 
       const response = await axios.post(
-        "https://vista-server-b8e2152f15cf.herokuapp.com/upload-video",
+        "https://mainp-server-c7a5046a3a01.herokuapp.com/upload-video",
         formData,
 
       );
