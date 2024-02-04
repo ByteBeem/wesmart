@@ -1,20 +1,11 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Login from "./Pages/Login/Login";
-import Signup from "./Pages/Signup/Signup";
 import Logo from "./components/Logo/Logo";
 import Home from "./Pages/Home/Home";
 import Profile from "./Pages/Profile/Profile";
-import Reset from "./Pages/Reset/Reset";
-import Deposit from "./Pages/Deposit/Deposit";
-import Chatbot from "./Pages/chatbot/Chatbot";
 import Wallet from "./Pages/wallet/Wallet";
-import Forex from "./Pages/Forex/Forex";
 import { Analytics } from '@vercel/analytics/react';
-// import Choice from "./components/choose";
-import Games from "./Pages/Games/games";
-import Withdraw from "./Pages/Withdrawal/Withdrawal";
-import { AuthProvider } from "./components/AuthContext";
+
 
 function App() {
   const [active, setActive] = useState("");
@@ -32,16 +23,14 @@ function App() {
       <Router>
         <Logo />
      <Analytics />
-        <Routes>
-          <Route path="login" element={<Login />} />
-        </Routes>
+       
         <Routes>
           <Route path="/">
             <Route index element={<Home />} />
 
-            <Route path="signup" element={<Signup />} />
+           
             <Route
-              path="dashboard"
+              path="Home"
               element={
                 <Home
                   showSidebar={showSidebar}
@@ -51,7 +40,7 @@ function App() {
               }
             />
             <Route
-              path="profile"
+              path="Search"
               element={
                 <Profile
                   showSidebar={showSidebar}
@@ -61,7 +50,7 @@ function App() {
               }
             />
             <Route
-              path="upload"
+              path="books"
               element={
                 <Reset
                   showSidebar={showSidebar}
@@ -70,80 +59,7 @@ function App() {
                 />
               }
             />
-            <Route
-              path="deposit"
-              element={
-                <Deposit
-                  showSidebar={showSidebar}
-                  closeSidebar={closeSidebar}
-                  active={active}
-                />
-              }
-            />
-            <Route
-              path="wallets"
-              element={
-                <Wallet
-                  showSidebar={showSidebar}
-                  closeSidebar={closeSidebar}
-                  active={active}
-                />
-              }
-            />
 
-            <Route
-              path="forex"
-              element={
-                <Forex
-                  showSidebar={showSidebar}
-                  closeSidebar={closeSidebar}
-                  active={active}
-                />
-              }
-            />
-
-            <Route
-              path="chat"
-              element={
-                <Chatbot
-                  showSidebar={showSidebar}
-                  closeSidebar={closeSidebar}
-                  active={active}
-                />
-              }
-            />
-
-            {/* <Route
-              path="choose"
-              element={
-                <Choice
-                  showSidebar={showSidebar}
-                  closeSidebar={closeSidebar}
-                  active={active}
-                />
-              }
-            /> */}
-
-            <Route
-              path="games"
-              element={
-                <Games
-                  showSidebar={showSidebar}
-                  closeSidebar={closeSidebar}
-                  active={active}
-                />
-              }
-            />
-            <Route
-              path="withdraw"
-              element={
-                <Withdraw
-                  showSidebar={showSidebar}
-                  closeSidebar={closeSidebar}
-                  active={active}
-                />
-              }
-            />
           </Route>
         </Routes>
       </Router>
