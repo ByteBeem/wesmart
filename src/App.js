@@ -19,7 +19,7 @@ function App() {
   };
 
   return (
-    <AuthProvider>
+   
       <Router>
         <Logo />
      <Analytics />
@@ -42,7 +42,7 @@ function App() {
             <Route
               path="Search"
               element={
-                <Profile
+                <Wallet
                   showSidebar={showSidebar}
                   closeSidebar={closeSidebar}
                   active={active}
@@ -52,7 +52,7 @@ function App() {
             <Route
               path="books"
               element={
-                <Reset
+                <Profile
                   showSidebar={showSidebar}
                   closeSidebar={closeSidebar}
                   active={active}
@@ -63,7 +63,7 @@ function App() {
           </Route>
         </Routes>
       </Router>
-    </AuthProvider>
+    
   );
 }
 
