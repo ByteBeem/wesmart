@@ -19,7 +19,7 @@ function Profile({ showSidebar, active, closeSidebar }) {
     <div className="profile">
       <Sidebar showSidebar={showSidebar} closeSidebar={closeSidebar} />
       <div className="profile-content">
-        <Navbar />
+        
         <div className="search-area">
           <input
             type="text"
