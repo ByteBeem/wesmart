@@ -35,19 +35,20 @@ const Sidebar = ({ active, closeSidebar }) => {
         <Link
           onClick={() => setActiveItem("wallet")}
           className={activeItem === "wallet" ? "link active" : "link"}
-          to="/Search"
+          to="/books"
         >
-          <FaSearch className="icon" />
-          <span>Search</span>
+          <FaDownload className="icon" />
+          
+          <span>books</span>
         </Link>
 
       
 
         
 
-        <Link className="link" to="/books">
-          <FaDownload className="icon" />
-          <span>books</span>
+        <Link className="link" to="/search">
+          <FaSearch className="icon" />
+          <span>Search</span>
         </Link>
 
         
