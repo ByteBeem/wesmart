@@ -59,7 +59,7 @@ function Reset({ active, closeSidebar }) {
           <h1>Upload Video</h1>
           <input type="file" onChange={handleFileInput} />
           <button onClick={handleUpload} disabled={isLoading}>
-            {isLoading ? "Uploading Video..." : "Upload Video"}
+            {isLoading ? "Uploading Video , may take a while..." : "Upload Video"}
           </button>
           {error && <p className="error-message">Error: {error}</p>}
           {successMessage && <p className="success-message">{successMessage}</p>}
