@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import logo from "../../assets/451318-2678002944.jpg";
+import logo from "../../assets/smart.jpg";
 import "./Logo.css";
 
 function Logo() {
