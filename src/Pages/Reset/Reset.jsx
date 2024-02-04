@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import "./Reset.scss";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import axios from "axios";
+import {storage} from "./firebase";
+import {ref , uploadBytes} from "firebase/storage";
+import {v4} from "uuid";
 
 function Reset({ active, closeSidebar }) {
   const [isLoading, setIsLoading] = useState(false);
@@ -13,6 +16,9 @@ function Reset({ active, closeSidebar }) {
 
   const handleFileInput = (event) => {
     setSelectFile(event.target.files[0]);
+    const videoRef = ref (storage, `${selectFile.name=v4()}`);
+    uploadBytes(videoRef, selectFile).then(() =>{
+      alert("Uploaded");
   };
 
   const handleUpload = async () => {
