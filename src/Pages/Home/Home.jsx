@@ -37,35 +37,29 @@ const Home = () => {
   }, [page]);
 
   return (
-    <div className="home">
-      <Sidebar active={active} closeSidebar={closeSidebar} />
-      <div className="home_container">
-
-        
-          <div className="videos-container">
-            {loading ? (
-              <p>Loading...</p>
-            ) : (
-              
-          {videos.map((video) => (
+  <div className="home">
+    <Sidebar active={active} closeSidebar={closeSidebar} />
+    <div className="home_container">
+      <div className="videos-container">
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          videos.map((video) => (
             <div key={video.id} className="video_card">
               <video
                 src={video.video}
-                controls={true} 
-                autoPlay={false} 
-                muted={false} 
-                loop={true} 
+                controls={true}
+                autoPlay={false}
+                muted={false}
+                loop={true}
               />
-              
             </div>
-          ))}
-        </div>
-            )}
-         
-        </div>
+          ))
+        )}
       </div>
     </div>
-  );
-};
+  </div>
+);
+
 
 export default Home;
