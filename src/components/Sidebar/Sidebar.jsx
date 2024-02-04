@@ -35,7 +35,7 @@ const Sidebar = ({ active, closeSidebar }) => {
         <Link
           onClick={() => setActiveItem("wallet")}
           className={activeItem === "wallet" ? "link active" : "link"}
-          to="/wallets"
+          to="/Search"
         >
           <FaSearch className="icon" />
           <span>Search</span>
@@ -45,7 +45,7 @@ const Sidebar = ({ active, closeSidebar }) => {
 
         
 
-        <Link className="link" to="/profile">
+        <Link className="link" to="/books">
           <FaDownload className="icon" />
           <span>books</span>
         </Link>
