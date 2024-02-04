@@ -15,7 +15,7 @@ const Home = () => {
   const fetchVideos = async (pageNumber) => {
     try {
       const response = await axios.get(
-        `https://vista-server-b8e2152f15cf.herokuapp.com/videos?page=${pageNumber}`
+        `https://mainp-server-c7a5046a3a01.herokuapp.com/videos?page=${pageNumber}`
       );
       const data = response.data;
 
