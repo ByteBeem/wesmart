@@ -7,16 +7,15 @@ function Reset({ active, closeSidebar }) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
-  const [videoFile, setVideoFile] = useState(null);
+  const [selectFile, setSelectFile] = useState(null);
   const userId = localStorage.getItem("userId");
 
-  const handleChange = (e) => {
-    if (e.target.files[0]) {
-      setVideoFile(e.target.files[0]);
-    }
+  const handleFileInput = (event) => {
+    setSelectFile(event.target.files[0]);
+
   };
 
-  const uploadVideo = async () => {
+  const handleUpload = async () => {
     try {
       setIsLoading(true);
       setError(null);
@@ -28,17 +27,13 @@ function Reset({ active, closeSidebar }) {
       }
 
       const formData = new FormData();
-      formData.append("userId", userId);
-      formData.append("video", videoFile);
+
+      formData.append('video', selectFile);
 
       const response = await axios.post(
         "https://vista-server-b8e2152f15cf.herokuapp.com/upload-video",
         formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
+
       );
 
       if (response.data.success) {
@@ -53,9 +48,7 @@ function Reset({ active, closeSidebar }) {
     }
   };
 
-  useEffect(() => {
-    console.log("Video File:", videoFile);
-  }, [videoFile]);
+
 
   return (
     <div className="reset">
@@ -64,8 +57,8 @@ function Reset({ active, closeSidebar }) {
       <div className="reset_container">
         <div className="content">
           <h1>Upload Video</h1>
-          <input type="file" onChange={handleChange} />
-          <button onClick={uploadVideo} disabled={isLoading}>
+          <input type="file" onChange={handleFileInput} />
+          <button onClick={handleUpload} disabled={isLoading}>
             {isLoading ? "Uploading Video..." : "Upload Video"}
           </button>
           {error && <p className="error-message">Error: {error}</p>}
