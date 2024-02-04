@@ -4,7 +4,7 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import axios from "axios";
 import {storage} from "./firebase";
 import {ref , uploadBytes} from "firebase/storage";
-import {v4} from "uuid";
+import { v4 as uuidv4 } from 'uuid';
 
 function Reset({ active, closeSidebar }) {
   const [isLoading, setIsLoading] = useState(false);
@@ -14,12 +14,19 @@ function Reset({ active, closeSidebar }) {
   const [uploadProgress, setUploadProgress] = useState(0);
   const userId = localStorage.getItem("userId");
 
-  const handleFileInput = (event) => {
-    setSelectFile(event.target.files[0]);
-    const videoRef = ref (storage, `${selectFile.name=v4()}`);
-    uploadBytes(videoRef, selectFile).then(() =>{
-      alert("Uploaded");
-  };
+  
+const handleFileInput = (event) => {
+  const selectedFile = event.target.files[0];
+  const uniqueFileName = `${uuidv4()}-${selectedFile.name}`;
+
+  const videoRef = ref(storage, uniqueFileName);
+
+  uploadBytes(videoRef, selectedFile).then(() => {
+    alert("Uploaded");
+  }).catch((error) => {
+    console.error("Error uploading file:", error);
+  });
+};
 
   const handleUpload = async () => {
     try {
