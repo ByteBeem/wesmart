@@ -30,7 +30,7 @@ function Reset({ active, closeSidebar }) {
       formData.append('video', selectFile);
 
       const response = await axios.post(
-        "https://mainp-server-c7a5046a3a01.herokuapp.com/upload-video",
+        "https://capable-faint-scallop.glitch.me/upload-video",
         formData,
         {
           timeout: 600000,
