@@ -12,6 +12,7 @@ function Profile({ showSidebar, active, closeSidebar }) {
 
   const handleSearch = () => {
     setIsLoading(true);
+    setVideos([]);
     setError(null);
 
     axios.get(`https://mainp-server-c7a5046a3a01.herokuapp.com/search/${encodeURIComponent(searchQuery)}`)
