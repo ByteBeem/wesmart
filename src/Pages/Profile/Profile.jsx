@@ -14,18 +14,18 @@ function Profile({ showSidebar, active, closeSidebar }) {
     setIsLoading(true);
     setError(null); 
 
-    
     axios.get(`https://mainp-server-c7a5046a3a01.herokuapp.com/search/${encodeURIComponent(searchQuery)}`)
         .then(response => {
             setVideos(response.data);
         })
         .catch(err => {
-            setError(err , "Try again.");
+            setError(`An error occurred: ${err.message}. Try again.`);
         })
         .finally(() => {
             setIsLoading(false);
         });
 };
+
 
 
   return (
