@@ -14,7 +14,7 @@ function Profile({ showSidebar, active, closeSidebar }) {
     setIsLoading(true);
     setError(null); 
    
-    axios.get(`https://mainp-server-c7a5046a3a01.herokuapp.com/${searchQuery}`)
+    axios.get(`https://mainp-server-c7a5046a3a01.herokuapp.com/search/${searchQuery}`)
       .then(response => {
         setVideos(response.data); 
       })
