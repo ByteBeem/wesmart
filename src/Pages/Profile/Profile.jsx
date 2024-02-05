@@ -19,7 +19,7 @@ function Profile({ showSidebar, active, closeSidebar }) {
             setVideos(response.data);
         })
         .catch(err => {
-            setError(`An error occurred: ${err.message}. Try again.`);
+            setError(`Oops!: ${err.error}. Try again.`);
         })
         .finally(() => {
             setIsLoading(false);
