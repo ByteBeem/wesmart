@@ -6,7 +6,7 @@ import "../../App.scss";
 
 const Wallet = ({ showSidebar, active, closeSidebar }) => {
   // Assuming you have a list of books
-  const [books, setBooks] = useState([]);
+  const [books, setBooks] = useState([2]);
 
   useEffect(() => {
     // Fetch your book data using axios or any other method
