@@ -4,12 +4,10 @@ import { Link } from "react-router-dom";
 import { PiTelevisionSimpleBold } from "react-icons/pi";
 import { FaDownload } from "react-icons/fa";
 import { FaSearch } from "react-icons/fa";
-import { FaHandHoldingDollar } from "react-icons/fa6";
 import { useState } from "react";
-import { IoIosChatbubbles } from "react-icons/io";
 
 const Sidebar = ({ active, closeSidebar }) => {
-  const [loading, setLoading] = useState(false);
+  
   const [activeItem, setActiveItem] = useState("home");
 
 

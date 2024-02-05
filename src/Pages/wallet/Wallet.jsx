@@ -1,8 +1,5 @@
-// Import statements
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
-import { FiLoader } from "react-icons/fi";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import "./wallet.scss";
 import "../../App.scss";
