@@ -21,13 +21,13 @@ function Profile({ showSidebar, active, closeSidebar }) {
           setVideos(response.data);
         } else if (response.status === 400) {
 
-          setError(`Oops!: Wrong Video ID.`);
+          setError('Oops!: Wrong Video ID.');
         } else if (response.status === 404) {
 
-          setError(`Oops!: Video not Found.`);
+          setError('Oops!: Video not Found.');
         } else {
 
-          setError(`Oops!:Something went wrong. Try again.`);
+          setError('Oops!:Something went wrong. Try again.');
         }
       })
       .catch(err => {
