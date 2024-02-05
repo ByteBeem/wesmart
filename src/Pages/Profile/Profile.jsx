@@ -31,7 +31,7 @@ function Profile({ showSidebar, active, closeSidebar }) {
         }
       })
       .catch(err => {
-        setError('No! Enter the video ID you recieved from us.');
+        setError('Sorry did not find anything. Check later');
       })
       .finally(() => {
         setIsLoading(false);
@@ -56,7 +56,19 @@ function Profile({ showSidebar, active, closeSidebar }) {
         {error && <div className="error-message">{error}</div>}
         <div className="videos_container">
           <div className="video-list">
-            {videos ? (
+            {Array.isArray(videos) ? (
+              videos.map((video) => (
+                <div key={video.id} className="video_card">
+                  <video
+                    src={video.video}
+                    controls={true}
+                    autoPlay={false}
+                    muted={false}
+                    loop={true}
+                  />
+                </div>
+              ))
+            ) : (
               <div key={videos.id} className="video_card">
                 <video
                   src={videos.video}
@@ -66,8 +78,6 @@ function Profile({ showSidebar, active, closeSidebar }) {
                   loop={true}
                 />
               </div>
-            ) : (
-              <p>No videos available.</p>
             )}
           </div>
         </div>
@@ -77,4 +87,3 @@ function Profile({ showSidebar, active, closeSidebar }) {
             }
   export default Profile;
   
-            
