@@ -79,6 +79,7 @@ class Request extends Component {
     const { formData, isLoading } = this.state;
 
     return (
+      <div className="request">
       <div className="form">
         <Sidebar showSidebar={showSidebar} closeSidebar={closeSidebar} />
         <div className="form-content">
@@ -150,6 +151,7 @@ class Request extends Component {
             </form>
           </div>
         </div>
+      </div>
       </div>
     );
   }

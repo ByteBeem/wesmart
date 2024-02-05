@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Logo from "./components/Logo/Logo";
 import Home from "./Pages/Home/Home";
-import Profile from "./Pages/Profile/Profile";
-import Wallet from "./Pages/wallet/Wallet";
+import Search from "./Pages/Search/Search";
+import Materials from "./Pages/Materials/Materials";
 import Request from "./Pages/Request/Request";
 import { Analytics } from '@vercel/analytics/react';
 
@@ -43,7 +43,7 @@ function App() {
           <Route
             path="books"
             element={
-              <Wallet
+              <Materials
                 showSidebar={showSidebar}
                 closeSidebar={closeSidebar}
                 active={active}
@@ -53,7 +53,7 @@ function App() {
           <Route
             path="search"
             element={
-              <Profile
+              <Search
                 showSidebar={showSidebar}
                 closeSidebar={closeSidebar}
                 active={active}

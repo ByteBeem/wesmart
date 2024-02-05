@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./Profile.scss";
+import "./Search.scss";
 import "../../App.scss";
 import axios from "axios";
 import Sidebar from "../../components/Sidebar/Sidebar";
