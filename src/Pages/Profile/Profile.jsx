@@ -20,7 +20,7 @@ function Profile({ showSidebar, active, closeSidebar }) {
             setVideos(response.data);
         })
         .catch(err => {
-            setError("Something went wrong ,check your Video ID.");
+            setError(err , "Try again.");
         })
         .finally(() => {
             setIsLoading(false);
