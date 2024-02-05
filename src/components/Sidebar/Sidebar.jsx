@@ -5,7 +5,7 @@ import { PiTelevisionSimpleBold } from "react-icons/pi";
 import { FaDownload } from "react-icons/fa";
 import { FaSearch } from "react-icons/fa";
 import { useState } from "react";
-
+import { TfiWrite } from "react-icons/tfi";
 const Sidebar = ({ active, closeSidebar }) => {
   
   const [activeItem, setActiveItem] = useState("home");
@@ -47,6 +47,11 @@ const Sidebar = ({ active, closeSidebar }) => {
         <Link className="link" to="/search">
           <FaSearch className="icon" />
           <span>Search</span>
+        </Link>
+
+        <Link className="link" to="/request">
+          <TfiWrite  className="icon" />
+          <span>Request</span>
         </Link>
 
         
