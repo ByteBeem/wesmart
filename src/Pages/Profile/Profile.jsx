@@ -13,18 +13,20 @@ function Profile({ showSidebar, active, closeSidebar }) {
   const handleSearch = () => {
     setIsLoading(true);
     setError(null); 
-   
-    axios.get(`https://mainp-server-c7a5046a3a01.herokuapp.com/search/${searchQuery}`)
-      .then(response => {
-        setVideos(response.data); 
-      })
-      .catch(err => {
-        setError("An error occurred while fetching videos. Please try again."); 
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  };
+
+    
+    axios.get(`https://mainp-server-c7a5046a3a01.herokuapp.com/search/${encodeURIComponent(searchQuery)}`)
+        .then(response => {
+            setVideos(response.data);
+        })
+        .catch(err => {
+            setError("Something went wrong ,check your Video ID.");
+        })
+        .finally(() => {
+            setIsLoading(false);
+        });
+};
+
 
   return (
     <div className="profile">
