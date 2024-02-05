@@ -12,31 +12,31 @@ function Profile({ showSidebar, active, closeSidebar }) {
 
   const handleSearch = () => {
     setIsLoading(true);
-    setError(null); 
+    setError(null);
 
     axios.get(`https://mainp-server-c7a5046a3a01.herokuapp.com/search/${encodeURIComponent(searchQuery)}`)
-        .then(response => {
-            if (response.status === 200) {
-              
-                setVideos(response.data);
-            } else if (response.status === 400) {
-               
-                setError(`Oops!: Wrong Video ID.`);
-            } else if (response.status === 404) {
-            
-                setError(`Oops!: Video not Found.`);
-            } else {
-             
-                setError(`Oops!:Something went wrong. Try again.`);
-            }
-        })
-        .catch(err => {
-            setError(`Oops!: ${err.message}. Try again.`);
-        })
-        .finally(() => {
-            setIsLoading(false);
-        });
-};
+      .then(response => {
+        if (response.status === 200) {
+
+          setVideos(response.data);
+        } else if (response.status === 400) {
+
+          setError(`Oops!: Wrong Video ID.`);
+        } else if (response.status === 404) {
+
+          setError(`Oops!: Video not Found.`);
+        } else {
+
+          setError(`Oops!:Something went wrong. Try again.`);
+        }
+      })
+      .catch(err => {
+        setError(`Oops!: ${err.message}. Try again.`);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
 
 
 
@@ -58,21 +58,21 @@ function Profile({ showSidebar, active, closeSidebar }) {
 
         {error && <div className="error-message">{error}</div>}
         <div className="videos_container">
-        <div className="video-list">
-          {videos.map(video => (
+          <div className="video-list">
+      {videos.map((video) => (
             <div key={video.id} className="video_card">
-            <video
-              id={`video-${video.id}`}
-              src={video.video}
-              controls={true}
-              autoPlay={false}
-              muted={false}
-              loop={true}
-              
-            />
+              <video
+                src={video.video}
+                controls={true}
+                autoPlay={false}
+                muted={false}
+                loop={true}
+              />
+            </div>
+            ))
+            }
+
           </div>
-          ))}
-        </div>
         </div>
       </div>
     </div>
