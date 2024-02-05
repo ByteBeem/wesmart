@@ -75,6 +75,6 @@ function Profile({ showSidebar, active, closeSidebar }) {
       </div>
     </div>
   );
-  
+            }
   export default Profile;
-  
+            
