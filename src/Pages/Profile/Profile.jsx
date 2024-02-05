@@ -16,10 +16,22 @@ function Profile({ showSidebar, active, closeSidebar }) {
 
     axios.get(`https://mainp-server-c7a5046a3a01.herokuapp.com/search/${encodeURIComponent(searchQuery)}`)
         .then(response => {
-            setVideos(response.data);
+            if (response.status === 200) {
+              
+                setVideos(response.data);
+            } else if (response.status === 400) {
+               
+                setError(`Oops!: Wrong Video ID.`);
+            } else if (response.status === 404) {
+            
+                setError(`Oops!: Video not Found.`);
+            } else {
+             
+                setError(`Oops!:Something went wrong. Try again.`);
+            }
         })
         .catch(err => {
-            setError(`Oops!: ${err.error}. Try again.`);
+            setError(`Oops!: ${err.message}. Try again.`);
         })
         .finally(() => {
             setIsLoading(false);
