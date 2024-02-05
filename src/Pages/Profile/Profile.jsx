@@ -58,7 +58,7 @@ class Profile extends Component {
           <div className="search-area">
             <input
               type="text"
-              placeholder="Enter Requested Video ID here..."
+              placeholder="Search For Video..."
               value={searchQuery}
               onChange={(e) => this.setState({ searchQuery: e.target.value })}
             />
