@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import { useAuth } from "../../components/AuthContext";
 import axios from "axios";
@@ -8,7 +8,9 @@ const Home = () => {
   const { active, closeSidebar } = useAuth();
   const [userVideos, setUserVideos] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [page, setPage] = useState(3);
+  const [page, setPage] = useState(1);
+
+  const videoRefs = useRef({});
 
   const fetchVideos = async (pageNumber) => {
     try {
@@ -29,31 +31,34 @@ const Home = () => {
     }
   };
 
-  const handleVideoView = async (videoId) => {
-    let startTime = Date.now();
+  const handleVideoView = useCallback(
+    async (videoId) => {
+      let startTime = Date.now();
+      const videoElement = videoRefs.current[videoId];
 
-    const videoElement = document.getElementById(`video-${videoId}`);
+      const handleTimeUpdate = () => {
+        const currentTime = videoElement.currentTime;
+        if (currentTime >= 10) {
+          axios.post(
+            `https://mainp-server-c7a5046a3a01.herokuapp.com/videos/${videoId}/views`
+          );
+          videoElement.removeEventListener("timeupdate", handleTimeUpdate);
+        }
+      };
 
-    const handleTimeUpdate = () => {
-      const currentTime = videoElement.currentTime;
-      if (currentTime >= 10) {
-        axios.post(`https://mainp-server-c7a5046a3a01.herokuapp.com/videos/${videoId}/views`);
-        console.log(videoId);
+      videoElement.addEventListener("timeupdate", handleTimeUpdate);
+
+      const handleVideoEnd = () => {
         videoElement.removeEventListener("timeupdate", handleTimeUpdate);
-      }
-    };
+      };
 
-    videoElement.addEventListener("timeupdate", handleTimeUpdate);
+      videoElement.addEventListener("ended", handleVideoEnd);
+      videoElement.addEventListener("pause", handleVideoEnd);
 
-    const handleVideoEnd = () => {
-      videoElement.removeEventListener("timeupdate", handleTimeUpdate);
-    };
-
-    videoElement.addEventListener("ended", handleVideoEnd);
-    videoElement.addEventListener("pause", handleVideoEnd);
-
-    // Update the local state or perform any additional actions if needed
-  };
+     
+    },
+    []
+  );
 
   useEffect(() => {
     fetchVideos(page);
@@ -70,7 +75,7 @@ const Home = () => {
             userVideos.map((video) => (
               <div key={video.id} className="video_card">
                 <video
-                  id={`video-${video.id}`}
+                  ref={(el) => (videoRefs.current[video.id] = el)}
                   src={video.video}
                   controls={true}
                   autoPlay={false}
