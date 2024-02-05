@@ -12,8 +12,18 @@
       .book-list {
 
         .scroll-view {
-          max-height: 300px; 
+          max-height: 500px; 
           overflow-y: auto;
+        }
+        @media screen and (max-width: 700px) {
+          .scroll-view {
+            max-height: 700px; 
+          }
+        }
+        @media screen and (max-width: 1000px) {
+          .scroll-view {
+            max-height: 600px; 
+          }
         }
         ul {
           list-style-type: none;
