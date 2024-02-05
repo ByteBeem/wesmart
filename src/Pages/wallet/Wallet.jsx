@@ -39,7 +39,7 @@ const Wallet = ({ showSidebar, active, closeSidebar }) => {
           <h2>Grade12 Study Materials</h2>
           <div className="scroll-view">
             {loading ? (
-              <p>Loading books...</p>
+              <p>Loading materials...</p>
             ) : error ? (
               <p>{error}</p>
             ) : (
