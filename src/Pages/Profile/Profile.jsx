@@ -55,28 +55,26 @@ function Profile({ showSidebar, active, closeSidebar }) {
             {isLoading ? "Searching..." : "Search"}
           </button>
         </div>
-
+  
         {error && <div className="error-message">{error}</div>}
         <div className="videos_container">
           <div className="video-list">
-      {videos.map((video) => (
-            <div key={video.id} className="video_card">
-              <video
-                src={video.video}
-                controls={true}
-                autoPlay={false}
-                muted={false}
-                loop={true}
-              />
-            </div>
-            ))
-            }
-
+            {videos.map((video) => (
+              <div key={video.id} className="video_card">
+                <video
+                  src={video.video}
+                  controls={true}
+                  autoPlay={false}
+                  muted={false}
+                  loop={true}
+                />
+              </div>
+            ))}
           </div>
         </div>
       </div>
     </div>
   );
-}
-
-export default Profile;
+  
+  export default Profile;
+  
