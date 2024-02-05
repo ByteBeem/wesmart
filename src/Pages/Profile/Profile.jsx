@@ -31,7 +31,7 @@ function Profile({ showSidebar, active, closeSidebar }) {
         }
       })
       .catch(err => {
-        setError('Oops!:Something went wrong. Try again.');
+        setError('No! Enter the video ID you recieved from us.');
       })
       .finally(() => {
         setIsLoading(false);
