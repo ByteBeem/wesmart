@@ -10,6 +10,11 @@
      
 
       .book-list {
+
+        .scroll-view {
+          max-height: 300px; 
+          overflow-y: auto;
+        }
         ul {
           list-style-type: none;
           padding: 0;

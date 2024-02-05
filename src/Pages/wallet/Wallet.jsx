@@ -22,6 +22,16 @@ const Wallet = ({ showSidebar, active, closeSidebar }) => {
       { id: 8, title: "Brave New World" },
       { id: 9, title: "The Lord of the Rings" },
       { id: 10, title: "The Chronicles of Narnia" },
+      { id: 11, title: "The Great Gatsby" },
+      { id: 12, title: "To Kill a Mockingbird" },
+      { id: 13, title: "1984" },
+      { id: 14, title: "Pride and Prejudice" },
+      { id: 15, title: "The Catcher in the Rye" },
+      { id: 16, title: "One Hundred Years of Solitude" },
+      { id: 17, title: "The Hobbit" },
+      { id: 18, title: "Brave New World" },
+      { id: 19, title: "The Lord of the Rings" },
+      { id: 20, title: "The Chronicles of Narnia" },
     ];
 
     // Update the 'books' state with the fetched data
@@ -38,21 +48,22 @@ const Wallet = ({ showSidebar, active, closeSidebar }) => {
       <Sidebar active={active} closeSidebar={closeSidebar} />
 
       <div className="wallet_container">
-        
         <div className="book-list">
           <h2>Available Books</h2>
-          {books.length === 0 ? (
-            <p>Loading books...</p>
-          ) : (
-            <ul>
-              {books.map((book) => (
-                <li key={book.id}>
-                  <span>{book.title}</span>
-                  <button onClick={() => handleDownload(book.id)}>Download</button>
-                </li>
-              ))}
-            </ul>
-          )}
+          <div className="scroll-view">
+            {books.length === 0 ? (
+              <p>Loading books...</p>
+            ) : (
+              <ul>
+                {books.map((book) => (
+                  <li key={book.id}>
+                    <span>{book.title}</span>
+                    <button onClick={() => handleDownload(book.id)}>Download</button>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
         </div>
       </div>
     </div>
