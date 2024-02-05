@@ -12,15 +12,24 @@ function Request({ showSidebar, active, closeSidebar }) {
     topic: "",
     additionalInfo: "",
   });
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSearch = () => {
-    // Add your form submission logic using axios or any other method here
-    console.log("Form Data:", formData);
+  const handleSubmit = async () => {
+    setIsLoading(true);
+
+    try {
+      const response = await axios.post("https://mainp-server-c7a5046a3a01.herokuapp.com/request", formData);
+      alert("Requested Successfully , you will be notified on your whatsapp number!")
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -57,7 +66,7 @@ function Request({ showSidebar, active, closeSidebar }) {
             <div className="form-group">
               <label htmlFor="whatsappNumber">WhatsApp Number:</label>
               <input
-                type="text"
+                type="tel"  
                 id="whatsappNumber"
                 name="whatsappNumber"
                 value={formData.whatsappNumber}
@@ -89,8 +98,8 @@ function Request({ showSidebar, active, closeSidebar }) {
               ></textarea>
             </div>
 
-            <button type="button" onClick={handleSearch}>
-              Submit
+            <button type="button" onClick={handleSubmit}>
+              {isLoading ? "Requesting..." : "Submit"}
             </button>
           </form>
         </div>
