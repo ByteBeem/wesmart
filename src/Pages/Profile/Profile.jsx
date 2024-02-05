@@ -31,15 +31,12 @@ function Profile({ showSidebar, active, closeSidebar }) {
         }
       })
       .catch(err => {
-        setError(`Oops!: ${err.message}. Try again.`);
+        setError('Oops!:Something went wrong. Try again.');
       })
       .finally(() => {
         setIsLoading(false);
       });
   };
-
-
-
   return (
     <div className="profile">
       <Sidebar showSidebar={showSidebar} closeSidebar={closeSidebar} />
@@ -59,17 +56,19 @@ function Profile({ showSidebar, active, closeSidebar }) {
         {error && <div className="error-message">{error}</div>}
         <div className="videos_container">
           <div className="video-list">
-            {videos.map((video) => (
-              <div key={video.id} className="video_card">
+            {videos ? (
+              <div key={videos.id} className="video_card">
                 <video
-                  src={video.video}
+                  src={videos.video}
                   controls={true}
                   autoPlay={false}
                   muted={false}
                   loop={true}
                 />
               </div>
-            ))}
+            ) : (
+              <p>No videos available.</p>
+            )}
           </div>
         </div>
       </div>
@@ -77,4 +76,5 @@ function Profile({ showSidebar, active, closeSidebar }) {
   );
             }
   export default Profile;
+  
             
