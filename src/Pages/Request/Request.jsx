@@ -85,7 +85,7 @@ class Request extends Component {
         <div className="form-content">
           <div className="form-area">
             <p><b>Are you a tutor?</b> send Your Videos to this email : <b>donald.mxolisi@proton.me</b> and get paid instantly.</p>
-            <h2>Or</h2>
+            <h2>Or Learners :</h2>
             <h2>Request a Video</h2>
             <form>
               <div className="form-group">
