@@ -5,7 +5,7 @@ import axios from "axios";
 import "./Home.scss";
 import { collection, addDoc } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { db, storage } from "./firebase"; 
+import { db, storage } from "./firebase";
 
 const Home = () => {
   const { active, closeSidebar } = useAuth();
@@ -16,6 +16,7 @@ const Home = () => {
   const [image, setImage] = useState(null);
   const [caption, setCaption] = useState("");
   const [imagePreview, setImagePreview] = useState(null);
+  const [isPostLoading, setIsPostLoading] = useState(false);
 
   const videoRefs = useRef({});
 
@@ -70,30 +71,39 @@ const Home = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
-      // Upload image to Firebase Storage
+      setIsPostLoading(true);
+  
       const imageRef = ref(storage, `images/${image.name}`);
       await uploadBytes(imageRef, image);
-
-      // Get download URL of the uploaded image
+  
+      
       const imageUrl = await getDownloadURL(imageRef);
-
-      // Save caption and image URL to Firestore
+  
+      
       const postsCollectionRef = collection(db, "posts");
-      await addDoc(postsCollectionRef, {
-        caption: caption,
+
+      const postData = {
         imageUrl: imageUrl,
         timestamp: new Date()
-      });
-
-      
+      };
+  
+      if (caption) {
+        postData.caption = caption;
+      }
+  
+      await addDoc(postsCollectionRef, postData);
+  
       setCaption("");
       setImage(null);
+      setIsPostLoading(false);
     } catch (error) {
       console.error("Error creating post:", error);
+      setIsPostLoading(false);
     }
   };
+  
 
   useEffect(() => {
     fetchPosts(page);
@@ -118,7 +128,13 @@ const Home = () => {
             {imagePreview && (
               <img src={imagePreview} alt="Preview" style={{ maxWidth: "100%", maxHeight: "200px", marginTop: "10px" }} />
             )}
-            <button type="submit">Post</button>
+            <button type="submit">
+              {!isPostLoading ?
+                "Post"
+                : "Posting.."
+              }
+
+            </button>
           </form>
         </div>
         <div className="posts_container">
