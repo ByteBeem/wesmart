@@ -140,12 +140,13 @@ const Home = () => {
               <div key={post.id} className="post_card">
                 {post.content_type === "image" ? (
                   <div>
+                    <p>{post.caption}</p>
                     <img
                       src={post.imageUrl}
                       alt="Post"
                       style={{ maxWidth: "100%", height: "auto" }}
                     />
-                    <p>{post.caption}</p>
+                    
                   </div>
                 ) : post.content_type === "text" ? (
                   <p>{post.caption}</p>
