@@ -11,6 +11,7 @@ const Home = () => {
   const [page, setPage] = useState(1);
   const [textPost, setTextPost] = useState("");
   const [imageFile, setImageFile] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
 
   const videoRefs = useRef({});
 
@@ -48,7 +49,15 @@ const Home = () => {
   };
 
   const handleImageChange = (e) => {
-    setImageFile(e.target.files[0]);
+    const file = e.target.files[0];
+    setImageFile(file);
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -71,6 +80,7 @@ const Home = () => {
       // Clear form fields after successful submission
       setTextPost("");
       setImageFile(null);
+      setImagePreview(null);
 
       // Refresh posts
       fetchPosts(page);
@@ -91,7 +101,7 @@ const Home = () => {
         <div className="post_form">
           <form onSubmit={handleSubmit}>
             <textarea
-              placeholder="Write something..."
+              placeholder="Post your questions..."
               value={textPost}
               onChange={handleTextChange}
             />
@@ -100,6 +110,9 @@ const Home = () => {
               accept="image/*"
               onChange={handleImageChange}
             />
+            {imagePreview && (
+              <img src={imagePreview} alt="Preview" style={{ maxWidth: "100%", maxHeight: "200px", marginTop: "10px" }} />
+            )}
             <button type="submit">Post</button>
           </form>
         </div>
