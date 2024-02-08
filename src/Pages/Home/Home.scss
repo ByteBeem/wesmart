@@ -7,13 +7,13 @@
   .home_container {
     flex: 6;
 
-     .videos_container {
+     .posts_container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 16px;
     margin-top: 20px;
 
-    .video_card {
+    .post_card {
       position: relative;
       overflow: hidden;
       border-radius: 8px;
