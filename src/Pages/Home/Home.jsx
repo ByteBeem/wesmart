@@ -73,7 +73,8 @@ const Home = () => {
   
       const postData = {
         imageUrl: imageUrl,
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
+        content_type: 'image',
       };
   
       if (caption) {
