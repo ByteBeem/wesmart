@@ -12,6 +12,16 @@
 
     .post_form {
       margin-bottom: 20px;
+     
+        position: fixed;
+        top: 20px; 
+        left: 20px; 
+        z-index: 999; 
+        background-color: #fff; 
+        padding: 20px;
+        border-radius: 5px;
+      
+      
     }
 
     .post_form form {
