@@ -3,6 +3,9 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import { useAuth } from "../../components/AuthContext";
 import axios from "axios";
 import "./Home.scss";
+import { collection, addDoc } from "firebase/firestore";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { db, storage } from "./firebase"; // Assuming "firebase" is imported as "db" and "storage"
 
 const Home = () => {
   const { active, closeSidebar } = useAuth();
@@ -10,7 +13,8 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [textPost, setTextPost] = useState("");
-  const [imageFile, setImageFile] = useState(null);
+  const [image, setImage] = useState(null);
+  const [caption, setCaption] = useState("");
   const [imagePreview, setImagePreview] = useState(null);
 
   const videoRefs = useRef({});
@@ -50,7 +54,7 @@ const Home = () => {
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
-    setImageFile(file);
+    setImage(file);
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
@@ -60,33 +64,34 @@ const Home = () => {
     }
   };
 
+  const handleCaptionChange = (e) => {
+    setCaption(e.target.value);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
-      const formData = new FormData();
-      formData.append("text", textPost);
-      formData.append("image", imageFile);
+      // Upload image to Firebase Storage
+      const imageRef = ref(storage, `images/${image.name}`);
+      await uploadBytes(imageRef, image);
 
-      await axios.post(
-        "https://mainp-server-c7a5046a3a01.herokuapp.com/posts",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      // Get download URL of the uploaded image
+      const imageUrl = await getDownloadURL(imageRef);
 
-      // Clear form fields after successful submission
-      setTextPost("");
-      setImageFile(null);
-      setImagePreview(null);
+      // Save caption and image URL to Firestore
+      const postsCollectionRef = collection(db, "posts");
+      await addDoc(postsCollectionRef, {
+        caption: caption,
+        imageUrl: imageUrl,
+        timestamp: new Date()
+      });
 
-      // Refresh posts
-      fetchPosts(page);
+      
+      setCaption("");
+      setImage(null);
     } catch (error) {
-      console.error("Error posting:", error);
-      // Handle error
+      console.error("Error creating post:", error);
     }
   };
 
