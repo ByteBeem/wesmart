@@ -78,24 +78,23 @@ const Home = () => {
       const imageRef = ref(storage, `images/${image.name}`);
       await uploadBytes(imageRef, image);
   
-      
       const imageUrl = await getDownloadURL(imageRef);
   
- 
-      const postsRef = ref(db, "posts");
-      const newPostRef = push(postsRef);
-  
+      
       const postData = {
         imageUrl: imageUrl,
         timestamp: new Date().toISOString()
       };
   
+   
       if (caption) {
         postData.caption = caption;
       }
   
-      await set(newPostRef, postData);
+    
+      await db.ref('posts').push(postData);
   
+     
       setCaption("");
       setImage(null);
       setImagePreview(null);
@@ -105,6 +104,7 @@ const Home = () => {
       setIsPostLoading(false);
     }
   };
+  
   
 
   useEffect(() => {
