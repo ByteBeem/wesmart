@@ -3,9 +3,8 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import { useAuth } from "../../components/AuthContext";
 import axios from "axios";
 import "./Home.scss";
-import {  push, set } from "firebase/database";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { db, storage } from "./firebase";
+import {  storage } from "./firebase";
 
 const Home = () => {
   const { active, closeSidebar } = useAuth();
@@ -23,7 +22,7 @@ const Home = () => {
   const fetchPosts = async (pageNumber) => {
     try {
       const response = await axios.get(
-        `https://mainp-server-c7a5046a3a01.herokuapp.com/posts?page=${pageNumber}`
+        `https://wesmart-3b311bc60078.herokuapp.com/posts?page=${pageNumber}`
       );
       const data = response.data;
 
@@ -90,6 +89,7 @@ const Home = () => {
       setImage(null);
       setImagePreview(null);
       setIsPostLoading(false);
+      setTextPost("");
     } catch (error) {
       console.error("Error creating post:", error);
       setIsPostLoading(false);
