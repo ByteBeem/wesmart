@@ -74,26 +74,27 @@ const Home = () => {
   
     try {
       setIsPostLoading(true);
-  
+      
       const imageRef = ref(storage, `images/${image.name}`);
       await uploadBytes(imageRef, image);
   
       
       const imageUrl = await getDownloadURL(imageRef);
   
-      
-      const postsCollectionRef = collection(db, "posts");
-
+ 
+      const postsRef = ref(db, "posts");
+      const newPostRef = push(postsRef);
+  
       const postData = {
         imageUrl: imageUrl,
-        timestamp: new Date()
+        timestamp: new Date().toISOString()
       };
   
       if (caption) {
         postData.caption = caption;
       }
   
-      await addDoc(postsCollectionRef, postData);
+      await set(newPostRef, postData);
   
       setCaption("");
       setImage(null);
