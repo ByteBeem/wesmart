@@ -3,7 +3,7 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import { useAuth } from "../../components/AuthContext";
 import axios from "axios";
 import "./Home.scss";
-import { getDatabase, ref, push, set } from "firebase/database";
+import {  push, set } from "firebase/database";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { db, storage } from "./firebase";
 
