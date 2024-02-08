@@ -139,9 +139,9 @@ const Home = () => {
             posts.map((post) => (
               <div key={post.id} className="post_card">
                 {post.content_type === "image" ? (
-                  <img src={post.content} alt="Post" />
+                  <img src={post.imageUrl} alt="Post" />
                 ) : post.content_type === "text" ? (
-                  <p>{post.content}</p>
+                  <p>{post.caption}</p>
                 ) : (
                   <video
                     ref={(el) => (videoRefs.current[post.id] = el)}
