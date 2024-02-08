@@ -5,7 +5,7 @@ import axios from "axios";
 import "./Home.scss";
 import { collection, addDoc } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { db, storage } from "./firebase"; // Assuming "firebase" is imported as "db" and "storage"
+import { db, storage } from "./firebase"; 
 
 const Home = () => {
   const { active, closeSidebar } = useAuth();
