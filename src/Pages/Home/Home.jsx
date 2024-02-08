@@ -98,6 +98,7 @@ const Home = () => {
   
       setCaption("");
       setImage(null);
+      setImagePreview(null);
       setIsPostLoading(false);
     } catch (error) {
       console.error("Error creating post:", error);
