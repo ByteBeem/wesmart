@@ -84,7 +84,9 @@ class Request extends Component {
         <Sidebar showSidebar={showSidebar} closeSidebar={closeSidebar} />
         <div className="form-content">
           <div className="form-area">
+
             <h2>Tell us what you need</h2>
+  
             <form>
               <div className="form-group">
                 <label htmlFor="name">Name:</label>
