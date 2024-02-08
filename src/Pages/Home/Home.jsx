@@ -40,14 +40,7 @@ const Home = () => {
     }
   };
 
-  const handleVideoView = useCallback(
-    async (postId) => {
-      // You can define the logic for handling video view here
-      // For now, I'm just logging the postId
-      console.log("Video view for post:", postId);
-    },
-    []
-  );
+ 
 
   const handleTextChange = (e) => {
     setTextPost(e.target.value);
@@ -74,27 +67,26 @@ const Home = () => {
   
     try {
       setIsPostLoading(true);
-      
+  
       const imageRef = ref(storage, `images/${image.name}`);
       await uploadBytes(imageRef, image);
   
       const imageUrl = await getDownloadURL(imageRef);
   
-      
       const postData = {
         imageUrl: imageUrl,
         timestamp: new Date().toISOString()
       };
   
-   
       if (caption) {
         postData.caption = caption;
       }
   
-    
       await db.ref('posts').push(postData);
   
-     
+      // Send data to server.js
+      await axios.post('https://wesmart-3b311bc60078.herokuapp.com/upload', postData);
+  
       setCaption("");
       setImage(null);
       setImagePreview(null);
@@ -104,7 +96,6 @@ const Home = () => {
       setIsPostLoading(false);
     }
   };
-  
   
 
   useEffect(() => {
@@ -159,7 +150,7 @@ const Home = () => {
                     autoPlay={false}
                     muted={false}
                     loop={true}
-                    onPlay={() => handleVideoView(post.id)}
+                    
                   />
                 )}
               </div>
