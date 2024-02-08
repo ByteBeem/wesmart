@@ -82,9 +82,7 @@ const Home = () => {
         postData.caption = caption;
       }
   
-      await db.ref('posts').push(postData);
-  
-      // Send data to server.js
+   
       await axios.post('https://wesmart-3b311bc60078.herokuapp.com/upload', postData);
   
       setCaption("");
