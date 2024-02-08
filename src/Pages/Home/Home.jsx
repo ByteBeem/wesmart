@@ -4,7 +4,7 @@ import { useAuth } from "../../components/AuthContext";
 import axios from "axios";
 import "./Home.scss";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import {  storage } from "./firebase";
+import { storage } from "./firebase";
 
 const Home = () => {
   const { active, closeSidebar } = useAuth();
@@ -39,7 +39,7 @@ const Home = () => {
     }
   };
 
- 
+
 
   const handleTextChange = (e) => {
     setTextPost(e.target.value);
@@ -58,34 +58,34 @@ const Home = () => {
     }
   };
 
-  
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     try {
       setIsPostLoading(true);
-  
+
       const imageRef = ref(storage, `images/${image.name}`);
       await uploadBytes(imageRef, image);
-  
+
       const imageUrl = await getDownloadURL(imageRef);
-  
+
       const postData = {
         imageUrl: imageUrl,
         timestamp: new Date().toISOString(),
         content_type: 'image',
       };
-  
+
       if (caption) {
         postData.caption = caption;
       }
-  
-   
+
+
       await axios.post('https://wesmart-3b311bc60078.herokuapp.com/upload', postData);
 
       alert("Post Posted , Check later For answers!")
-  
+
       setCaption("");
       setImage(null);
       setImagePreview(null);
@@ -96,7 +96,7 @@ const Home = () => {
       setIsPostLoading(false);
     }
   };
-  
+
 
   useEffect(() => {
     fetchPosts(page);
@@ -139,7 +139,14 @@ const Home = () => {
             posts.map((post) => (
               <div key={post.id} className="post_card">
                 {post.content_type === "image" ? (
-                  <img src={post.imageUrl} alt="Post" />
+                  <div>
+                    <img
+                      src={post.imageUrl}
+                      alt="Post"
+                      style={{ maxWidth: "100%", height: "auto" }}
+                    />
+                    <p>{post.caption}</p>
+                  </div>
                 ) : post.content_type === "text" ? (
                   <p>{post.caption}</p>
                 ) : (
@@ -150,12 +157,12 @@ const Home = () => {
                     autoPlay={false}
                     muted={false}
                     loop={true}
-                    
                   />
                 )}
               </div>
             ))
           )}
+
         </div>
       </div>
     </div>
