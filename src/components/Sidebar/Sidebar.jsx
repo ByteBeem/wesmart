@@ -3,17 +3,16 @@ import "../../App.scss";
 import { Link } from "react-router-dom";
 import { PiTelevisionSimpleBold } from "react-icons/pi";
 import { FaDownload } from "react-icons/fa";
-import { FaSearch } from "react-icons/fa";
 import { useState } from "react";
 import { TfiWrite } from "react-icons/tfi";
 const Sidebar = ({ active, closeSidebar }) => {
-  
+
   const [activeItem, setActiveItem] = useState("home");
 
 
   return (
     <aside className={`sidebar ${active}`}>
-     
+
       <div className="top">
         <h3>weSmart</h3>
         <div className="close_btn">&times;</div>
@@ -36,27 +35,22 @@ const Sidebar = ({ active, closeSidebar }) => {
           to="/books"
         >
           <FaDownload className="icon" />
-          
+
           <span>books</span>
         </Link>
 
-      
 
-        
 
-        <Link className="link" to="/search">
-          <FaSearch className="icon" />
-          <span>Search</span>
-        </Link>
+
 
         <Link className="link" to="/request">
-          <TfiWrite  className="icon" />
+          <TfiWrite className="icon" />
           <span>Request</span>
         </Link>
 
-        
 
-        
+
+
       </div>
     </aside>
   );

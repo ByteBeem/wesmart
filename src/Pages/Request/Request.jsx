@@ -44,7 +44,7 @@ class Request extends Component {
       !formData.additionalInfo.trim() ||
       !this.validatePhoneNumber(formData.whatsappNumber)
     ) {
-      alert("Please fill in all required fields with valid information.");
+      alert("Check Your Inputs please!");
       return;
     }
 
@@ -84,7 +84,7 @@ class Request extends Component {
         <Sidebar showSidebar={showSidebar} closeSidebar={closeSidebar} />
         <div className="form-content">
           <div className="form-area">
-            <h2>Request a Video</h2>
+            <h2>Tell us what you need</h2>
             <form>
               <div className="form-group">
                 <label htmlFor="name">Name:</label>

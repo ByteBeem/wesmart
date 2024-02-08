@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Logo from "./components/Logo/Logo";
 import Home from "./Pages/Home/Home";
-import Search from "./Pages/Search/Search";
 import Materials from "./Pages/Materials/Materials";
 import Request from "./Pages/Request/Request";
 import { Analytics } from '@vercel/analytics/react';
@@ -50,18 +49,7 @@ function App() {
               />
             }
           />
-          <Route
-            path="search"
-            element={
-              <Search
-                showSidebar={showSidebar}
-                closeSidebar={closeSidebar}
-                active={active}
-              />
-
-
-            }
-          />
+         
 
           <Route
             path="request"
