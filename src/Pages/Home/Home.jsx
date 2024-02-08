@@ -9,6 +9,8 @@ const Home = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
+  const [textPost, setTextPost] = useState("");
+  const [imageFile, setImageFile] = useState(null);
 
   const videoRefs = useRef({});
 
@@ -41,6 +43,43 @@ const Home = () => {
     []
   );
 
+  const handleTextChange = (e) => {
+    setTextPost(e.target.value);
+  };
+
+  const handleImageChange = (e) => {
+    setImageFile(e.target.files[0]);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const formData = new FormData();
+      formData.append("text", textPost);
+      formData.append("image", imageFile);
+
+      await axios.post(
+        "https://mainp-server-c7a5046a3a01.herokuapp.com/posts",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      // Clear form fields after successful submission
+      setTextPost("");
+      setImageFile(null);
+
+      // Refresh posts
+      fetchPosts(page);
+    } catch (error) {
+      console.error("Error posting:", error);
+      // Handle error
+    }
+  };
+
   useEffect(() => {
     fetchPosts(page);
   }, [page]);
@@ -49,6 +88,21 @@ const Home = () => {
     <div className="home">
       <Sidebar active={active} closeSidebar={closeSidebar} />
       <div className="home_container">
+        <div className="post_form">
+          <form onSubmit={handleSubmit}>
+            <textarea
+              placeholder="Write something..."
+              value={textPost}
+              onChange={handleTextChange}
+            />
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleImageChange}
+            />
+            <button type="submit">Post</button>
+          </form>
+        </div>
         <div className="posts_container">
           {loading ? (
             <p>Loading...</p>

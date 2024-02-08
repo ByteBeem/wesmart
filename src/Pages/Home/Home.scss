@@ -1,51 +1,93 @@
 .home {
   display: flex;
-  align-items: center; /* Center content vertically */
-  justify-content: center; /* Center content horizontally */
+  align-items: center;
+  /* Center content vertically */
+  justify-content: center;
+  /* Center content horizontally */
   overflow-x: hidden;
 
   .home_container {
+
     flex: 6;
 
-     .posts_container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 16px;
-    margin-top: 20px;
+    .post_form {
+      margin-bottom: 20px;
+    }
 
-    .post_card {
-      position: relative;
-      overflow: hidden;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    .post_form form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-      video {
-        width: 100%;
-        height: auto;
-        display: block;
+    .post_form textarea {
+      width: 100%;
+      max-width: 100%;
+      margin-bottom: 10px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      resize: vertical;
+    }
+
+    .post_form input[type="file"] {
+      margin-bottom: 10px;
+    }
+
+    .post_form button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .post_form button:hover {
+      background-color: #0056b3;
+    }
+
+
+    .posts_container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+
+      .post_card {
+        position: relative;
+        overflow: hidden;
         border-radius: 8px;
-      }
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
-      .views_overlay {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: #fff;
-        font-size: 16px;
-        font-weight: bold;
-        background-color: rgba(0, 0, 0, 0.5);
-        padding: 8px 16px;
-        border-radius: 8px;
+        video {
+          width: 100%;
+          height: auto;
+          display: block;
+          border-radius: 8px;
+        }
+
+        .views_overlay {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          color: #fff;
+          font-size: 16px;
+          font-weight: bold;
+          background-color: rgba(0, 0, 0, 0.5);
+          padding: 8px 16px;
+          border-radius: 8px;
+        }
       }
     }
-  }
 
-  @media screen and (max-width: 768px) {
-    .videos_container {
-      grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+    @media screen and (max-width: 768px) {
+      .videos_container {
+        grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+      }
     }
-  }
 
     .content {
       padding: 5rem 0 1rem 0;
@@ -60,6 +102,7 @@
         @media screen and (max-width: 1500px) {
           padding: 0.6rem 2rem;
         }
+
         @media screen and (max-width: 900px) {
           padding: 0.6rem 10px;
         }
@@ -67,6 +110,7 @@
         .div {
           width: 100%;
         }
+
         .game_box {
           padding: 0 1rem;
 
@@ -110,12 +154,15 @@
 
 .minesTable {
   display: flex;
-  flex-direction: column; /* Stack the table rows vertically on small screens */
-  align-items: center; /* Center the table horizontally */
+  flex-direction: column;
+  /* Stack the table rows vertically on small screens */
+  align-items: center;
+  /* Center the table horizontally */
   width: 100%;
 
   td {
-    width: 100%; /* Make each cell take full width */
+    width: 100%;
+    /* Make each cell take full width */
   }
 
   .verticalLine {
@@ -132,6 +179,7 @@
   background-color: red;
   padding: 10px;
 }
+
 .blueButton {
   background-color: blue;
   padding: 10px;
@@ -146,16 +194,19 @@
   max-height: 800px;
   overflow-y: scroll;
 }
+
 .videos-container {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  max-height: 700; /* Set max-height to 100vh for full-screen height */
+  max-height: 700;
+  /* Set max-height to 100vh for full-screen height */
   overflow-y: auto;
 
   @media (max-width: 1000px) {
     flex-direction: column;
-    max-height: none; /* Reset max-height for mobile view */
+    max-height: none;
+    /* Reset max-height for mobile view */
   }
 
   .video-item {
@@ -174,7 +225,7 @@
   width: 100%;
   font-size: 1.5rem;
   padding: 15px 20px;
-  margin : 4px;
+  margin: 4px;
   color: #fff;
   border: none;
   border-radius: 10px;
@@ -249,6 +300,7 @@
   0% {
     left: -100%;
   }
+
   50%,
   100% {
     left: 100%;
@@ -259,6 +311,7 @@
   0% {
     top: -100%;
   }
+
   50%,
   100% {
     top: 100%;
@@ -269,6 +322,7 @@
   0% {
     right: -100%;
   }
+
   50%,
   100% {
     right: 100%;
@@ -279,6 +333,7 @@
   0% {
     bottom: -100%;
   }
+
   50%,
   100% {
     bottom: 100%;
@@ -289,14 +344,17 @@
   from {
     box-shadow: 0 0 10px #4caf50, 0 0 20px #4caf50, 0 0 30px #4caf50;
   }
+
   to {
     box-shadow: 0 0 20px #4c87af, 0 0 30px #4c87af, 0 0 40px #4c87af;
   }
 }
+
 @keyframes glowAviator {
   from {
     box-shadow: 0 0 10px #4caf50, 0 0 20px #4caf50, 0 0 30px #4caf50;
   }
+
   to {
     box-shadow: 0 0 20px #4c87af, 0 0 30px #4c87af, 0 0 40px #4c87af;
   }
