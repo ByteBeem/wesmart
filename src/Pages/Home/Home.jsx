@@ -66,7 +66,7 @@ const Home = () => {
   
      
       const postData = {
-        caption: textPost, 
+        caption: caption, 
         content_type: 'text',
       };
   
