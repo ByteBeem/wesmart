@@ -44,6 +44,7 @@ const Home = () => {
 
   const handleTextChange = (e) => {
     setTextPost(e.target.value);
+    setCaption(e.target.value);
   };
 
   const handleImageChange = (e) => {
@@ -58,9 +59,7 @@ const Home = () => {
     }
   };
 
-  const handleCaptionChange = (e) => {
-    setCaption(e.target.value);
-  };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -84,6 +83,8 @@ const Home = () => {
   
    
       await axios.post('https://wesmart-3b311bc60078.herokuapp.com/upload', postData);
+
+      alert("Post Posted , Check later For answers!")
   
       setCaption("");
       setImage(null);
