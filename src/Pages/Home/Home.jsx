@@ -58,6 +58,34 @@ const Home = () => {
     }
   };
 
+  const handleSubmitText = async (e) => {
+    e.preventDefault();
+  
+    try {
+      setIsPostLoading(true);
+  
+     
+      const postData = {
+        caption: textPost, 
+        content_type: 'text',
+      };
+  
+      
+      await axios.post('https://wesmart-3b311bc60078.herokuapp.com/uploadText', postData);
+  
+      alert("Post Posted, Check later For answers!")
+  
+      // Reset form state
+      setCaption("");
+      setImage(null);
+      setImagePreview(null);
+      setIsPostLoading(false);
+      setTextPost("");
+    } catch (error) {
+      console.error("Error creating post:", error);
+      setIsPostLoading(false);
+    }
+  };
 
 
   const handleSubmit = async (e) => {
@@ -107,28 +135,34 @@ const Home = () => {
       <Sidebar active={active} closeSidebar={closeSidebar} />
       <div className="home_container">
         <div className="post_form">
-          <form onSubmit={handleSubmit}>
-            <textarea
-              placeholder="Post your questions..."
-              value={textPost}
-              onChange={handleTextChange}
-            />
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleImageChange}
-            />
-            {imagePreview && (
-              <img src={imagePreview} alt="Preview" style={{ maxWidth: "100%", maxHeight: "200px", marginTop: "10px" }} />
-            )}
-            <button type="submit">
-              {!isPostLoading ?
-                "Post"
-                : "Posting.."
-              }
+          <div className="post_form">
+            <form onSubmit={image ? handleSubmit : handleSubmitText}>
+              <textarea
+                placeholder="Post your questions..."
+                value={textPost}
+                onChange={handleTextChange}
+              />
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
+              />
+              {imagePreview && (
+                <img
+                  src={imagePreview}
+                  alt="Preview"
+                  style={{ maxWidth: "100%", maxHeight: "200px", marginTop: "10px" }}
+                />
+              )}
+              <button type="submit">
+                {!isPostLoading ?
+                  "Post"
+                  : "Posting.."
+                }
+              </button>
+            </form>
+          </div>
 
-            </button>
-          </form>
         </div>
         <div className="posts_container">
           {loading ? (
@@ -146,7 +180,7 @@ const Home = () => {
                       alt="Post"
                       style={{ maxWidth: "100%", height: "auto" }}
                     />
-                    
+
                   </div>
                 ) : post.content_type === "text" ? (
                   <p>{post.caption}</p>
