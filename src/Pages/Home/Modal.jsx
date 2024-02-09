@@ -38,11 +38,15 @@ const Modal = ({ onClose, exampleAnswers }) => {
           &times;
         </button>
         <div className="modal-content">
-          <div className="example-answers">
-            {exampleAnswers.map((answer, index) => (
-              <p key={index}>{answer}</p>
-            ))}
-          </div>
+          {exampleAnswers.map((answer, index) => (
+            <div key={index}>
+              {answer.startsWith("data:image") ? (
+                <img src={answer} alt="Answer" className="image-answer" />
+              ) : (
+                <p>{answer}</p>
+              )}
+            </div>
+          ))}
           <div className="input-container">
             <input
               type="text"
