@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import "./Modal.scss";
 
-const Modal = ({ onClose }) => {
+const Modal = ({ onClose, exampleAnswers }) => {
   const [image, setImage] = useState(null);
   const [textInput, setTextInput] = useState("");
   const [answers, setAnswers] = useState([]);
@@ -25,10 +25,7 @@ const Modal = ({ onClose }) => {
   };
 
   const handleSubmit = () => {
-    // Assuming you have some logic to handle submitting text input and image
-    // Here, I'm just pushing text input into answers array
     setAnswers([...answers, textInput]);
-    // Clearing text input and image after submission
     setTextInput("");
     setImage(null);
   };
@@ -40,7 +37,6 @@ const Modal = ({ onClose }) => {
           &times;
         </button>
         <div className="modal-content">
-          {/* Text input section */}
           <div className="input-container">
             <input
               type="text"
@@ -48,17 +44,20 @@ const Modal = ({ onClose }) => {
               onChange={handleTextInputChange}
               placeholder="Enter your answer..."
             />
-            {/* Image upload input */}
             <input type="file" onChange={handleImageChange} accept="image/*" />
-            {/* Submit button */}
             <button className="send-button" onClick={handleSubmit}>
               Submit
             </button>
           </div>
-          {/* Image preview */}
           {image && <img src={image} alt="Preview" className="image-preview" />}
-          {/* Display answers */}
           <div className="example-answers">
+            {/* Render example answers passed as props */}
+            {exampleAnswers.map((answer, index) => (
+              <p key={index}>{answer}</p>
+            ))}
+          </div>
+          <div className="user-answers">
+            {/* Render user's answers */}
             {answers.map((answer, index) => (
               <p key={index}>{answer}</p>
             ))}

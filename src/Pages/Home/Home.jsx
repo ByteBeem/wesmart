@@ -215,33 +215,9 @@ const [modalOpen, setModalOpen] = useState(false);
       </div>
       
       {modalOpen && selectedPost && (
-       <Modal onClose={handleCloseModal}>
-       <h2>Answers :</h2>
-       {/* Example answers */}
-       <div className="example-answers">
-         <p>Example Answer gfhhfbsh fijfhi dhfidhsfuybdghiubfguyd shfiubdihfhiu fgbshfuyhdiubfhuihfbiugdiushgcfnuybdcfiuhdbufgcunguyfbchiughcgshoibiguhfsdiu</p>
-         <p>Example Answer 2</p>
-         <p>Example Answer 3</p>
-         <p>Example Answer 4</p>
-         <p>Example Answer 5</p>
-         <p>Example Answer 6</p>
-         <p>Example Answer 7</p>
-         <p>Example Answer 8</p>
-         <p>Example Answer 9</p>
-         <p>Example Answer 10</p>
-       </div>
-      
-       <div className="input-container">
-         <input type="text" placeholder="Type your answer..." />
-         <button className="send-button">
-           <IoSend className="icon" />
-         </button>
-       </div>
-       <button onClick={handleCloseModal}>Close</button>
-     </Modal>
-     
-      
-      )}
+  <Modal onClose={handleCloseModal} exampleAnswers={["Example Answer 1", "Example Answer 2"]} />
+)}
+
     </div>
   );
 };
