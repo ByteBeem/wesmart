@@ -39,6 +39,7 @@ const Modal = ({ onClose }) => {
           &times;
         </button>
         <div className="modal-content">
+            <h2>Login Now</h2>
           <input
             type="tel"
             value={phoneNumber}
@@ -54,12 +55,25 @@ const Modal = ({ onClose }) => {
           <button className="login-button" onClick={handleLogin}>
             Login
           </button>
+          <h2>Or Open Account</h2>
           <div className="signup-container">
             <input
               type="text"
               value={name}
               onChange={handleNameChange}
               placeholder="Enter your name..."
+            />
+            <input
+              type="text"
+              value={name}
+              onChange={handleNameChange}
+              placeholder="Enter your cellphone..."
+            />
+             <input
+              type="text"
+              value={name}
+              onChange={handleNameChange}
+              placeholder="Enter your password..."
             />
             <button className="signup-button" onClick={handleSignup}>
               Signup
