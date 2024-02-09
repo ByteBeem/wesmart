@@ -42,6 +42,10 @@ const Modal = ({ onClose }) => {
     };
 
     const handleSignup = () => {
+        if(!signupPassword || !signupPhoneNumber || !signupName){
+            alert("You Forgot Something Impotant");
+            return ;
+        }
         setIsSignupLoading(true);
         console.log("Signing up with name:", signupName, "phone number:", signupPhoneNumber, "and password:", signupPassword);
         onClose();
