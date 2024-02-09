@@ -10,6 +10,33 @@
 
     flex: 6;
 
+    .input-container {
+      margin-top: 20px;
+      display: flex;
+    }
+    
+    .input-container input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    
+    .input-container .send-button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 15px;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+    
+    .input-container .send-button:hover {
+      background-color: #0056b3;
+    }
+
     .post_form {
       margin-bottom: 20px;
       
@@ -21,32 +48,7 @@
       align-items: center;
     }
 
-.input-container {
-  margin-top: 20px;
-  display: flex;
-}
 
-.input-container input {
-  flex: 1;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-}
-
-.input-container .send-button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 15px;
-  margin-left: 10px;
-  cursor: pointer;
-}
-
-.input-container .send-button:hover {
-  background-color: #0056b3;
-}
 
 .icon {
   font-size: 1.5rem;
