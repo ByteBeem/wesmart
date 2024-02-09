@@ -32,6 +32,10 @@ const Modal = ({ onClose }) => {
     };
 
     const handleLogin = () => {
+        if(!loginPhoneNumber || !loginPassword){
+            alert("You Forgot Something Impotant");
+            return ;
+        }
         setIsLoginLoading(true);
         console.log("Logging in with phone number:", loginPhoneNumber, "and password:", loginPassword);
         onClose();
