@@ -31,25 +31,81 @@ const Modal = ({ onClose }) => {
         setSignupPassword(event.target.value);
     };
 
-    const handleLogin = () => {
-        if(!loginPhoneNumber || !loginPassword){
-            alert("You Forgot Something Impotant");
-            return ;
+    const handleLogin = async () => {
+        // Check if login phone number or password is empty
+        if (!loginPhoneNumber || !loginPassword) {
+          alert("You forgot to fill in some important information.");
+          return;
         }
-        setIsLoginLoading(true);
-        console.log("Logging in with phone number:", loginPhoneNumber, "and password:", loginPassword);
-        onClose();
-    };
+      
+        try {
+          setIsLoginLoading(true);
+      
+          // Prepare data for login
+          const loginData = {
+            phoneNumber: loginPhoneNumber,
+            password: loginPassword
+          };
+      
+          await axios.post(
+            "https://wesmart-3b311bc60078.herokuapp.com/login",
+            loginData
+          );
+      
+         
+          
+          
+          onClose();
+        } catch (error) {
+          console.error("Error logging in:", error);
+          setIsLoginLoading(false);
+          
+          alert("An error occurred during login. Please try again later.");
+        }
+      };
+      
 
-    const handleSignup = () => {
-        if(!signupPassword || !signupPhoneNumber || !signupName){
-            alert("You Forgot Something Impotant");
-            return ;
+    const handleSignup = async () => {
+       
+        if (!signupName || !signupPhoneNumber || !signupPassword) {
+          alert("You forgot to fill in some important information.");
+          return;
         }
-        setIsSignupLoading(true);
-        console.log("Signing up with name:", signupName, "phone number:", signupPhoneNumber, "and password:", signupPassword);
-        onClose();
-    };
+      
+        try {
+          setIsSignupLoading(true);
+      
+       
+          const postData = {
+            name: signupName,
+            phoneNumber: signupPhoneNumber,
+            password: signupPassword
+          };
+      
+          
+          await axios.post(
+            "https://wesmart-3b311bc60078.herokuapp.com/signup",
+            postData
+          );
+      
+          
+          alert("Account Opened!");
+      
+         
+          setSignupName("");
+          setSignupPhoneNumber("");
+          setSignupPassword("");
+      
+         
+          onClose();
+        } catch (error) {
+          console.error("Error signing up:", error);
+          setIsSignupLoading(false);
+         
+          alert("An error occurred during signup. Please try again later.");
+        }
+      };
+      
 
     return ReactDOM.createPortal(
         <div className="modal-overlay">
