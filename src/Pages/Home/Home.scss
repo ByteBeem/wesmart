@@ -10,58 +10,7 @@
 
     flex: 6;
 
-    .example-answers {
-      margin-top: 20px;
-    }
     
-    .example-answers p {
-      margin: 5px 0;
-      font-size: 16px;
-      line-height: 1.4;
-    }
-    
-    .example-answers p:nth-child(even) {
-      background-color: #f5f5f5; 
-    }
-
-    .input-container {
-      margin-top: 20px;
-      display: flex;
-    }
-    
-    .input-container input {
-      flex: 1;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 16px;
-    }
-    
-    .input-container .send-button {
-      background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      padding: 10px 15px;
-      margin-left: 10px;
-      cursor: pointer;
-    }
-    
-    .input-container .send-button:hover {
-      background-color: #0056b3;
-    }
-
-    .post_form {
-      margin-bottom: 20px;
-      
-    }
-
-    .post_form form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
 
 
 .icon {
