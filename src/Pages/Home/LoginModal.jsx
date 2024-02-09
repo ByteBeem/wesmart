@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import "./LoginModal.scss";
+import axios from "axios";
 
 const Modal = ({ onClose }) => {
     const [loginPhoneNumber, setLoginPhoneNumber] = useState("");
@@ -32,7 +33,7 @@ const Modal = ({ onClose }) => {
     };
 
     const handleLogin = async () => {
-        // Check if login phone number or password is empty
+       
         if (!loginPhoneNumber || !loginPassword) {
           alert("You forgot to fill in some important information.");
           return;
@@ -41,7 +42,7 @@ const Modal = ({ onClose }) => {
         try {
           setIsLoginLoading(true);
       
-          // Prepare data for login
+       
           const loginData = {
             phoneNumber: loginPhoneNumber,
             password: loginPassword
