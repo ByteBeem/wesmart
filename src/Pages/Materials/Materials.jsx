@@ -43,7 +43,7 @@ const Wallet = ({ showSidebar, active, closeSidebar }) => {
           <div className="search-box">
             <input
               type="text"
-              placeholder="Search..."
+              placeholder="Search for books..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
