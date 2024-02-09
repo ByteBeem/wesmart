@@ -1,34 +1,41 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import "./LoginModal.scss";
-import { IoSend } from "react-icons/io5";
 
 const Modal = ({ onClose }) => {
-  const [name, setName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [password, setPassword] = useState("");
+  const [loginPhoneNumber, setLoginPhoneNumber] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+  const [signupName, setSignupName] = useState("");
+  const [signupPhoneNumber, setSignupPhoneNumber] = useState("");
+  const [signupPassword, setSignupPassword] = useState("");
 
-  const handleNameChange = (event) => {
-    setName(event.target.value);
+  const handleLoginPhoneNumberChange = (event) => {
+    setLoginPhoneNumber(event.target.value);
   };
 
-  const handlePhoneNumberChange = (event) => {
-    setPhoneNumber(event.target.value);
+  const handleLoginPasswordChange = (event) => {
+    setLoginPassword(event.target.value);
   };
 
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
+  const handleSignupNameChange = (event) => {
+    setSignupName(event.target.value);
+  };
+
+  const handleSignupPhoneNumberChange = (event) => {
+    setSignupPhoneNumber(event.target.value);
+  };
+
+  const handleSignupPasswordChange = (event) => {
+    setSignupPassword(event.target.value);
   };
 
   const handleLogin = () => {
-    // Handle login logic here
-    console.log("Logging in with phone number:", phoneNumber, "and password:", password);
+    console.log("Logging in with phone number:", loginPhoneNumber, "and password:", loginPassword);
     onClose();
   };
 
   const handleSignup = () => {
-    // Handle signup logic here
-    console.log("Signing up with name:", name, "phone number:", phoneNumber, "and password:", password);
+    console.log("Signing up with name:", signupName, "phone number:", signupPhoneNumber, "and password:", signupPassword);
     onClose();
   };
 
@@ -42,14 +49,14 @@ const Modal = ({ onClose }) => {
           <h2>Login Now</h2>
           <input
             type="tel"
-            value={phoneNumber}
-            onChange={handlePhoneNumberChange}
+            value={loginPhoneNumber}
+            onChange={handleLoginPhoneNumberChange}
             placeholder="Enter your cellphone number..."
           />
           <input
             type="password"
-            value={password}
-            onChange={handlePasswordChange}
+            value={loginPassword}
+            onChange={handleLoginPasswordChange}
             placeholder="Enter your password..."
           />
           <button className="login-button" onClick={handleLogin}>
@@ -58,20 +65,20 @@ const Modal = ({ onClose }) => {
           <h2>Or Open Account</h2>
           <input
             type="text"
-            value={name}
-            onChange={handleNameChange}
+            value={signupName}
+            onChange={handleSignupNameChange}
             placeholder="Enter your name..."
           />
           <input
             type="tel"
-            value={phoneNumber}
-            onChange={handlePhoneNumberChange}
+            value={signupPhoneNumber}
+            onChange={handleSignupPhoneNumberChange}
             placeholder="Enter your cellphone number..."
           />
           <input
             type="password"
-            value={password}
-            onChange={handlePasswordChange}
+            value={signupPassword}
+            onChange={handleSignupPasswordChange}
             placeholder="Enter your password..."
           />
           <button className="signup-button" onClick={handleSignup}>
