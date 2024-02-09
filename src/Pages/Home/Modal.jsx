@@ -12,7 +12,7 @@ const Modal = ({ onClose, children }) => {
         <div className="modal-content">{children}</div>
       </div>
     </div>,
-    document.body // Render the modal directly into the document body
+    document.body 
   );
 };
 

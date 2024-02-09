@@ -6,6 +6,7 @@ import "./Home.scss";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "./firebase";
 import Modal from "./Modal";
+import { IoSend } from "react-icons/io5";
 
 const Home = () => {
   const { active, closeSidebar } = useAuth();
@@ -215,12 +216,17 @@ const [modalOpen, setModalOpen] = useState(false);
       
       {modalOpen && selectedPost && (
         <Modal onClose={handleCloseModal}>
-          <h2>Answers for Post:</h2>
-          <p>{selectedPost.caption}</p>
-          
-          <button onClick={handleCloseModal}>Close</button> 
-         
-        </Modal>
+        <h2>Answers :</h2>
+        
+        <div className="input-container">
+          <input type="text" placeholder="Type your answer..." />
+          <button className="send-button">
+          <IoSend  className="icon"/>
+          </button>
+        </div>
+        <button onClick={handleCloseModal}>Close</button>
+      </Modal>
+      
       )}
     </div>
   );
