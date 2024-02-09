@@ -35,7 +35,7 @@ const Modal = ({ onClose, exampleAnswers }) => {
     <div className="modal-overlay">
       <div className="modal">
         <button className="close-button" onClick={onClose}>
-          &times;
+          back
         </button>
         <div className="modal-content">
           {exampleAnswers.map((answer, index) => (
