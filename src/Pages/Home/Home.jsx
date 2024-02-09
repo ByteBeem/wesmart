@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import { useAuth } from "../../components/AuthContext";
 import axios from "axios";
@@ -39,8 +39,6 @@ const Home = () => {
     }
   };
 
-
-
   const handleTextChange = (e) => {
     setTextPost(e.target.value);
     setCaption(e.target.value);
@@ -60,22 +58,23 @@ const Home = () => {
 
   const handleSubmitText = async (e) => {
     e.preventDefault();
-  
+
     try {
       setIsPostLoading(true);
-  
-     
+
       const postData = {
-        caption: caption, 
-        content_type: 'text',
+        caption: caption,
+        content_type: "text",
         timestamp: new Date().toISOString(),
       };
-  
-      
-      await axios.post('https://wesmart-3b311bc60078.herokuapp.com/uploadText', postData);
-  
-      alert("Post Posted, Check later For answers!")
-  
+
+      await axios.post(
+        "https://wesmart-3b311bc60078.herokuapp.com/uploadText",
+        postData
+      );
+
+      alert("Post Posted, Check later For answers!");
+
       // Reset form state
       setCaption("");
       setImage(null);
@@ -87,7 +86,6 @@ const Home = () => {
       setIsPostLoading(false);
     }
   };
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -103,17 +101,19 @@ const Home = () => {
       const postData = {
         imageUrl: imageUrl,
         timestamp: new Date().toISOString(),
-        content_type: 'image',
+        content_type: "image",
       };
 
       if (caption) {
         postData.caption = caption;
       }
 
+      await axios.post(
+        "https://wesmart-3b311bc60078.herokuapp.com/upload",
+        postData
+      );
 
-      await axios.post('https://wesmart-3b311bc60078.herokuapp.com/upload', postData);
-
-      alert("Post Posted , Check later For answers!")
+      alert("Post Posted, Check later For answers!");
 
       setCaption("");
       setImage(null);
@@ -126,7 +126,6 @@ const Home = () => {
     }
   };
 
-
   useEffect(() => {
     fetchPosts(page);
   }, [page]);
@@ -136,34 +135,28 @@ const Home = () => {
       <Sidebar active={active} closeSidebar={closeSidebar} />
       <div className="home_container">
         <div className="post_form">
-          <div className="post_form">
-            <form onSubmit={image ? handleSubmit : handleSubmitText}>
-              <textarea
-                placeholder="Post your questions..."
-                value={textPost}
-                onChange={handleTextChange}
+          <form onSubmit={image ? handleSubmit : handleSubmitText}>
+            <textarea
+              placeholder="Post your questions..."
+              value={textPost}
+              onChange={handleTextChange}
+            />
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleImageChange}
+            />
+            {imagePreview && (
+              <img
+                src={imagePreview}
+                alt="Preview"
+                style={{ maxWidth: "100%", maxHeight: "200px", marginTop: "10px" }}
               />
-              <input
-                type="file"
-                accept="image/*"
-                onChange={handleImageChange}
-              />
-              {imagePreview && (
-                <img
-                  src={imagePreview}
-                  alt="Preview"
-                  style={{ maxWidth: "100%", maxHeight: "200px", marginTop: "10px" }}
-                />
-              )}
-              <button type="submit">
-                {!isPostLoading ?
-                  "Post"
-                  : "Posting.."
-                }
-              </button>
-            </form>
-          </div>
-
+            )}
+            <button type="submit">
+              {!isPostLoading ? "Post" : "Posting.."}
+            </button>
+          </form>
         </div>
         <div className="posts_container">
           {loading ? (
@@ -181,7 +174,6 @@ const Home = () => {
                       alt="Post"
                       style={{ maxWidth: "100%", height: "auto" }}
                     />
-
                   </div>
                 ) : post.content_type === "text" ? (
                   <p>{post.caption}</p>
@@ -195,10 +187,10 @@ const Home = () => {
                     loop={true}
                   />
                 )}
+                <button className="answer_button">Answers</button> {/* Blue Answers button */}
               </div>
             ))
           )}
-
         </div>
       </div>
     </div>

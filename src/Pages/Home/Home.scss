@@ -59,8 +59,18 @@
       .post_card {
         position: relative;
         overflow: hidden;
+        margin-bottom: 20px;
         border-radius: 8px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+        .answer_button {
+          background-color: blue;
+          color: white;
+          border: none;
+          padding: 5px 10px;
+          margin-top: 10px;
+          cursor: pointer;
+        }
 
         video {
           width: 100%;
