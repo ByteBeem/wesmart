@@ -4,9 +4,13 @@ import "./LoginModal.scss";
 import { IoSend } from "react-icons/io5";
 
 const Modal = ({ onClose }) => {
+  const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
+
+  const handleNameChange = (event) => {
+    setName(event.target.value);
+  };
 
   const handlePhoneNumberChange = (event) => {
     setPhoneNumber(event.target.value);
@@ -14,10 +18,6 @@ const Modal = ({ onClose }) => {
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
-  };
-
-  const handleNameChange = (event) => {
-    setName(event.target.value);
   };
 
   const handleLogin = () => {
@@ -39,7 +39,7 @@ const Modal = ({ onClose }) => {
           &times;
         </button>
         <div className="modal-content">
-            <h2>Login Now</h2>
+          <h2>Login Now</h2>
           <input
             type="tel"
             value={phoneNumber}
@@ -56,29 +56,27 @@ const Modal = ({ onClose }) => {
             Login
           </button>
           <h2>Or Open Account</h2>
-          <div className="signup-container">
-            <input
-              type="text"
-              value={name}
-              onChange={handleNameChange}
-              placeholder="Enter your name..."
-            />
-            <input
-              type="text"
-              value={name}
-              onChange={handleNameChange}
-              placeholder="Enter your cellphone..."
-            />
-             <input
-              type="text"
-              value={name}
-              onChange={handleNameChange}
-              placeholder="Enter your password..."
-            />
-            <button className="signup-button" onClick={handleSignup}>
-              Signup
-            </button>
-          </div>
+          <input
+            type="text"
+            value={name}
+            onChange={handleNameChange}
+            placeholder="Enter your name..."
+          />
+          <input
+            type="tel"
+            value={phoneNumber}
+            onChange={handlePhoneNumberChange}
+            placeholder="Enter your cellphone number..."
+          />
+          <input
+            type="password"
+            value={password}
+            onChange={handlePasswordChange}
+            placeholder="Enter your password..."
+          />
+          <button className="signup-button" onClick={handleSignup}>
+            Signup
+          </button>
         </div>
       </div>
     </div>,
