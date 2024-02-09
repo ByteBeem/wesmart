@@ -68,6 +68,7 @@ const Home = () => {
       const postData = {
         caption: caption, 
         content_type: 'text',
+        timestamp: new Date().toISOString(),
       };
   
       
