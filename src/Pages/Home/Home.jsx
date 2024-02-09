@@ -6,6 +6,7 @@ import "./Home.scss";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "./firebase";
 import Modal from "./Modal";
+import LoginModal from "./LoginModal"
 
 
 const Home = () => {
@@ -19,7 +20,8 @@ const Home = () => {
   const [imagePreview, setImagePreview] = useState(null);
   const [isPostLoading, setIsPostLoading] = useState(false);
   const [selectedPost, setSelectedPost] = useState(null); 
-const [modalOpen, setModalOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalOpenLogin, setModalOpenLogin] = useState(false);
 
   const videoRefs = useRef({});
 
@@ -32,6 +34,17 @@ const [modalOpen, setModalOpen] = useState(false);
   const handleCloseModal = () => {
     setSelectedPost(null);
     setModalOpen(false);
+  };
+
+  const handleOpenModalLogin = () => {
+   
+    setModalOpenLogin(true);
+  };
+
+  
+  const handleCloseModalLogin = () => {
+    
+    setModalOpenLogin(false);
   };
 
   const fetchPosts = async (pageNumber) => {
@@ -73,23 +86,30 @@ const [modalOpen, setModalOpen] = useState(false);
 
   const handleSubmitText = async (e) => {
     e.preventDefault();
-
+  
+    const Logins = localStorage.getItem("Logins");
+  
+    if (!Logins) {
+      setModalOpenLogin(true);
+      return; 
+    }
+  
     try {
       setIsPostLoading(true);
-
+  
       const postData = {
         caption: caption,
         content_type: "text",
         timestamp: new Date().toISOString(),
       };
-
+  
       await axios.post(
         "https://wesmart-3b311bc60078.herokuapp.com/uploadText",
         postData
       );
-
+  
       alert("Post Posted, Check later For answers!");
-
+  
       // Reset form state
       setCaption("");
       setImage(null);
@@ -101,9 +121,17 @@ const [modalOpen, setModalOpen] = useState(false);
       setIsPostLoading(false);
     }
   };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const Logins = localStorage.getItem("Logins");
+  
+    if (!Logins) {
+      setModalOpenLogin(true);
+      return; 
+    }
 
     try {
       setIsPostLoading(true);
@@ -210,7 +238,7 @@ const [modalOpen, setModalOpen] = useState(false);
             </button>
               </div>
             ))
-          )}
+          )} 
         </div>
       </div>
       
@@ -220,6 +248,13 @@ const [modalOpen, setModalOpen] = useState(false);
     <button onClick={handleCloseModal}>Close</button>
   </>
 )}
+
+{modalOpenLogin  && (
+        <>
+          <LoginModal onClose={handleOpenModalLogin}  />
+          <button onClick={handleCloseModalLogin}>Close</button>
+        </>
+      )}
 
     </div>
   );
