@@ -61,7 +61,7 @@ const Modal = ({ onClose }) => {
           console.error("Error logging in:", error);
           setIsLoginLoading(false);
           
-          alert("An error occurred during login. Please try again later.");
+          alert("You entered Something Incorrect!.");
         }
       };
       
