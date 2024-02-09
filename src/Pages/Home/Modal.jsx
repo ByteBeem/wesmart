@@ -34,9 +34,7 @@ const Modal = ({ onClose, exampleAnswers }) => {
   return ReactDOM.createPortal(
     <div className="modal-overlay">
       <div className="modal">
-        <button className="close-button" onClick={onClose}>
-          back
-        </button>
+      
         <div className="modal-content">
           {exampleAnswers.map((answer, index) => (
             <div key={index}>
@@ -65,6 +63,9 @@ const Modal = ({ onClose, exampleAnswers }) => {
           <button className="submit-file-button" onClick={handleSubmit}>
             Submit File
           </button>
+          <button className="close-button" onClick={onClose}>
+          back
+        </button>
         </div>
       </div>
     </div>,

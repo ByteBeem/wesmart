@@ -8,6 +8,7 @@ const Wallet = ({ showSidebar, active, closeSidebar }) => {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const fetchBooks = async () => {
     try {
@@ -26,9 +27,12 @@ const Wallet = ({ showSidebar, active, closeSidebar }) => {
 
   useEffect(() => {
     fetchBooks();
-  }, [fetchBooks]);
+  }, []);
 
- 
+
+  const filteredBooks = books.filter(book =>
+    book.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div className="wallet">
@@ -36,7 +40,19 @@ const Wallet = ({ showSidebar, active, closeSidebar }) => {
 
       <div className="wallet_container">
         <div className="book-list">
+          <div className="search-box">
+            <input
+              type="text"
+              placeholder="Search..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </div>
           <h2>Grade12 Study Materials</h2>
+
+
+
+
           <div className="scroll-view">
             {loading ? (
               <p>Loading materials...</p>
@@ -44,11 +60,10 @@ const Wallet = ({ showSidebar, active, closeSidebar }) => {
               <p>{error}</p>
             ) : (
               <ul>
-                {books.map((book) => (
+                {filteredBooks.map((book) => (
                   <li key={book.id}>
                     <span>{book.name}</span>
                     <button onClick={() => window.location.href = book.downloadLink}>Download</button>
-
                   </li>
                 ))}
               </ul>

@@ -6,11 +6,28 @@
     flex: 6;
     padding: 5rem 0 1rem 0;
 
-  
+    .search-box {
+      margin-bottom: 20px;
+    }
+    
+    .search-box input {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    
+    .search-box input:focus {
+      outline: none;
+      border-color: #007bff; 
+    }
+
      
 
       .book-list {
 
+        
         .scroll-view {
           max-height: 500px; 
           overflow-y: auto;
