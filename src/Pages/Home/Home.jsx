@@ -5,6 +5,7 @@ import axios from "axios";
 import "./Home.scss";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "./firebase";
+import Modal from "./Modal";
 
 const Home = () => {
   const { active, closeSidebar } = useAuth();
@@ -16,8 +17,21 @@ const Home = () => {
   const [caption, setCaption] = useState("");
   const [imagePreview, setImagePreview] = useState(null);
   const [isPostLoading, setIsPostLoading] = useState(false);
+  const [selectedPost, setSelectedPost] = useState(null); 
+const [modalOpen, setModalOpen] = useState(false);
 
   const videoRefs = useRef({});
+
+  const handleOpenModal = (post) => {
+    setSelectedPost(post);
+    setModalOpen(true);
+  };
+
+  
+  const handleCloseModal = () => {
+    setSelectedPost(null);
+    setModalOpen(false);
+  };
 
   const fetchPosts = async (pageNumber) => {
     try {
@@ -187,12 +201,27 @@ const Home = () => {
                     loop={true}
                   />
                 )}
-                <button className="answer_button">Answers</button> {/* Blue Answers button */}
+                <button
+              className="answer_button"
+              onClick={() => handleOpenModal(post)} 
+            >
+              Answers
+            </button>
               </div>
             ))
           )}
         </div>
       </div>
+      
+      {modalOpen && selectedPost && (
+        <Modal onClose={handleCloseModal}>
+          <h2>Answers for Post:</h2>
+          <p>{selectedPost.caption}</p>
+          
+          <button onClick={handleCloseModal}>Close</button> 
+         
+        </Modal>
+      )}
     </div>
   );
 };
