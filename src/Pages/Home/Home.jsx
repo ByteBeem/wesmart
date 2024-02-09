@@ -219,7 +219,7 @@ const [modalOpen, setModalOpen] = useState(false);
        <h2>Answers :</h2>
        {/* Example answers */}
        <div className="example-answers">
-         <p>Example Answer 1</p>
+         <p>Example Answer gfhhfbsh fijfhi dhfidhsfuybdghiubfguyd shfiubdihfhiu fgbshfuyhdiubfhuihfbiugdiushgcfnuybdcfiuhdbufgcunguyfbchiughcgshoibiguhfsdiu</p>
          <p>Example Answer 2</p>
          <p>Example Answer 3</p>
          <p>Example Answer 4</p>
