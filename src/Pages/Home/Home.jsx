@@ -215,7 +215,7 @@ const [modalOpen, setModalOpen] = useState(false);
       </div>
       
       {modalOpen && selectedPost && (
-  <Modal onClose={handleCloseModal} exampleAnswers={["Example Answer 1hgfhgfghfhgfhgfctyfytiytcfhgfgfgvjhgfdfghgfdsafghjgfdsfghjiuytrewtyuiuytresdfxcvbjuioydfcgvbjuytfdgcxvbjhgfbnvcbnvcnmbvcxsdhgfdgyuytrdsxcvmbvcfgyuhgfvc", "Example Answer 2"]} />
+  <Modal onClose={handleCloseModal} exampleAnswers={["Example Answer 1", "Example Answer 2"]} />
 )}
 
     </div>
