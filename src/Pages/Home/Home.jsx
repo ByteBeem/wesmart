@@ -6,7 +6,7 @@ import "./Home.scss";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "./firebase";
 import Modal from "./Modal";
-import { IoSend } from "react-icons/io5";
+
 
 const Home = () => {
   const { active, closeSidebar } = useAuth();

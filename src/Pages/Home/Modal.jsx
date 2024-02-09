@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import "./Modal.scss";
+import { IoSend } from "react-icons/io5";
 
 const Modal = ({ onClose, exampleAnswers }) => {
   const [image, setImage] = useState(null);
@@ -37,6 +38,11 @@ const Modal = ({ onClose, exampleAnswers }) => {
           &times;
         </button>
         <div className="modal-content">
+          <div className="example-answers">
+            {exampleAnswers.map((answer, index) => (
+              <p key={index}>{answer}</p>
+            ))}
+          </div>
           <div className="input-container">
             <input
               type="text"
@@ -44,24 +50,17 @@ const Modal = ({ onClose, exampleAnswers }) => {
               onChange={handleTextInputChange}
               placeholder="Enter your answer..."
             />
-            <input type="file" onChange={handleImageChange} accept="image/*" />
             <button className="send-button" onClick={handleSubmit}>
-              Submit
+              <IoSend />
             </button>
           </div>
-          {image && <img src={image} alt="Preview" className="image-preview" />}
-          <div className="example-answers">
-            {/* Render example answers passed as props */}
-            {exampleAnswers.map((answer, index) => (
-              <p key={index}>{answer}</p>
-            ))}
+          <div className="file-input-container">
+            <input type="file" onChange={handleImageChange} accept="image/*" />
+            {image && <img src={image} alt="Preview" className="image-preview" />}
           </div>
-          <div className="user-answers">
-            {/* Render user's answers */}
-            {answers.map((answer, index) => (
-              <p key={index}>{answer}</p>
-            ))}
-          </div>
+          <button className="submit-file-button" onClick={handleSubmit}>
+            Submit File
+          </button>
         </div>
       </div>
     </div>,
