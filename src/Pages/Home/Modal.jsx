@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import "./Modal.scss";
+import { IoSend } from "react-icons/io5";
 
 const Modal = ({ onClose, exampleAnswers }) => {
   const [image, setImage] = useState(null);
