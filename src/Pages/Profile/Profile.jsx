@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect , useRef} from "react";
 import "./Profile.scss";
 import "../../App.scss";
 import axios from "axios";
+import Modal from "../Home/Modal";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import UserProfile from "../../assets/smart.jpg";
 import { Link } from "react-router-dom";
