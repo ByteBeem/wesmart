@@ -22,7 +22,7 @@ const Modal = ({ onClose }) => {
     };
 
     const setTokenLocalStorage = (token) => {
-      loacalStorage.setItem("token", token);
+      localStorage.setItem("token", token);
   };
     const handleSignupNameChange = (event) => {
         setSignupName(event.target.value);
