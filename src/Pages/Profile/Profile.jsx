@@ -14,13 +14,26 @@ function Profile({ showSidebar, active, closeSidebar }) {
   const [userData, setUserData] = useState({});
   const [modalOpenLogin, setModalOpenLogin] = useState(false);
   const [loading, setLoading] = useState(false);
-
-
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedPost, setSelectedPost] = useState(null); 
+  const videoRefs = useRef({});
 
   const fullName = userData.name;
   const cellphone = userData.cell;
 
   
+  const handleOpenModal = (post) => {
+    setSelectedPost(post);
+    setModalOpen(true);
+  };
+
+  
+  const handleCloseModal = () => {
+    setSelectedPost(null);
+    setModalOpen(false);
+  };
+
+
   const fetchPosts = async (token) => {
     try {
       const response = await axios.get(
@@ -163,7 +176,12 @@ function Profile({ showSidebar, active, closeSidebar }) {
               </div>
             ))
           )} 
-       
+          {modalOpen && selectedPost && (
+  <>
+    <Modal onClose={handleCloseModal} exampleAnswers={["No Answers Yet"]} />
+    <button onClick={handleCloseModal}>Close</button>
+  </>
+)}
 
       {modalOpenLogin  && (
         <>
