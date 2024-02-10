@@ -25,9 +25,7 @@ const Home = () => {
 
   const videoRefs = useRef({});
 
-  useEffect(() => {
-    localStorage.clear();
-}, []);
+ 
 
   const handleOpenModal = (post) => {
     setSelectedPost(post);
@@ -40,11 +38,7 @@ const Home = () => {
     setModalOpen(false);
   };
 
-  const handleOpenModalLogin = () => {
-   
-    setModalOpenLogin(true);
-  };
-
+  
   
   const handleCloseModalLogin = () => {
     
