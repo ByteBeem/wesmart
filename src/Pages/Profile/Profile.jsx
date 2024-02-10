@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./Profile.scss";
 import "../../App.scss";
 import axios from "axios";
-import { useAuth } from "../../components/AuthContext";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import UserProfile from "../../assets/smart.jpg";
 import { Link } from "react-router-dom";
@@ -10,9 +9,9 @@ import { FiLoader } from "react-icons/fi";
 
 
 function Profile({ showSidebar, active, closeSidebar }) {
-  const { setToken } = useAuth();
+  
   const [userData, setUserData] = useState({});
-
+  const [token , setToken]=useState('');
   const [loading, setLoading] = useState(false);
 
 
@@ -28,7 +27,7 @@ function Profile({ showSidebar, active, closeSidebar }) {
     if (storedToken) {
       setToken(storedToken);
 
-      fetchUserData(storedToken);
+      fetchUserData(token);
     }
   }, [setToken, setToken]);
 
