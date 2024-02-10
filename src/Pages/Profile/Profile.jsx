@@ -31,6 +31,7 @@ function Profile({ showSidebar, active, closeSidebar }) {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+    console.log("token" , token);
 
     if (!token) {
         setModalOpenLogin(true);
