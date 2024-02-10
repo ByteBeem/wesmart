@@ -10,7 +10,7 @@ import LoginModal from "../Home/LoginModal"
 
 
 function Profile({ showSidebar, active, closeSidebar }) {
-  
+  const [posts, setPosts] = useState([]);
   const [userData, setUserData] = useState({});
   const [modalOpenLogin, setModalOpenLogin] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -21,7 +21,24 @@ function Profile({ showSidebar, active, closeSidebar }) {
   const cellphone = userData.cell;
 
   
+  const fetchPosts = async (token) => {
+    try {
+      const response = await axios.get(
+        `https://wesmart-3b311bc60078.herokuapp.com/Userposts`,{
+            headers: { Authorization: `Bearer ${token}` },
+      }
+      );
+      const data = response.data;
 
+      if (data) {
+        setPosts(data);
+      } 
+    } catch (error) {
+      
+    } finally {
+      setLoading(false);
+    }
+  };
   
   const handleCloseModalLogin = () => {
     
@@ -59,6 +76,7 @@ function Profile({ showSidebar, active, closeSidebar }) {
           setLoading(false); 
         });
     }
+    fetchPosts(token);
   }, []); 
   
 
@@ -105,6 +123,47 @@ function Profile({ showSidebar, active, closeSidebar }) {
 
 
       </div>
+
+      {loading ? (
+             <div className="overlay">
+             <FiLoader className="loading-spinner" />
+           </div>
+          ) : posts.length === 0 ? (
+            <p>No posts available</p>
+          ) : (
+            posts.map((post) => (
+              <div key={post.id} className="post_card">
+                {post.content_type === "image" ? (
+                  <div>
+                    <p>{post.caption}</p>
+                    <img
+                      src={post.imageUrl}
+                      alt="Post"
+                      style={{ maxWidth: "100%", height: "auto" }}
+                    />
+                  </div>
+                ) : post.content_type === "text" ? (
+                  <p>{post.caption}</p>
+                ) : (
+                  <video
+                    ref={(el) => (videoRefs.current[post.id] = el)}
+                    src={post.content}
+                    controls={true}
+                    autoPlay={false}
+                    muted={false}
+                    loop={true}
+                  />
+                )}
+                <button
+              className="answer_button"
+              onClick={() => handleOpenModal(post)} 
+            >
+              Answers
+            </button>
+              </div>
+            ))
+          )} 
+       
 
       {modalOpenLogin  && (
         <>
