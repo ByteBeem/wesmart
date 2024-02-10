@@ -194,3 +194,4 @@ function Profile({ showSidebar, active, closeSidebar }) {
     </div>
   );
 }
+export default Profile;
