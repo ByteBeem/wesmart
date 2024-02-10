@@ -54,7 +54,7 @@ const Modal = ({ onClose }) => {
           `https://wesmart-3b311bc60078.herokuapp.com/login`,
           loginData
         );
-        const data = response.data;
+        const data = response.data.token;
     
         if (response.status === 200) {
           

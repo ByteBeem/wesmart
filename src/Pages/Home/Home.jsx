@@ -25,6 +25,10 @@ const Home = () => {
 
   const videoRefs = useRef({});
 
+  useEffect(() => {
+    localStorage.clear();
+}, []);
+
   const handleOpenModal = (post) => {
     setSelectedPost(post);
     setModalOpen(true);
