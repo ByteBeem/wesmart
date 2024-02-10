@@ -1,7 +1,6 @@
 import React, { useState, useEffect , useRef} from "react";
 import "./Profile.scss";
 import "../../App.scss";
-import "../Home//Home.scss";
 import axios from "axios";
 import Modal from "../Home/Modal";
 import Sidebar from "../../components/Sidebar/Sidebar";
