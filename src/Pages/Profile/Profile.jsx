@@ -94,10 +94,6 @@ function Profile({ showSidebar, active, closeSidebar }) {
   }, []); 
   
 
- 
-
-  
-
   return (
     <div className="profile">
       {loading && (
@@ -108,35 +104,28 @@ function Profile({ showSidebar, active, closeSidebar }) {
       <Sidebar active={active} closeSidebar={closeSidebar} />
 
       <div className="profile_container">
-       
-
         <div className="top">
           <div className="user_info">
             <div className="profile_pic">
               <img src={UserProfile} alt="" />
             </div>
-
             <div className="text">
               <span>Fullname:</span>
               <div className="text_item">{fullName}</div>
-
-
               <span>Phone:</span>
               <div className="text_item">{cellphone}</div>
             </div>
           </div>
         </div>
-
         <Link className="form_btn" to="#">
           Change Password
         </Link>
-
-        <Link className="form_btn" to="#">
+        <Link className="form_btn_delete" to="#">
           Delete Account
         </Link>
       </div>
 
-      <div className="posts_section">
+      <div className="posts_container">
         {loading ? (
           <div className="overlay">
             <FiLoader className="loading-spinner" />
@@ -175,7 +164,7 @@ function Profile({ showSidebar, active, closeSidebar }) {
               </button>
             </div>
           ))
-        )} 
+        )}
       </div>
 
       {modalOpen && selectedPost && (
@@ -194,4 +183,5 @@ function Profile({ showSidebar, active, closeSidebar }) {
     </div>
   );
 }
+
 export default Profile;
