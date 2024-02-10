@@ -103,6 +103,7 @@ const Home = () => {
         caption: caption,
         content_type: "text",
         timestamp: new Date().toISOString(),
+        token : token,
       };
   
       await axios.post(
@@ -131,7 +132,7 @@ const Home = () => {
     
 
     const token = localStorage.getItem("token");
-    console.log("token" , token);
+    
   
     if (!token) {
       setModalOpenLogin(true);
@@ -156,6 +157,7 @@ const Home = () => {
         imageUrl: imageUrl,
         timestamp: new Date().toISOString(),
         content_type: "image",
+        token : token,
       };
 
       if (caption) {
