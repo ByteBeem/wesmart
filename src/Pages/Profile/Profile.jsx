@@ -37,7 +37,7 @@ function Profile({ showSidebar, active, closeSidebar }) {
   const fetchUserData = (token) => {
     setLoading(true);
     axios
-      .get("https://spinz-server-100d0276d968.herokuapp.com/getUserData", {
+      .get("https://wesmart-3b311bc60078.herokuapp.com/getUserData", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
