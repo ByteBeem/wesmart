@@ -51,7 +51,9 @@
             display: block;
             border-radius: 8px;
           }
-        
+        }
+      }
+    }
       
   
       @media screen and (max-width: 700px) {
@@ -244,9 +246,7 @@
         }
       }
     }
-  }
-}
-  
+ 
     @media screen and (max-width: 1000px) {
       .profile_container {
         .top {
@@ -272,4 +272,4 @@
         }
       }
     }
-  }
+  
