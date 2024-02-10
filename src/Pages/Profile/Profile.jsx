@@ -123,7 +123,7 @@ function Profile({ showSidebar, active, closeSidebar }) {
         <Link className="form_btn_delete" to="#">
           Delete Account
         </Link>
-      </div>
+     
 
       <div className="posts_container">
         {loading ? (
@@ -165,6 +165,7 @@ function Profile({ showSidebar, active, closeSidebar }) {
             </div>
           ))
         )}
+      </div>
       </div>
 
       {modalOpen && selectedPost && (
