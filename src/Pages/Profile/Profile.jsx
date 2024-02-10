@@ -6,7 +6,7 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import UserProfile from "../../assets/smart.jpg";
 import { Link } from "react-router-dom";
 import { FiLoader } from "react-icons/fi";
-import LoginModal from "./LoginModal"
+import LoginModal from "../Home/LoginModal"
 
 
 function Profile({ showSidebar, active, closeSidebar }) {
