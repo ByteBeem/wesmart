@@ -4,6 +4,7 @@ import Logo from "./components/Logo/Logo";
 import Home from "./Pages/Home/Home";
 import Materials from "./Pages/Materials/Materials";
 import Request from "./Pages/Request/Request";
+import Profile from "./Pages/Profile/Profile";
 import { Analytics } from '@vercel/analytics/react';
 
 
@@ -49,12 +50,25 @@ function App() {
               />
             }
           />
-         
+
 
           <Route
             path="request"
             element={
               <Request
+                showSidebar={showSidebar}
+                closeSidebar={closeSidebar}
+                active={active}
+              />
+
+
+            }
+          />
+
+          <Route
+            path="profile"
+            element={
+              <Profile
                 showSidebar={showSidebar}
                 closeSidebar={closeSidebar}
                 active={active}

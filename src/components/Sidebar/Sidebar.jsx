@@ -5,6 +5,7 @@ import { PiTelevisionSimpleBold } from "react-icons/pi";
 import { FaDownload } from "react-icons/fa";
 import { useState } from "react";
 import { TfiWrite } from "react-icons/tfi";
+import { CgProfile } from "react-icons/cg";
 const Sidebar = ({ active, closeSidebar }) => {
 
   const [activeItem, setActiveItem] = useState("home");
@@ -46,6 +47,12 @@ const Sidebar = ({ active, closeSidebar }) => {
         <Link className="link" to="/request">
           <TfiWrite className="icon" />
           <span>Request</span>
+        </Link>
+
+
+        <Link className="link" to="/profile">
+          <CgProfile  className="icon" />
+          <span>Profile</span>
         </Link>
 
 

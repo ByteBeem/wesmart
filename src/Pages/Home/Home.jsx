@@ -86,6 +86,10 @@ const Home = () => {
 
   const handleSubmitText = async (e) => {
     e.preventDefault();
+    if(!caption){
+      alert("Enter Something to Post");
+      return;
+    }
   
     const token = localStorage.getItem("token");
   
@@ -126,6 +130,8 @@ const Home = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    
+
     const token = localStorage.getItem("token");
   
     if (!token) {
@@ -140,6 +146,12 @@ const Home = () => {
       await uploadBytes(imageRef, image);
 
       const imageUrl = await getDownloadURL(imageRef);
+
+      if(!imageUrl){
+        alert("Put Something to Post");
+        return;
+      }
+      
 
       const postData = {
         imageUrl: imageUrl,
