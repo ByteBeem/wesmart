@@ -11,7 +11,7 @@ const Modal = ({ onClose }) => {
     const [signupPassword, setSignupPassword] = useState("");
     const [isLoginLoading, setIsLoginLoading] = useState(false);
     const [isSignupLoading, setIsSignupLoading] = useState(false);
-    const [token , setToken] = useState('');
+   
 
     const handleLoginPhoneNumberChange = (event) => {
         setLoginPhoneNumber(event.target.value);
@@ -21,6 +21,9 @@ const Modal = ({ onClose }) => {
         setLoginPassword(event.target.value);
     };
 
+    const setTokenLocalStorage = (token) => {
+      loacalStorage.setItem("token", token);
+  };
     const handleSignupNameChange = (event) => {
         setSignupName(event.target.value);
     };
@@ -47,33 +50,28 @@ const Modal = ({ onClose }) => {
           password: loginPassword
         };
     
-        try {
-          const response = await axios.post(
-            `https://wesmart-3b311bc60078.herokuapp.com/login`,
-            loginData
-          );
-          const data = response.data;
+        const response = await axios.post(
+          `https://wesmart-3b311bc60078.herokuapp.com/login`,
+          loginData
+        );
+        const data = response.data;
     
-          if (response.status === 200) {
-            setToken(data);
-          } else if (response.status === 401) {
-            alert("Incorrect password");
-          } else if (response.status === 409) {
-            alert("Incorrect cellphone Number");
-          }
-        } catch (error) {
-          alert("Something went wrong");
-        } finally {
-          setIsLoginLoading(false);
+        if (response.status === 200) {
+          
+          setTokenLocalStorage(data)
+          onClose();
+        }  if (response.status === 401) {
+          alert("Incorrect password");
+        }  if (response.status === 409) {
+          alert("Incorrect cellphone Number");
         }
-    
-        onClose();
       } catch (error) {
         console.error("Error logging in:", error);
         setIsLoginLoading(false);
-        alert("You entered Something Incorrect!.");
+        alert("Something went wrong.");
       }
     };
+    
     
       
 
