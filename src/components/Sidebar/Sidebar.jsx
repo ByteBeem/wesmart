@@ -1,7 +1,7 @@
 import "./sidebar.scss";
 import "../../App.scss";
 import { Link } from "react-router-dom";
-import { PiTelevisionSimpleBold } from "react-icons/pi";
+import { FaHome } from "react-icons/fa";
 import { FaDownload } from "react-icons/fa";
 import { useState } from "react";
 import { TfiWrite } from "react-icons/tfi";
@@ -26,7 +26,7 @@ const Sidebar = ({ active, closeSidebar }) => {
           className={activeItem === "home" ? "link active" : "link"}
           to="/Home"
         >
-          <PiTelevisionSimpleBold className="icon" />
+          <FaHome className="icon" />
           <span>Home</span>
         </Link>
 

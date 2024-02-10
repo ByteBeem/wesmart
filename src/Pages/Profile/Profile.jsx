@@ -131,60 +131,61 @@ function Profile({ showSidebar, active, closeSidebar }) {
           Change Password
         </Link>
 
-      <Link className="form_btn" to="#">
+        <Link className="form_btn" to="#">
           Delete Account
         </Link>
-
-
       </div>
 
-      {loading ? (
-             <div className="overlay">
-             <FiLoader className="loading-spinner" />
-           </div>
-          ) : posts.length === 0 ? (
-            <p>No posts available</p>
-          ) : (
-            posts.map((post) => (
-              <div key={post.id} className="post_card">
-                {post.content_type === "image" ? (
-                  <div>
-                    <p>{post.caption}</p>
-                    <img
-                      src={post.imageUrl}
-                      alt="Post"
-                      style={{ maxWidth: "100%", height: "auto" }}
-                    />
-                  </div>
-                ) : post.content_type === "text" ? (
+      <div className="posts_section">
+        {loading ? (
+          <div className="overlay">
+            <FiLoader className="loading-spinner" />
+          </div>
+        ) : posts.length === 0 ? (
+          <p>No posts available</p>
+        ) : (
+          posts.map((post) => (
+            <div key={post.id} className="post_card">
+              {post.content_type === "image" ? (
+                <div>
                   <p>{post.caption}</p>
-                ) : (
-                  <video
-                    ref={(el) => (videoRefs.current[post.id] = el)}
-                    src={post.content}
-                    controls={true}
-                    autoPlay={false}
-                    muted={false}
-                    loop={true}
+                  <img
+                    src={post.imageUrl}
+                    alt="Post"
+                    style={{ maxWidth: "100%", height: "auto" }}
                   />
-                )}
-                <button
-              className="answer_button"
-              onClick={() => handleOpenModal(post)} 
-            >
-              Answers
-            </button>
-              </div>
-            ))
-          )} 
-          {modalOpen && selectedPost && (
-  <>
-    <Modal onClose={handleCloseModal} exampleAnswers={["No Answers Yet"]} />
-    <button onClick={handleCloseModal}>Close</button>
-  </>
-)}
+                </div>
+              ) : post.content_type === "text" ? (
+                <p>{post.caption}</p>
+              ) : (
+                <video
+                  ref={(el) => (videoRefs.current[post.id] = el)}
+                  src={post.content}
+                  controls={true}
+                  autoPlay={false}
+                  muted={false}
+                  loop={true}
+                />
+              )}
+              <button
+                className="answer_button"
+                onClick={() => handleOpenModal(post)} 
+              >
+                Answers
+              </button>
+            </div>
+          ))
+        )} 
+      </div>
 
-      {modalOpenLogin  && (
+      {modalOpen && selectedPost && (
+        <>
+          <Modal onClose={handleCloseModal} exampleAnswers={["No Answers Yet"]} />
+          <button onClick={handleCloseModal}>Close</button>
+        </>
+      )}
+
+      {modalOpenLogin && (
         <>
           <LoginModal onClose={handleCloseModalLogin} />
           <button onClick={handleCloseModalLogin}>Close</button>
@@ -193,5 +194,3 @@ function Profile({ showSidebar, active, closeSidebar }) {
     </div>
   );
 }
-
-export default Profile;
