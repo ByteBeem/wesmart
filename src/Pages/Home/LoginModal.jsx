@@ -11,6 +11,7 @@ const Modal = ({ onClose }) => {
     const [signupPassword, setSignupPassword] = useState("");
     const [isLoginLoading, setIsLoginLoading] = useState(false);
     const [isSignupLoading, setIsSignupLoading] = useState(false);
+    const [token , setToken] = useState('');
 
     const handleLoginPhoneNumberChange = (event) => {
         setLoginPhoneNumber(event.target.value);
@@ -33,37 +34,47 @@ const Modal = ({ onClose }) => {
     };
 
     const handleLogin = async () => {
-       
-        if (!loginPhoneNumber || !loginPassword) {
-          alert("You forgot to fill in some important information.");
-          return;
-        }
-      
+      if (!loginPhoneNumber || !loginPassword) {
+        alert("You forgot to fill in some important information.");
+        return;
+      }
+    
+      try {
+        setIsLoginLoading(true);
+    
+        const loginData = {
+          phoneNumber: loginPhoneNumber,
+          password: loginPassword
+        };
+    
         try {
-          setIsLoginLoading(true);
-      
-       
-          const loginData = {
-            phoneNumber: loginPhoneNumber,
-            password: loginPassword
-          };
-      
-          await axios.post(
-            "https://wesmart-3b311bc60078.herokuapp.com/login",
+          const response = await axios.post(
+            `https://wesmart-3b311bc60078.herokuapp.com/login`,
             loginData
           );
-      
-         
-          
-          
-          onClose();
+          const data = response.data;
+    
+          if (response.status === 200) {
+            setToken(data);
+          } else if (response.status === 401) {
+            alert("Incorrect password");
+          } else if (response.status === 409) {
+            alert("Incorrect cellphone Number");
+          }
         } catch (error) {
-          console.error("Error logging in:", error);
+          alert("Something went wrong");
+        } finally {
           setIsLoginLoading(false);
-          
-          alert("You entered Something Incorrect!.");
         }
-      };
+    
+        onClose();
+      } catch (error) {
+        console.error("Error logging in:", error);
+        setIsLoginLoading(false);
+        alert("You entered Something Incorrect!.");
+      }
+    };
+    
       
 
     const handleSignup = async () => {

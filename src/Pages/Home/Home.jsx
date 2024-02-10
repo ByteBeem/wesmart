@@ -87,9 +87,9 @@ const Home = () => {
   const handleSubmitText = async (e) => {
     e.preventDefault();
   
-    const Logins = localStorage.getItem("Logins");
+    const token = localStorage.getItem("token");
   
-    if (!Logins) {
+    if (!token) {
       setModalOpenLogin(true);
       return; 
     }
@@ -126,9 +126,9 @@ const Home = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const Logins = localStorage.getItem("Logins");
+    const token = localStorage.getItem("token");
   
-    if (!Logins) {
+    if (!token) {
       setModalOpenLogin(true);
       return; 
     }
@@ -251,7 +251,7 @@ const Home = () => {
 
 {modalOpenLogin  && (
         <>
-          <LoginModal onClose={handleOpenModalLogin} onClick={handleCloseModalLogin} />
+          <LoginModal onClose={handleCloseModalLogin} />
           <button onClick={handleCloseModalLogin}>Close</button>
         </>
       )}
