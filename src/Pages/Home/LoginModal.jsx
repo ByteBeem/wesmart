@@ -68,7 +68,7 @@ const Modal = ({ onClose }) => {
       } catch (error) {
         console.error("Error logging in:", error);
         setIsLoginLoading(false);
-        alert("Something went wrong.");
+        alert("You enetred Something wrong. Check Your inputs!");
       }
     };
     

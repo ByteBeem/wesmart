@@ -11,7 +11,7 @@ import { FiLoader } from "react-icons/fi";
 function Profile({ showSidebar, active, closeSidebar }) {
   
   const [userData, setUserData] = useState({});
-  const [token , setToken]=useState('');
+ 
   const [loading, setLoading] = useState(false);
 
 
@@ -22,14 +22,14 @@ function Profile({ showSidebar, active, closeSidebar }) {
  
 
   useEffect(() => {
-    const storedToken = localStorage.getItem("token");
+    const token = localStorage.getItem("token");
 
-    if (storedToken) {
-      setToken(storedToken);
+    if (token) {
+     
 
       fetchUserData(token);
     }
-  }, [setToken, setToken]);
+  }, [token]);
 
  
 
