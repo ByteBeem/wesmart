@@ -193,7 +193,7 @@ const Home = () => {
         <div className="post_form">
           <form onSubmit={image ? handleSubmit : handleSubmitText}>
             <textarea
-              placeholder="Post your questions..."
+              placeholder="Say Something..."
               value={textPost}
               onChange={handleTextChange}
             />
@@ -247,7 +247,7 @@ const Home = () => {
               className="answer_button"
               onClick={() => handleOpenModal(post)} 
             >
-              Answers
+              Comments
             </button>
               </div>
             ))
@@ -257,7 +257,7 @@ const Home = () => {
       
       {modalOpen && selectedPost && (
   <>
-    <Modal onClose={handleCloseModal} exampleAnswers={["No Answers Yet"]} />
+    <Modal onClose={handleCloseModal} exampleAnswers={["No Comments Yet"]} />
     <button onClick={handleCloseModal}>Close</button>
   </>
 )}
