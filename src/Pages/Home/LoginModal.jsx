@@ -9,7 +9,10 @@ const Modal = ({ onClose }) => {
     const [signupName, setSignupName] = useState("");
     const [signupPhoneNumber, setSignupPhoneNumber] = useState("");
     const [signupPassword, setSignupPassword] = useState("");
-    const [selectedStream, setSelectedStream] = useState(""); // State for selected stream
+    const [isLoginLoading, setIsLoginLoading] = useState(false);
+    const [isSignupLoading, setIsSignupLoading] = useState(false);
+    const [stream , setStream ] = useState("");
+   
 
     const handleLoginPhoneNumberChange = (event) => {
         setLoginPhoneNumber(event.target.value);
@@ -30,12 +33,11 @@ const Modal = ({ onClose }) => {
         setSignupPhoneNumber(event.target.value);
     };
 
+    const handleStreamChange = (event) => {
+      setStream(event.target.value);
+    }
     const handleSignupPasswordChange = (event) => {
         setSignupPassword(event.target.value);
-    };
-
-    const handleStreamChange = (event) => {
-        setSelectedStream(event.target.value);
     };
 
     const handleLogin = async () => {
@@ -91,7 +93,8 @@ const Modal = ({ onClose }) => {
           const postData = {
             name: signupName,
             phoneNumber: signupPhoneNumber,
-            password: signupPassword
+            password: signupPassword,
+            stream:stream
           };
       
           
@@ -117,6 +120,7 @@ const Modal = ({ onClose }) => {
           alert("An error occurred during signup. Please try again later.");
         }
       };
+      
 
     return ReactDOM.createPortal(
         <div className="modal-overlay">
@@ -158,13 +162,7 @@ const Modal = ({ onClose }) => {
                         onChange={handleSignupPhoneNumberChange}
                         placeholder="Enter your cellphone number..."
                     />
-                    <input
-                        type="password"
-                        value={signupPassword}
-                        onChange={handleSignupPasswordChange}
-                        placeholder="Enter your password..."
-                    />
-                    <select value={selectedStream} onChange={handleStreamChange}>
+                     <select value={selectedStream} onChange={handleStreamChange}>
                         <option value="">Choose stream</option>
                         <option value="Science">Science</option>
                         <option value="Agriculture">Agriculture</option>
@@ -173,6 +171,12 @@ const Modal = ({ onClose }) => {
                         <option value="Business">Business</option>
                         <option value="Tourism">Tourism</option>
                     </select>
+                    <input
+                        type="password"
+                        value={signupPassword}
+                        onChange={handleSignupPasswordChange}
+                        placeholder="Enter your password..."
+                    />
                     <button className="signup-button" onClick={handleSignup}>
                         {!isSignupLoading ?
                             "Create account"
