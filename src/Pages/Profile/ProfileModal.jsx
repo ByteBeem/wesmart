@@ -20,15 +20,7 @@ const Modal = ({ onClose, exampleAnswers }) => {
         </button>
       
         <div className="modal-content">
-          {exampleAnswers.map((answer, index) => (
-            <div key={index}>
-              {answer.startsWith("data:image") ? (
-                <img src={answer} alt="Answer" className="image-answer" />
-              ) : (
-                <p>{answer}</p>
-              )}
-            </div>
-          ))}
+       
        
          
         </div>

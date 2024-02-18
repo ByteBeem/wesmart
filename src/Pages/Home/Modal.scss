@@ -9,7 +9,33 @@
   justify-content: center;
   align-items: center;
 }
+.post_form textarea {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: vertical;
+}
 
+.post_form input[type="file"] {
+  margin-bottom: 10px;
+}
+
+.post_form button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.post_form button:hover {
+  background-color: #0056b3;
+}
 
 .modal {
   background-color: white;
