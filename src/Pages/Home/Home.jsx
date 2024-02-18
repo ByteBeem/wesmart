@@ -34,7 +34,7 @@ const Home = () => {
     setSelectedPost(post);
     setSelectedPostId(post.id);
     console.log("setSelectedPost" , setSelectedPost);
-    console.log("setSelectedPostId" , setSelectedPostId);
+    console.log("selectedPostId" , selectedPostId);
     setModalOpen(true);
   };
 
