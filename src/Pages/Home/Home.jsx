@@ -22,7 +22,7 @@ const Home = () => {
   const [selectedPost, setSelectedPost] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalOpenLogin, setModalOpenLogin] = useState(false);
-  const [selectedPostId , setSelectedPostId] = useState(null);
+  const [selectedPostId, setSelectedPostId] = useState(null);
 
 
 
@@ -33,8 +33,9 @@ const Home = () => {
   const handleOpenModal = (post) => {
     setSelectedPost(post);
     setSelectedPostId(post.id);
-    console.log("setSelectedPost" , setSelectedPost);
-    console.log("selectedPostId" , selectedPostId);
+    console.log("selectedPost:", selectedPost);
+    console.log("selectedPostId:", selectedPostId);
+
     setModalOpen(true);
   };
 
@@ -53,7 +54,7 @@ const Home = () => {
 
   const fetchPosts = async (pageNumber) => {
     const stream = localStorage.getItem("stream") || "";
-   
+
     try {
       const response = await axios.get(
         `https://wesmart-3b311bc60078.herokuapp.com/posts?page=${pageNumber}`, {
@@ -271,7 +272,7 @@ const Home = () => {
 
       {modalOpen && selectedPost && (
         <>
-          <Modal onClose={handleCloseModal} postId= {selectedPostId} />
+          <Modal onClose={handleCloseModal} postId={selectedPostId} />
           <button onClick={handleCloseModal}>Close</button>
         </>
       )}
