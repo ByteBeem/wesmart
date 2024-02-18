@@ -33,8 +33,8 @@ const Home = () => {
   const handleOpenModal = (post , key) => {
     setSelectedPost(post);
     setSelectedPostId(post.id);
-    console.log(post)
-    console.log(key)
+    console.log('post' , post)
+    
     console.log("selectedPost:", selectedPost);
     console.log("selectedPostId:", selectedPostId);
 
@@ -261,7 +261,7 @@ const Home = () => {
                 )}
                 <button
                   className="answer_button"
-                  onClick={() => handleOpenModal(post , key)}
+                  onClick={() => handleOpenModal(post)}
                 >
                   Comments
                 </button>
