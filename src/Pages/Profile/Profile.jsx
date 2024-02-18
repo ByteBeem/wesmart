@@ -61,7 +61,7 @@ function Profile({ showSidebar, active, closeSidebar }) {
 
 
   useEffect(() => {
-    localStorage.clear();
+    
     const token = localStorage.getItem("token");
    
 
