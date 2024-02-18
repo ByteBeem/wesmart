@@ -116,8 +116,8 @@ const Home = () => {
       );
   
       alert("Post Posted!");
-  
-      // Reset form state
+      fetchPosts(page);
+      
       setCaption("");
       setImage(null);
       setImagePreview(null);
@@ -174,7 +174,8 @@ const Home = () => {
         postData
       );
 
-      alert("Post Posted, Check later For answers!");
+      alert("Post Posted");
+      fetchPosts(page);
 
       setCaption("");
       setImage(null);
