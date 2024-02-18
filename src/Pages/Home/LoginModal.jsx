@@ -115,8 +115,8 @@ const Modal = ({ onClose }) => {
           setSignupPhoneNumber("");
           setSignupPassword("");
       
-         
-          onClose();
+          alert("Login now!");
+          
         } catch (error) {
           console.error("Error signing up:", error);
           setIsSignupLoading(false);
