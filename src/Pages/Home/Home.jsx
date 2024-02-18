@@ -24,6 +24,8 @@ const Home = () => {
   const [modalOpenLogin, setModalOpenLogin] = useState(false);
   const [selectedPostId , setSelectedPostId] = useState(null);
 
+
+
   const videoRefs = useRef({});
 
   const stream = localStorage.getItem("stream");
@@ -31,6 +33,8 @@ const Home = () => {
   const handleOpenModal = (post) => {
     setSelectedPost(post);
     setSelectedPostId(post.id);
+    console.log("setSelectedPost" , setSelectedPost);
+    console.log("setSelectedPostId" , setSelectedPostId);
     setModalOpen(true);
   };
 
