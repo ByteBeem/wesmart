@@ -30,9 +30,11 @@ const Home = () => {
 
   const stream = localStorage.getItem("stream");
 
-  const handleOpenModal = (post) => {
+  const handleOpenModal = (post , key) => {
     setSelectedPost(post);
     setSelectedPostId(post.id);
+    console.log(post)
+    console.log(key)
     console.log("selectedPost:", selectedPost);
     console.log("selectedPostId:", selectedPostId);
 
@@ -259,7 +261,7 @@ const Home = () => {
                 )}
                 <button
                   className="answer_button"
-                  onClick={() => handleOpenModal(post)}
+                  onClick={() => handleOpenModal(post , key)}
                 >
                   Comments
                 </button>
