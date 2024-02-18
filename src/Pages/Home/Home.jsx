@@ -22,6 +22,7 @@ const Home = () => {
   const [selectedPost, setSelectedPost] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalOpenLogin, setModalOpenLogin] = useState(false);
+  const [selectedPostId , setSelectedPostId] = useState(null);
 
   const videoRefs = useRef({});
 
@@ -29,6 +30,7 @@ const Home = () => {
 
   const handleOpenModal = (post) => {
     setSelectedPost(post);
+    setSelectedPostId(post.id);
     setModalOpen(true);
   };
 
@@ -265,7 +267,7 @@ const Home = () => {
 
       {modalOpen && selectedPost && (
         <>
-          <Modal onClose={handleCloseModal} postId= {selectedPost.id} />
+          <Modal onClose={handleCloseModal} postId= {selectedPostId} />
           <button onClick={handleCloseModal}>Close</button>
         </>
       )}
