@@ -8,6 +8,7 @@ import { storage } from "./firebase";
 const Modal = ({ onClose, postId, page }) => {
   const [image, setImage] = useState(null);
   const [caption, setCaption] = useState("");
+  const [page, setPage] = useState(1);
   const [imagePreview, setImagePreview] = useState(null);
   const [isPostLoading, setIsPostLoading] = useState(false);
   const [comments, setComments] = useState([]);

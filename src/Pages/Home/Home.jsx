@@ -9,6 +9,7 @@ import Modal from "./Modal";
 import LoginModal from "./LoginModal"
 
 
+
 const Home = () => {
   const { active, closeSidebar } = useAuth();
   const [posts, setPosts] = useState([]);
@@ -30,14 +31,10 @@ const Home = () => {
 
   const stream = localStorage.getItem("stream");
 
-  const handleOpenModal = (post , key) => {
+  const handleOpenModal = (post ) => {
     setSelectedPost(post);
     setSelectedPostId(post.id);
-    console.log('post' , post)
-    
-    console.log("selectedPost:", selectedPost);
-    console.log("selectedPostId:", selectedPostId);
-
+  
     setModalOpen(true);
   };
 
