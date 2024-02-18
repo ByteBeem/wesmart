@@ -265,7 +265,7 @@ const Home = () => {
 
       {modalOpen && selectedPost && (
         <>
-          <Modal onClose={handleCloseModal} exampleAnswers={["No Comments Yet"]} postId= {selectedPost.id} />
+          <Modal onClose={handleCloseModal} postId= {selectedPost.id} />
           <button onClick={handleCloseModal}>Close</button>
         </>
       )}

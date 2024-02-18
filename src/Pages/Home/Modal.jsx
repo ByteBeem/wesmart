@@ -5,13 +5,15 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import "./Modal.scss";
 import { storage } from "./firebase";
 
-const Modal = ({ onClose, postId, fetchPosts, page }) => {
+const Modal = ({ onClose, postId, page }) => {
   const [image, setImage] = useState(null);
   const [caption, setCaption] = useState("");
   const [imagePreview, setImagePreview] = useState(null);
   const [isPostLoading, setIsPostLoading] = useState(false);
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  console.log("post id" , postId)
 
   useEffect(() => {
     fetchComments(page, postId);
