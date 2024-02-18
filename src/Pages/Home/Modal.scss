@@ -19,6 +19,22 @@
   resize: vertical;
 }
 
+.comments_container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+
+  .comment_card {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 28px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  }
+}
+
 .post_form input[type="file"] {
   margin-bottom: 10px;
 }

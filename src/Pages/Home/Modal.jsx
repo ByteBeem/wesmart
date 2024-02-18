@@ -1,15 +1,44 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import axios from "axios";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import "./Modal.scss";
 import { storage } from "./firebase";
 
-const Modal = ({ onClose, exampleAnswers, postId, fetchPosts, page }) => {
+const Modal = ({ onClose, postId, fetchPosts, page }) => {
   const [image, setImage] = useState(null);
   const [caption, setCaption] = useState("");
   const [imagePreview, setImagePreview] = useState(null);
   const [isPostLoading, setIsPostLoading] = useState(false);
+  const [comments, setComments] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchComments(page, postId);
+  }, [page, postId]);
+
+  const fetchComments = async (pageNumber, postId) => {
+    try {
+      const response = await axios.get(
+        `https://wesmart-3b311bc60078.herokuapp.com/comments?page=${pageNumber}`,
+        {
+          headers: { Authorization: `Bearer ${postId}` },
+        }
+      );
+      const data = response.data;
+
+      if (pageNumber === 1) {
+        setComments(data);
+      } else {
+        setComments((prevComments) => [...prevComments, ...data]);
+      }
+    } catch (error) {
+      console.error("Error fetching comments:", error);
+      // Handle error
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -112,16 +141,29 @@ const Modal = ({ onClose, exampleAnswers, postId, fetchPosts, page }) => {
         <button className="close-button" onClick={onClose}>
           &times;
         </button>
-        <div className="modal-content">
-          {exampleAnswers.map((answer, index) => (
-            <div key={index}>
-              {answer.startsWith("data:image") ? (
-                <img src={answer} alt="Answer" className="image-answer" />
-              ) : (
-                <p>{answer}</p>
-              )}
-            </div>
-          ))}
+        <div className="comments_container">
+          {loading ? (
+            <p>Loading...</p>
+          ) : comments.length === 0 ? (
+            <p>No comments available</p>
+          ) : (
+            comments.reverse().map((comment) => (
+              <div key={comment.id} className="comment_card">
+                {comment.content_type === "image" ? (
+                  <div>
+                    <p>{comment.caption}</p>
+                    <img
+                      src={comment.imageUrl}
+                      alt="Post"
+                      style={{ maxWidth: "100%", height: "auto" }}
+                    />
+                  </div>
+                ) : comment.content_type === "text" ? (
+                  <p>{comment.caption}</p>
+                ) : null}
+              </div>
+            ))
+          )}
           <div className="post_form">
             <form onSubmit={image ? handleSubmit : handleSubmitText}>
               <textarea
@@ -138,7 +180,11 @@ const Modal = ({ onClose, exampleAnswers, postId, fetchPosts, page }) => {
                 <img
                   src={imagePreview}
                   alt="Preview"
-                  style={{ maxWidth: "100%", maxHeight: "200px", marginTop: "10px" }}
+                  style={{
+                    maxWidth: "100%",
+                    maxHeight: "200px",
+                    marginTop: "10px",
+                  }}
                 />
               )}
               <button type="submit">
