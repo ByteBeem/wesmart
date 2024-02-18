@@ -9,9 +9,7 @@ const Modal = ({ onClose }) => {
     const [signupName, setSignupName] = useState("");
     const [signupPhoneNumber, setSignupPhoneNumber] = useState("");
     const [signupPassword, setSignupPassword] = useState("");
-    const [isLoginLoading, setIsLoginLoading] = useState(false);
-    const [isSignupLoading, setIsSignupLoading] = useState(false);
-   
+    const [selectedStream, setSelectedStream] = useState(""); // State for selected stream
 
     const handleLoginPhoneNumberChange = (event) => {
         setLoginPhoneNumber(event.target.value);
@@ -34,6 +32,10 @@ const Modal = ({ onClose }) => {
 
     const handleSignupPasswordChange = (event) => {
         setSignupPassword(event.target.value);
+    };
+
+    const handleStreamChange = (event) => {
+        setSelectedStream(event.target.value);
     };
 
     const handleLogin = async () => {
@@ -115,7 +117,6 @@ const Modal = ({ onClose }) => {
           alert("An error occurred during signup. Please try again later.");
         }
       };
-      
 
     return ReactDOM.createPortal(
         <div className="modal-overlay">
@@ -163,6 +164,15 @@ const Modal = ({ onClose }) => {
                         onChange={handleSignupPasswordChange}
                         placeholder="Enter your password..."
                     />
+                    <select value={selectedStream} onChange={handleStreamChange}>
+                        <option value="">Choose stream</option>
+                        <option value="Science">Science</option>
+                        <option value="Agriculture">Agriculture</option>
+                        <option value="History">History</option>
+                        <option value="CAT">CAT</option>
+                        <option value="Business">Business</option>
+                        <option value="Tourism">Tourism</option>
+                    </select>
                     <button className="signup-button" onClick={handleSignup}>
                         {!isSignupLoading ?
                             "Create account"
