@@ -121,9 +121,7 @@ function Profile({ showSidebar, active, closeSidebar }) {
         <Link className="form_btn" to="#">
           Change Password
         </Link>
-        <Link className="form_btn_delete" to="#">
-          Delete Account
-        </Link>
+        
      
 
       <div className="posts_container">
