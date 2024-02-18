@@ -2,7 +2,7 @@ import React, { useState, useEffect , useRef} from "react";
 import "./Profile.scss";
 import "../../App.scss";
 import axios from "axios";
-import Modal from "../Home/Modal";
+import ProfileModal from "./ProfileModal";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import UserProfile from "../../assets/smart.jpg";
 import { Link } from "react-router-dom";
@@ -159,7 +159,7 @@ function Profile({ showSidebar, active, closeSidebar }) {
                 className="answer_button"
                 onClick={() => handleOpenModal(post)} 
               >
-                Answers
+                Comment
               </button>
             </div>
           ))
