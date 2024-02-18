@@ -252,7 +252,7 @@ const Home = () => {
                 )}
                 <button
                   className="answer_button"
-                  onClick={() => handleOpenModal(post.id)}
+                  onClick={() => handleOpenModal(post)}
                 >
                   Comments
                 </button>
@@ -265,7 +265,7 @@ const Home = () => {
 
       {modalOpen && selectedPost && (
         <>
-          <Modal onClose={handleCloseModal} exampleAnswers={["No Comments Yet"]} postId= {selectedPost} />
+          <Modal onClose={handleCloseModal} exampleAnswers={["No Comments Yet"]} postId= {selectedPost.id} />
           <button onClick={handleCloseModal}>Close</button>
         </>
       )}
