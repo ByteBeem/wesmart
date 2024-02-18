@@ -169,7 +169,7 @@ function Profile({ showSidebar, active, closeSidebar }) {
 
       {modalOpen && selectedPost && (
         <>
-          <Modal onClose={handleCloseModal} exampleAnswers={["No Answers Yet"]} />
+          <ProfileModal onClose={handleCloseModal} exampleAnswers={["No Answers Yet"]} />
           <button onClick={handleCloseModal}>Close</button>
         </>
       )}
