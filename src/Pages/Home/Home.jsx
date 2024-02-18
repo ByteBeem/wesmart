@@ -6,7 +6,8 @@ import "./Home.scss";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "./firebase";
 import Modal from "./Modal";
-import LoginModal from "./LoginModal";
+import LoginModal from "./LoginModal"
+
 
 const Home = () => {
   const { active, closeSidebar } = useAuth();
@@ -18,30 +19,39 @@ const Home = () => {
   const [caption, setCaption] = useState("");
   const [imagePreview, setImagePreview] = useState(null);
   const [isPostLoading, setIsPostLoading] = useState(false);
-  const [selectedPost, setSelectedPost] = useState(null);
+  const [selectedPost, setSelectedPost] = useState(null); 
   const [modalOpen, setModalOpen] = useState(false);
   const [modalOpenLogin, setModalOpenLogin] = useState(false);
 
   const videoRefs = useRef({});
+
+ const stream = localStorage.getItem("stream");
 
   const handleOpenModal = (post) => {
     setSelectedPost(post);
     setModalOpen(true);
   };
 
+  
   const handleCloseModal = () => {
     setSelectedPost(null);
     setModalOpen(false);
   };
 
+  
+  
   const handleCloseModalLogin = () => {
+    
     setModalOpenLogin(false);
   };
 
   const fetchPosts = async (pageNumber) => {
+    const stream = localStorage.getItem("stream");
     try {
       const response = await axios.get(
-        `https://wesmart-3b311bc60078.herokuapp.com/posts?page=${pageNumber}`
+        `https://wesmart-3b311bc60078.herokuapp.com/posts?page=${pageNumber}`, {
+        headers: { Authorization: `Bearer ${stream}` },
+      }
       );
       const data = response.data;
 
@@ -77,35 +87,36 @@ const Home = () => {
 
   const handleSubmitText = async (e) => {
     e.preventDefault();
-    if (!caption) {
+    if(!caption){
       alert("Enter Something to Post");
       return;
     }
-
+  
     const token = localStorage.getItem("token");
-
+  
     if (!token) {
       setModalOpenLogin(true);
-      return;
+      return; 
     }
-
+  
     try {
       setIsPostLoading(true);
-
+  
       const postData = {
         caption: caption,
         content_type: "text",
         timestamp: new Date().toISOString(),
-        token: token,
+        token : token,
+        stream:stream,
       };
-
+  
       await axios.post(
         "https://wesmart-3b311bc60078.herokuapp.com/uploadText",
         postData
       );
-
-      alert("Post Posted, Check later For answers!");
-
+  
+      alert("Post Posted!");
+  
       // Reset form state
       setCaption("");
       setImage(null);
@@ -117,15 +128,19 @@ const Home = () => {
       setIsPostLoading(false);
     }
   };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const token = localStorage.getItem("token");
+    
 
+    const token = localStorage.getItem("token");
+    
+  
     if (!token) {
       setModalOpenLogin(true);
-      return;
+      return; 
     }
 
     try {
@@ -136,16 +151,18 @@ const Home = () => {
 
       const imageUrl = await getDownloadURL(imageRef);
 
-      if (!imageUrl) {
+      if(!imageUrl){
         alert("Put Something to Post");
         return;
       }
+      
 
       const postData = {
         imageUrl: imageUrl,
         timestamp: new Date().toISOString(),
         content_type: "image",
-        token: token,
+        token : token,
+        stream:stream,
       };
 
       if (caption) {
@@ -174,17 +191,6 @@ const Home = () => {
     fetchPosts(page);
   }, [page]);
 
-  // Function to display image in full-screen mode
-  const handleFullScreen = (imageUrl) => {
-    const fullScreenImage = new Image();
-    fullScreenImage.src = imageUrl;
-
-    fullScreenImage.onload = () => {
-      const fullScreenWindow = window.open("", "_blank", "fullscreen=yes");
-      fullScreenWindow.document.write(`<img src="${imageUrl}" style="max-width:100%; max-height:100%;" />`);
-    };
-  };
-
   return (
     <div className="home">
       <Sidebar active={active} closeSidebar={closeSidebar} />
@@ -206,7 +212,6 @@ const Home = () => {
                 src={imagePreview}
                 alt="Preview"
                 style={{ maxWidth: "100%", maxHeight: "200px", marginTop: "10px" }}
-                onClick={() => handleFullScreen(imagePreview)}
               />
             )}
             <button type="submit">
@@ -229,7 +234,6 @@ const Home = () => {
                       src={post.imageUrl}
                       alt="Post"
                       style={{ maxWidth: "100%", height: "auto" }}
-                      onClick={() => handleFullScreen(post.imageUrl)}
                     />
                   </div>
                 ) : post.content_type === "text" ? (
@@ -245,30 +249,31 @@ const Home = () => {
                   />
                 )}
                 <button
-                  className="answer_button"
-                  onClick={() => handleOpenModal(post)}
-                >
-                  Comments
-                </button>
+              className="answer_button"
+              onClick={() => handleOpenModal(post)} 
+            >
+              Comments
+            </button>
               </div>
             ))
-          )}
+          )} 
         </div>
       </div>
-
+      
       {modalOpen && selectedPost && (
-        <>
-          <Modal onClose={handleCloseModal} exampleAnswers={["No Comments Yet"]} />
-          <button onClick={handleCloseModal}>Close</button>
-        </>
-      )}
+  <>
+    <Modal onClose={handleCloseModal} exampleAnswers={["No Comments Yet"]} />
+    <button onClick={handleCloseModal}>Close</button>
+  </>
+)}
 
-      {modalOpenLogin && (
+{modalOpenLogin  && (
         <>
           <LoginModal onClose={handleCloseModalLogin} />
           <button onClick={handleCloseModalLogin}>Close</button>
         </>
       )}
+
     </div>
   );
 };
