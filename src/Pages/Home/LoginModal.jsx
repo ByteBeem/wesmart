@@ -162,7 +162,7 @@ const Modal = ({ onClose }) => {
                         onChange={handleSignupPhoneNumberChange}
                         placeholder="Enter your cellphone number..."
                     />
-                     <select value={selectedStream} onChange={handleStreamChange}>
+                     <select value={stream} onChange={handleStreamChange}>
                         <option value="">Choose stream</option>
                         <option value="Science">Science</option>
                         <option value="Agriculture">Agriculture</option>
