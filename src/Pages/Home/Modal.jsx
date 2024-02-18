@@ -89,8 +89,8 @@ const Modal = ({ onClose, postId, fetchPosts, page }) => {
         postData
       );
 
-      alert("Post Posted");
-      fetchPosts(page);
+      alert("Comment Posted!");
+      fetchComments(page);
 
       setCaption("");
       setImage(null);
@@ -124,8 +124,8 @@ const Modal = ({ onClose, postId, fetchPosts, page }) => {
         postData
       );
 
-      alert("Post Posted!");
-      fetchPosts(page);
+      alert("Comment Posted!");
+      fetchComments(page);
 
       setCaption("");
       setIsPostLoading(false);
