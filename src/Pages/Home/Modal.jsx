@@ -5,7 +5,7 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import "./Modal.scss";
 import { storage } from "./firebase";
 
-const Modal = ({ onClose, postId, page }) => {
+const Modal = ({ onClose, postId }) => {
   const [image, setImage] = useState(null);
   const [caption, setCaption] = useState("");
   const [page, setPage] = useState(1);
