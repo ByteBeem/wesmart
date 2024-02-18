@@ -47,6 +47,9 @@ const Home = () => {
 
   const fetchPosts = async (pageNumber) => {
     const stream = localStorage.getItem("stream");
+    if (!stream){
+      stream="";
+    }
     try {
       const response = await axios.get(
         `https://wesmart-3b311bc60078.herokuapp.com/posts?page=${pageNumber}`, {
