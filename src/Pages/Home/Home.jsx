@@ -19,29 +19,29 @@ const Home = () => {
   const [caption, setCaption] = useState("");
   const [imagePreview, setImagePreview] = useState(null);
   const [isPostLoading, setIsPostLoading] = useState(false);
-  const [selectedPost, setSelectedPost] = useState(null); 
+  const [selectedPost, setSelectedPost] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalOpenLogin, setModalOpenLogin] = useState(false);
 
   const videoRefs = useRef({});
 
- const stream = localStorage.getItem("stream");
+  const stream = localStorage.getItem("stream");
 
   const handleOpenModal = (post) => {
     setSelectedPost(post);
     setModalOpen(true);
   };
 
-  
+
   const handleCloseModal = () => {
     setSelectedPost(null);
     setModalOpen(false);
   };
 
-  
-  
+
+
   const handleCloseModalLogin = () => {
-    
+
     setModalOpenLogin(false);
   };
 
@@ -87,37 +87,37 @@ const Home = () => {
 
   const handleSubmitText = async (e) => {
     e.preventDefault();
-    if(!caption){
+    if (!caption) {
       alert("Enter Something to Post");
       return;
     }
-  
+
     const token = localStorage.getItem("token");
-  
+
     if (!token) {
       setModalOpenLogin(true);
-      return; 
+      return;
     }
-  
+
     try {
       setIsPostLoading(true);
-  
+
       const postData = {
         caption: caption,
         content_type: "text",
         timestamp: new Date().toISOString(),
-        token : token,
-        stream:stream,
+        token: token,
+        stream: stream,
       };
-  
+
       await axios.post(
         "https://wesmart-3b311bc60078.herokuapp.com/uploadText",
         postData
       );
-  
+
       alert("Post Posted!");
       fetchPosts(page);
-      
+
       setCaption("");
       setImage(null);
       setImagePreview(null);
@@ -128,19 +128,19 @@ const Home = () => {
       setIsPostLoading(false);
     }
   };
-  
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    
+
 
     const token = localStorage.getItem("token");
-    
-  
+
+
     if (!token) {
       setModalOpenLogin(true);
-      return; 
+      return;
     }
 
     try {
@@ -151,18 +151,18 @@ const Home = () => {
 
       const imageUrl = await getDownloadURL(imageRef);
 
-      if(!imageUrl){
+      if (!imageUrl) {
         alert("Put Something to Post");
         return;
       }
-      
+
 
       const postData = {
         imageUrl: imageUrl,
         timestamp: new Date().toISOString(),
         content_type: "image",
-        token : token,
-        stream:stream,
+        token: token,
+        stream: stream,
       };
 
       if (caption) {
@@ -226,7 +226,7 @@ const Home = () => {
           ) : posts.length === 0 ? (
             <p>No posts available</p>
           ) : (
-            posts.map((post) => (
+            posts.reverse().map((post) => (
               <div key={post.id} className="post_card">
                 {post.content_type === "image" ? (
                   <div>
@@ -250,25 +250,26 @@ const Home = () => {
                   />
                 )}
                 <button
-              className="answer_button"
-              onClick={() => handleOpenModal(post)} 
-            >
-              Comments
-            </button>
+                  className="answer_button"
+                  onClick={() => handleOpenModal(post)}
+                >
+                  Comments
+                </button>
               </div>
             ))
-          )} 
+          )}
         </div>
-      </div>
-      
-      {modalOpen && selectedPost && (
-  <>
-    <Modal onClose={handleCloseModal} exampleAnswers={["No Comments Yet"]} />
-    <button onClick={handleCloseModal}>Close</button>
-  </>
-)}
 
-{modalOpenLogin  && (
+      </div>
+
+      {modalOpen && selectedPost && (
+        <>
+          <Modal onClose={handleCloseModal} exampleAnswers={["No Comments Yet"]} />
+          <button onClick={handleCloseModal}>Close</button>
+        </>
+      )}
+
+      {modalOpenLogin && (
         <>
           <LoginModal onClose={handleCloseModalLogin} />
           <button onClick={handleCloseModalLogin}>Close</button>
