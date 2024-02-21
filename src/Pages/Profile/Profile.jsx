@@ -127,7 +127,7 @@ function Profile({ showSidebar, active, closeSidebar }) {
             </div>
           </div>
         </div>
-        <button className="form_btn" onClick={loggingOut}>
+        <button className="btn" onClick={loggingOut}>
           Log Out
         </button>
 

@@ -95,12 +95,12 @@ const Modal = ({ onClose, postId }) => {
         "https://wesmart-3b311bc60078.herokuapp.com/PostComments",
         postData
       );
-      const data = response.data;
+  
       alert("Comment Posted!");
       
      
       
-      setComments((prevComments) => [...prevComments, ...data]);
+      setComments(prevComments => [response.data, ...prevComments]);
 
   
       setCaption("");
