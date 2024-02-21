@@ -14,8 +14,6 @@ const Modal = ({ onClose, postId }) => {
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  console.log("post id", postId);
-
   useEffect(() => {
     fetchComments(page, postId);
   }, [page, postId]);
@@ -142,7 +140,7 @@ const Modal = ({ onClose, postId }) => {
     <div className="modal-overlay">
       <div className="modal">
         <button className="close-button" onClick={onClose}>
-          &times;
+          &times; Close
         </button>
         <div className="post_form">
           <form onSubmit={image ? handleSubmit : handleSubmitText}>
@@ -167,8 +165,8 @@ const Modal = ({ onClose, postId }) => {
                 }}
               />
             )}
-            <button type="submit">
-              {!isPostLoading ? "Post" : "Posting.."}
+            <button type="submit" disabled={isPostLoading}>
+              {isPostLoading ? "Posting..." : "Post"}
             </button>
           </form>
         </div>
@@ -203,6 +201,6 @@ const Modal = ({ onClose, postId }) => {
     </div>,
     document.body
   );
-  
-              }  
+};
+
 export default Modal;
