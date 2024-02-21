@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState , useEffect } from "react";
 import ReactDOM from "react-dom";
 import "../Home/Modal.scss";
+import axios from "axios";
 
 
 const Modal = ({ onClose, postId }) => {
