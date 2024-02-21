@@ -17,6 +17,7 @@ function Profile({ showSidebar, active, closeSidebar }) {
   const [loading, setLoading] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedPost, setSelectedPost] = useState(null); 
+  const [selectedPostId, setSelectedPostId] = useState(null);
   const videoRefs = useRef({});
 
   const fullName = userData.name;
@@ -25,6 +26,7 @@ function Profile({ showSidebar, active, closeSidebar }) {
   
   const handleOpenModal = (post) => {
     setSelectedPost(post);
+    setSelectedPostId(post.id);
     setModalOpen(true);
   };
 
@@ -169,7 +171,7 @@ function Profile({ showSidebar, active, closeSidebar }) {
 
       {modalOpen && selectedPost && (
         <>
-          <ProfileModal onClose={handleCloseModal} exampleAnswers={["No Answers Yet"]} />
+          <ProfileModal onClose={handleCloseModal} postId={selectedPostId} />
           <button onClick={handleCloseModal}>Close</button>
         </>
       )}
