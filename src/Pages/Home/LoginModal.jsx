@@ -28,6 +28,11 @@ const Modal = ({ onClose }) => {
   const setTokenLocalStorageStream = (stream) => {
     localStorage.setItem("stream", stream);
 };
+
+const setTokenLocalStoragecell = (cell) => {
+  localStorage.setItem("cell", cell);
+
+}
     const handleSignupNameChange = (event) => {
         setSignupName(event.target.value);
     };
@@ -63,10 +68,12 @@ const Modal = ({ onClose }) => {
         );
         const data = response.data.token;
         const stream = response.data.stream;
+        const cell = response.data.cell;
         if (response.status === 200) {
           
           setTokenLocalStorage(data)
           setTokenLocalStorageStream(stream)
+          setTokenLocalStoragecell(cell)
           onClose();
         }  if (response.status === 401) {
           alert("Incorrect password");

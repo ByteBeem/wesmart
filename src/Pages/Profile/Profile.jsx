@@ -37,11 +37,11 @@ function Profile({ showSidebar, active, closeSidebar }) {
   };
 
 
-  const fetchPosts = async (token) => {
+  const fetchPosts = async (cell) => {
     try {
       const response = await axios.get(
         `https://wesmart-3b311bc60078.herokuapp.com/Userposts`,{
-            headers: { Authorization: `Bearer ${token}` },
+            headers: { Authorization: `Bearer ${cell}` },
       }
       );
       const data = response.data;
@@ -63,8 +63,11 @@ function Profile({ showSidebar, active, closeSidebar }) {
 
 
   useEffect(() => {
+
+    localStorage.clear();
     
     const token = localStorage.getItem("token");
+    const cell = localStorage.getItem("cell");
    
 
     if (!token) {
@@ -93,7 +96,7 @@ function Profile({ showSidebar, active, closeSidebar }) {
           setLoading(false); 
         });
     }
-    fetchPosts(token);
+    fetchPosts(cell);
   }, []); 
   
 

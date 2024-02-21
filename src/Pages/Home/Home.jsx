@@ -99,7 +99,7 @@ const Home = () => {
       return;
     }
 
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("cell");
 
     if (!token) {
       setModalOpenLogin(true);
@@ -142,7 +142,7 @@ const Home = () => {
 
 
 
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("cell");
 
 
     if (!token) {
