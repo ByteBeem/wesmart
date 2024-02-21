@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
 import { FaDownload } from "react-icons/fa";
 import { useState } from "react";
-import { IoMdNotifications } from "react-icons/io";
+import { FaQuestion } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
 const Sidebar = ({ active, closeSidebar }) => {
 
@@ -45,7 +45,7 @@ const Sidebar = ({ active, closeSidebar }) => {
 
 
         <Link className="link" to="/request">
-          <IoMdNotifications  className="icon" />
+          <FaQuestion  className="icon" />
           <span>Request</span>
         </Link>
 

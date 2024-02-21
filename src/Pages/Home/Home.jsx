@@ -231,7 +231,7 @@ const Home = () => {
           {loading ? (
             <p>Loading...</p>
           ) : posts.length === 0 ? (
-            <p>No posts available</p>
+            <p>No posts available , start posting</p>
           ) : (
             posts.reverse().map((post) => (
               <div key={post.id} className="post_card">

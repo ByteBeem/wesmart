@@ -97,7 +97,7 @@ const Modal = ({ onClose, postId }) => {
       );
 
       alert("Comment Posted!");
-      fetchComments(page);
+      fetchComments(1);
 
       setCaption("");
       setImage(null);

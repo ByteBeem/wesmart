@@ -135,7 +135,7 @@ function Profile({ showSidebar, active, closeSidebar }) {
               <FiLoader className="loading-spinner" />
             </div>
           ) : posts.length === 0 ? (
-            <p>No posts available</p>
+            <p>No posts available , start posting!</p>
           ) : (
             posts.map((post) => (
               <div key={post.id} className="post_card">
