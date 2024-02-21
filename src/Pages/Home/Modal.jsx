@@ -141,34 +141,14 @@ const Modal = ({ onClose, postId }) => {
   return ReactDOM.createPortal(
     <div className="modal-overlay">
       <div className="modal">
-      <button className="close-button" onClick={onClose}>
-  &times;
-</button>
-
+        <button className="close-button" onClick={onClose}>
+          &times;
+        </button>
+  
         <div className="comments_container">
-          {loading ? (
-            <p>Loading...</p>
-          ) : comments.length === 0 ? (
-            <p>No comments available</p>
-          ) : (
-            comments.reverse().map((comment) => (
-              <div key={comment.id} className="comment_card">
-                {comment.content_type === "image" ? (
-                  <div>
-                    <p>{comment.caption}</p>
-                    <img
-                      src={comment.imageUrl}
-                      alt="Post"
-                      style={{ maxWidth: "100%", height: "auto" }}
-                    />
-                  </div>
-                ) : comment.content_type === "text" ? (
-                  <p>{comment.caption}</p>
-                ) : null}
-              </div>
-            ))
-          )}
+          {/* Comments content */}
         </div>
+  
         <div className="post_form">
           <form onSubmit={image ? handleSubmit : handleSubmitText}>
             <textarea
@@ -201,6 +181,5 @@ const Modal = ({ onClose, postId }) => {
     </div>,
     document.body
   );
-};
-
+              }  
 export default Modal;

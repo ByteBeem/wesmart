@@ -21,11 +21,20 @@
 
 .close-button {
   position: fixed;
-  top: 20px; 
-  right: 20px; 
-  font-size: 24px; 
-  z-index: 9999; 
+  top: 20px;
+  right: 20px;
+  font-size: 24px;
+  z-index: 9999;
 }
+
+.post_form {
+  position: fixed;
+  bottom: 20px; 
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%; 
+}
+
 
 
 .comments_container {
