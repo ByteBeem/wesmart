@@ -15,6 +15,8 @@ const Modal = ({ onClose, postId }) => {
   useEffect(() => {
     fetchComments(page, postId);
 
+    console.log("post id", postId);
+
     document.body.style.overflow = "hidden";
     return () => {
 
