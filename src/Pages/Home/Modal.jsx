@@ -202,5 +202,6 @@ const Modal = ({ onClose, postId }) => {
     </div>,
     document.body
   );
+  
               }  
 export default Modal;
