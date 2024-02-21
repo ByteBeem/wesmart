@@ -14,7 +14,7 @@ const Modal = ({ onClose, postId }) => {
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  console.log("post id" , postId)
+  console.log("post id", postId);
 
   useEffect(() => {
     fetchComments(page, postId);
@@ -167,34 +167,34 @@ const Modal = ({ onClose, postId }) => {
               </div>
             ))
           )}
-          <div className="post_form">
-            <form onSubmit={image ? handleSubmit : handleSubmitText}>
-              <textarea
-                placeholder="Say Something..."
-                value={caption}
-                onChange={handleTextChange}
+        </div>
+        <div className="post_form">
+          <form onSubmit={image ? handleSubmit : handleSubmitText}>
+            <textarea
+              placeholder="Say Something..."
+              value={caption}
+              onChange={handleTextChange}
+            />
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleImageChange}
+            />
+            {imagePreview && (
+              <img
+                src={imagePreview}
+                alt="Preview"
+                style={{
+                  maxWidth: "100%",
+                  maxHeight: "200px",
+                  marginTop: "10px",
+                }}
               />
-              <input
-                type="file"
-                accept="image/*"
-                onChange={handleImageChange}
-              />
-              {imagePreview && (
-                <img
-                  src={imagePreview}
-                  alt="Preview"
-                  style={{
-                    maxWidth: "100%",
-                    maxHeight: "200px",
-                    marginTop: "10px",
-                  }}
-                />
-              )}
-              <button type="submit">
-                {!isPostLoading ? "Post" : "Posting.."}
-              </button>
-            </form>
-          </div>
+            )}
+            <button type="submit">
+              {!isPostLoading ? "Post" : "Posting.."}
+            </button>
+          </form>
         </div>
       </div>
     </div>,
