@@ -31,10 +31,10 @@ const Home = () => {
 
   const stream = localStorage.getItem("stream");
 
-  const handleOpenModal = (post ) => {
+  const handleOpenModal = (post) => {
     setSelectedPost(post);
     setSelectedPostId(post.id);
-  
+
     setModalOpen(true);
   };
 

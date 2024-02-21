@@ -1,4 +1,4 @@
-import React, { useState, useEffect , useRef} from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./Profile.scss";
 import "../../App.scss";
 import axios from "axios";
@@ -16,21 +16,21 @@ function Profile({ showSidebar, active, closeSidebar }) {
   const [modalOpenLogin, setModalOpenLogin] = useState(false);
   const [loading, setLoading] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
-  const [selectedPost, setSelectedPost] = useState(null); 
+  const [selectedPost, setSelectedPost] = useState(null);
   const [selectedPostId, setSelectedPostId] = useState(null);
   const videoRefs = useRef({});
 
   const fullName = userData.name;
   const cellphone = userData.cell;
 
-  
+
   const handleOpenModal = (post) => {
     setSelectedPost(post);
     setSelectedPostId(post.id);
     setModalOpen(true);
   };
 
-  
+
   const handleCloseModal = () => {
     setSelectedPost(null);
     setModalOpen(false);
@@ -40,44 +40,44 @@ function Profile({ showSidebar, active, closeSidebar }) {
   const fetchPosts = async (cell) => {
     try {
       const response = await axios.get(
-        `https://wesmart-3b311bc60078.herokuapp.com/Userposts`,{
-            headers: { Authorization: `Bearer ${cell}` },
+        `https://wesmart-3b311bc60078.herokuapp.com/Userposts`, {
+        headers: { Authorization: `Bearer ${cell}` },
       }
       );
       const data = response.data;
 
       if (data) {
         setPosts(data);
-      } 
+      }
     } catch (error) {
-      
+
     } finally {
       setLoading(false);
     }
   };
-  
+
   const handleCloseModalLogin = () => {
-    
+
     setModalOpenLogin(false);
   };
 
 
   useEffect(() => {
 
-    localStorage.clear();
-    
+
+
     const token = localStorage.getItem("token");
     const cell = localStorage.getItem("cell");
-   
+
 
     if (!token) {
-        setModalOpenLogin(true);
-        return; 
-      }
-  
+      setModalOpenLogin(true);
+      return;
+    }
+
     if (token) {
-      setLoading(true); 
-  
+      setLoading(true);
+
       axios
         .get("https://wesmart-3b311bc60078.herokuapp.com/getUserData", {
           headers: { Authorization: `Bearer ${token}` },
@@ -85,20 +85,20 @@ function Profile({ showSidebar, active, closeSidebar }) {
         .then((response) => {
           const info = response.data;
           if (info !== undefined) {
-            setUserData(info); 
+            setUserData(info);
           }
         })
         .catch((error) => {
-         
+
           console.error("Error fetching user data:", error);
         })
         .finally(() => {
-          setLoading(false); 
+          setLoading(false);
         });
     }
     fetchPosts(cell);
-  }, []); 
-  
+  }, []);
+
 
   return (
     <div className="profile">
@@ -126,50 +126,50 @@ function Profile({ showSidebar, active, closeSidebar }) {
         <Link className="form_btn" to="#">
           Change Password
         </Link>
-        
-     
 
-      <div className="posts_container">
-        {loading ? (
-          <div className="overlay">
-            <FiLoader className="loading-spinner" />
-          </div>
-        ) : posts.length === 0 ? (
-          <p>No posts available</p>
-        ) : (
-          posts.map((post) => (
-            <div key={post.id} className="post_card">
-              {post.content_type === "image" ? (
-                <div>
-                  <p>{post.caption}</p>
-                  <img
-                    src={post.imageUrl}
-                    alt="Post"
-                    style={{ maxWidth: "100%", height: "auto" }}
-                  />
-                </div>
-              ) : post.content_type === "text" ? (
-                <p>{post.caption}</p>
-              ) : (
-                <video
-                  ref={(el) => (videoRefs.current[post.id] = el)}
-                  src={post.content}
-                  controls={true}
-                  autoPlay={false}
-                  muted={false}
-                  loop={true}
-                />
-              )}
-              <button
-                className="answer_button"
-                onClick={() => handleOpenModal(post)} 
-              >
-                Comment
-              </button>
+
+
+        <div className="posts_container">
+          {loading ? (
+            <div className="overlay">
+              <FiLoader className="loading-spinner" />
             </div>
-          ))
-        )}
-      </div>
+          ) : posts.length === 0 ? (
+            <p>No posts available</p>
+          ) : (
+            posts.map((post) => (
+              <div key={post.id} className="post_card">
+                {post.content_type === "image" ? (
+                  <div>
+                    <p>{post.caption}</p>
+                    <img
+                      src={post.imageUrl}
+                      alt="Post"
+                      style={{ maxWidth: "100%", height: "auto" }}
+                    />
+                  </div>
+                ) : post.content_type === "text" ? (
+                  <p>{post.caption}</p>
+                ) : (
+                  <video
+                    ref={(el) => (videoRefs.current[post.id] = el)}
+                    src={post.content}
+                    controls={true}
+                    autoPlay={false}
+                    muted={false}
+                    loop={true}
+                  />
+                )}
+                <button
+                  className="answer_button"
+                  onClick={() => handleOpenModal(post)}
+                >
+                  Comments
+                </button>
+              </div>
+            ))
+          )}
+        </div>
       </div>
 
       {modalOpen && selectedPost && (

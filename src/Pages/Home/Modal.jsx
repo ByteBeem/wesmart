@@ -16,10 +16,10 @@ const Modal = ({ onClose, postId }) => {
 
   useEffect(() => {
     fetchComments(page, postId);
-    
+
     document.body.style.overflow = "hidden";
     return () => {
-      
+
       document.body.style.overflow = "auto";
     };
   }, [page, postId]);
@@ -176,7 +176,7 @@ const Modal = ({ onClose, postId }) => {
             </button>
           </form>
         </div>
-  
+
         <div className="comments_container">
           {loading ? (
             <p>Loading...</p>
@@ -201,8 +201,8 @@ const Modal = ({ onClose, postId }) => {
             ))
           )}
         </div>
-  
-        
+
+
       </div>
     </div>,
     document.body

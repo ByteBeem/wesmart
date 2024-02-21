@@ -65,4 +65,40 @@
     background-color: #28a745;
     color: #fff;
   }
+
+ 
+.select-container {
+  position: relative;
+  width: 100%;
+}
+
+
+.select-container select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  appearance: none; 
+  background-color: #fff;
+  cursor: pointer;
+}
+
+
+.select-container::after {
+  content: '\25BC'; 
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+}
+
+.select-container select option {
+  padding: 10px;
+  background-color: #fff;
+}
+
+.select-container select option:hover {
+  background-color: #f0f0f0;
+}
+
   
