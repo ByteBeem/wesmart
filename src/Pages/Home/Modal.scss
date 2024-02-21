@@ -49,6 +49,7 @@
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 16px;
   margin-top: 20px;
+  overflow: auto;
 
   .comment_card {
     position: relative;
@@ -85,7 +86,7 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   width: 100%; 
   height: 90%; 
-  overflow: auto;
+  
   position: relative;
 }
 
