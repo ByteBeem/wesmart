@@ -19,6 +19,11 @@
   resize: vertical;
 }
 
+.closeSymbol{
+  height: 14px;
+
+}
+
 .comments_container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -58,8 +63,8 @@
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  width: 80%; 
-  height: 80%; 
+  width: 100%; 
+  height: 100%; 
   overflow: auto;
   position: relative;
 }
