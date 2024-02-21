@@ -97,10 +97,10 @@ const Modal = ({ onClose, postId }) => {
       );
   
       alert("Comment Posted!");
-      
+      fetchComments(page, postId);
      
       
-      setComments(prevComments => [response.data, ...prevComments]);
+      
 
   
       setCaption("");
@@ -138,8 +138,7 @@ const Modal = ({ onClose, postId }) => {
   
       alert("Comment Posted!");
       
-      
-      setComments(prevComments => [response.data, ...prevComments]);
+      fetchComments(page, postId);
   
       setCaption("");
       setIsPostLoading(false);

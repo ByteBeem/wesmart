@@ -22,7 +22,7 @@ function Profile({ showSidebar, active, closeSidebar }) {
   const fullName = userData.name;
   const cellphone = userData.cell;
 
-  const  loggingOut = async() => {
+  const  loggingOut = () => {
     localStorage.clear();
     setModalOpenLogin(true);
   };

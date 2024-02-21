@@ -30,8 +30,9 @@ const Sidebar = ({ active, closeSidebar }) => {
           <span>Home</span>
         </Link>
 
+
         <Link
-          onClick={() => setActiveItem("wallet")}
+          onClick={() => setActiveItem("books")}
           className={activeItem === "wallet" ? "link active" : "link"}
           to="/books"
         >
@@ -44,13 +45,17 @@ const Sidebar = ({ active, closeSidebar }) => {
 
 
 
-        <Link className="link" to="/request">
+        <Link 
+        onClick={() => setActiveItem("request")}
+        className="link" to="/request">
           <FaQuestion  className="icon" />
           <span>Request</span>
         </Link>
 
 
-        <Link className="link" to="/profile">
+        <Link 
+        onClick={() => setActiveItem("profile")}
+        className="link" to="/profile">
           <CgProfile  className="icon" />
           <span>Profile</span>
         </Link>
