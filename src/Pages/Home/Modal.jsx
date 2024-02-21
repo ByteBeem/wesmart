@@ -141,11 +141,10 @@ const Modal = ({ onClose, postId }) => {
   return ReactDOM.createPortal(
     <div className="modal-overlay">
       <div className="modal">
-        <div className="closeSymbol">
-        <button className="close-button" onClick={onClose}>
-          &times;
-        </button>
-        </div>
+      <button className="close-button" onClick={onClose}>
+  &times;
+</button>
+
         <div className="comments_container">
           {loading ? (
             <p>Loading...</p>

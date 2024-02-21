@@ -19,10 +19,14 @@
   resize: vertical;
 }
 
-.closeSymbol{
-  height: 14px;
-
+.close-button {
+  position: fixed;
+  top: 20px; 
+  right: 20px; 
+  font-size: 24px; 
+  z-index: 9999; 
 }
+
 
 .comments_container {
   display: grid;
