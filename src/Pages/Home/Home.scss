@@ -1,143 +1,152 @@
 .home {
   display: flex;
   align-items: center;
+  /* Center content vertically */
   justify-content: center;
+  /* Center content horizontally */
   overflow-x: hidden;
-}
 
-.home_container {
-  flex: 6;
-}
+  .home_container {
+
+    flex: 6;
+
+    
+
 
 .icon {
   font-size: 1.5rem;
 }
 
-.post_form textarea {
-  width: 100%;
-  max-width: 100%;
-  margin-bottom: 10px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  resize: vertical;
-}
+    .post_form textarea {
+      width: 100%;
+      max-width: 100%;
+      margin-bottom: 10px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      resize: vertical;
+    }
 
-.post_form input[type="file"] {
-  margin-bottom: 10px;
-}
+    .post_form input[type="file"] {
+      margin-bottom: 10px;
+    }
 
-.post_form button {
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
+    .post_form button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
 
-.post_form button:hover {
-  background-color: #0056b3;
-}
+    .post_form button:hover {
+      background-color: #0056b3;
+    }
 
-.posts_container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 16px;
-  margin-top: 20px;
-}
+    .icon {
+      font-size: 1.5rem;
+    }
+    .posts_container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
 
-.post_card {
-  position: relative;
-  overflow: hidden;
-  margin-bottom: 28px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+      .post_card {
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 28px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
-.answer_button {
-  background-color: blue;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  margin-top: 10px;
-  cursor: pointer;
-}
+        .answer_button {
+          background-color: blue;
+          color: white;
+          border: none;
+          padding: 5px 10px;
+          margin-top: 10px;
+          cursor: pointer;
+        }
 
-video {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 8px;
-}
+        video {
+          width: 100%;
+          height: auto;
+          display: block;
+          border-radius: 8px;
+        }
 
-.views_overlay {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #fff;
-  font-size: 16px;
-  font-weight: bold;
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 8px 16px;
-  border-radius: 8px;
-}
+        .views_overlay {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          color: #fff;
+          font-size: 16px;
+          font-weight: bold;
+          background-color: rgba(0, 0, 0, 0.5);
+          padding: 8px 16px;
+          border-radius: 8px;
+        }
+      }
+    }
 
-@media screen and (max-width: 768px) {
-  .videos_container {
-    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+    @media screen and (max-width: 768px) {
+      .videos_container {
+        grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+      }
+    }
+
+    .content {
+      padding: 5rem 0 1rem 0;
+
+      .games_slider {
+        width: 100%;
+        margin: 0 auto;
+        padding: 0.6rem 3rem;
+        display: flex;
+        align-items: center;
+
+        @media screen and (max-width: 1500px) {
+          padding: 0.6rem 2rem;
+        }
+
+        @media screen and (max-width: 900px) {
+          padding: 0.6rem 10px;
+        }
+
+        .div {
+          width: 100%;
+        }
+
+        .game_box {
+          padding: 0 1rem;
+
+          @media screen and (max-width: 900px) {
+            padding: 0 0.5rem;
+          }
+
+          img {
+            border-radius: 10px;
+            width: 20rem;
+            height: 15rem;
+
+            @media screen and (max-width: 900px) {
+              width: 100%;
+              height: 15rem;
+            }
+          }
+
+          .title {
+            font-size: 1.5rem;
+            margin: 10px 0;
+            font-weight: bold;
+          }
+        }
+      }
+    }
   }
-}
-
-.content {
-  padding: 5rem 0 1rem 0;
-}
-
-.games_slider {
-  width: 100%;
-  margin: 0 auto;
-  padding: 0.6rem 3rem;
-  display: flex;
-  align-items: center;
-}
-
-.games_slider .div {
-  width: 100%;
-}
-
-.game_box {
-  padding: 0 1rem;
-}
-
-@media screen and (max-width: 900px) {
-  .games_slider {
-    padding: 0.6rem 10px;
-  }
-
-  .game_box {
-    padding: 0 0.5rem;
-  }
-}
-
-img {
-  border-radius: 10px;
-  width: 20rem;
-  height: 15rem;
-}
-
-@media screen and (max-width: 900px) {
-  img {
-    width: 100%;
-    height: 15rem;
-  }
-}
-
-.title {
-  font-size: 1.5rem;
-  margin: 10px 0;
-  font-weight: bold;
 }
 
 .minesTitle {
@@ -155,21 +164,22 @@ img {
 .minesTable {
   display: flex;
   flex-direction: column;
+  /* Stack the table rows vertically on small screens */
   align-items: center;
+  /* Center the table horizontally */
   width: 100%;
-}
 
-td {
-  width: 100%;
-}
+  td {
+    width: 100%;
+    /* Make each cell take full width */
+  }
 
-.verticalLine {
-  width: 40px;
-  background-color: #000;
-}
+  .verticalLine {
+    width: 40px;
+    background-color: #000;
+  }
 
-@media screen and (max-width: 300px) {
-  .minesTable {
+  @media screen and (max-width: 300px) {
     width: 100%;
   }
 }
@@ -198,26 +208,26 @@ td {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  max-height: 700px;
+  max-height: 700;
+  /* Set max-height to 100vh for full-screen height */
   overflow-y: auto;
-}
 
-@media (max-width: 1000px) {
-  .videos-container {
+  @media (max-width: 1000px) {
     flex-direction: column;
     max-height: none;
+    /* Reset max-height for mobile view */
   }
-}
 
-.video-item {
-  flex: 0 0 100%;
-}
-
-@media (min-width: 1000px) {
   .video-item {
-    flex: 0 0 calc(33.33% - 20px);
+    flex: 0 0 100%;
+
+    @media (min-width: 1000px) {
+      flex: 0 0 calc(33.33% - 20px);
+    }
   }
 }
+
+
 
 .glowButton,
 .glowButtonAviator {
@@ -236,62 +246,63 @@ td {
   overflow: hidden;
   letter-spacing: 4px;
   transition: 0.5s;
-}
 
-.glowButton:hover,
-.glowButtonAviator:hover {
-  background-color: #03e9f4;
-  color: var(--white-color);
-  border-radius: 5px;
-  box-shadow: var(--box-shadow);
-}
+  &:hover {
+    background-color: #03e9f4;
+    color: var(--white-color);
+    border-radius: 5px;
+    box-shadow: var(--box-shadow);
+  }
 
-.glowButton::before,
-.glowButton::after,
-.glowButtonAviator::before,
-.glowButtonAviator::after {
-  content: "";
-  position: absolute;
-  display: block;
-}
+  &::before,
+  &::after,
+  &::before::before,
+  &::before::after,
+  &::after::before,
+  &::after::after {
+    content: "";
+    position: absolute;
+    display: block;
+  }
 
-.glowButton::before {
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--accent-color));
-  animation: btn-anim1 1s linear infinite;
-}
+  &::before {
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent-color));
+    animation: btn-anim1 1s linear infinite;
+  }
 
-.glowButton::after {
-  top: -100%;
-  right: 0;
-  width: 2px;
-  height: 100%;
-  background: linear-gradient(180deg, transparent, var(--accent-color));
-  animation: btn-anim2 1s linear infinite;
-  animation-delay: 0.25s;
-}
+  &::after {
+    top: -100%;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, var(--accent-color));
+    animation: btn-anim2 1s linear infinite;
+    animation-delay: 0.25s;
+  }
 
-.glowButton::before::before {
-  bottom: 0;
-  right: -100%;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(270deg, transparent, var(--accent-color));
-  animation: btn-anim3 1s linear infinite;
-  animation-delay: 0.5s;
-}
+  &::before::before {
+    bottom: 0;
+    right: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(270deg, transparent, var(--accent-color));
+    animation: btn-anim3 1s linear infinite;
+    animation-delay: 0.5s;
+  }
 
-.glowButton::before::after {
-  bottom: -100%;
-  left: 0;
-  width: 2px;
-  height: 100%;
-  background: linear-gradient(360deg, transparent, var(--accent-color));
-  animation: btn-anim4 1s linear infinite;
-  animation-delay: 0.75s;
+  &::before::after {
+    bottom: -100%;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(360deg, transparent, var(--accent-color));
+    animation: btn-anim4 1s linear infinite;
+    animation-delay: 0.75s;
+  }
 }
 
 @keyframes btn-anim1 {
@@ -359,5 +370,5 @@ td {
 }
 
 .glowButtonAviator {
-  background-color: #ff0000;
+  background-color: #ff0000; // Change the color as needed
 }

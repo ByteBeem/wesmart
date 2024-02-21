@@ -65,40 +65,42 @@ const Modal = ({ onClose, postId }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
       setIsPostLoading(true);
-
+  
       const imageRef = ref(storage, `images/${image.name}`);
       await uploadBytes(imageRef, image);
-
+  
       const imageUrl = await getDownloadURL(imageRef);
-
+  
       if (!imageUrl) {
         alert("Put Something to Post");
         setIsPostLoading(false);
         return;
       }
-
+  
       const postData = {
         imageUrl: imageUrl,
         timestamp: new Date().toISOString(),
         content_type: "image",
         postId: postId,
       };
-
+  
       if (caption) {
         postData.caption = caption;
       }
-
-      await axios.post(
+  
+      const response = await axios.post(
         "https://wesmart-3b311bc60078.herokuapp.com/PostComments",
         postData
       );
-
+  
       alert("Comment Posted!");
-      fetchComments(1);
-
+      
+     
+      setComments(prevComments => [response.data, ...prevComments]);
+  
       setCaption("");
       setImage(null);
       setImagePreview(null);
@@ -108,6 +110,7 @@ const Modal = ({ onClose, postId }) => {
       setIsPostLoading(false);
     }
   };
+  
 
   const handleSubmitText = async (e) => {
     e.preventDefault();
@@ -115,25 +118,27 @@ const Modal = ({ onClose, postId }) => {
       alert("Enter Something to Post");
       return;
     }
-
+  
     try {
       setIsPostLoading(true);
-
+  
       const postData = {
         caption: caption,
         content_type: "text",
         timestamp: new Date().toISOString(),
         postId: postId,
       };
-
-      await axios.post(
+  
+      const response = await axios.post(
         "https://wesmart-3b311bc60078.herokuapp.com/TextComment",
         postData
       );
-
+  
       alert("Comment Posted!");
-      fetchComments(page);
-
+      
+      
+      setComments(prevComments => [response.data, ...prevComments]);
+  
       setCaption("");
       setIsPostLoading(false);
     } catch (error) {
@@ -141,6 +146,7 @@ const Modal = ({ onClose, postId }) => {
       setIsPostLoading(false);
     }
   };
+  
 
   return ReactDOM.createPortal(
     <div className="modal-overlay">
