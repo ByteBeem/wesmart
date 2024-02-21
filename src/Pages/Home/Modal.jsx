@@ -16,6 +16,12 @@ const Modal = ({ onClose, postId }) => {
 
   useEffect(() => {
     fetchComments(page, postId);
+    
+    document.body.style.overflow = "hidden";
+    return () => {
+      
+      document.body.style.overflow = "auto";
+    };
   }, [page, postId]);
 
   const fetchComments = async (pageNumber, postId) => {
