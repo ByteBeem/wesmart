@@ -85,7 +85,8 @@ class Request extends Component {
         <div className="form-content">
           <div className="form-area">
 
-            <h2>Tell us what you need</h2>
+            <h2>Fill the form below</h2>
+            <p>We assist with university and busary applications</p>
   
             <form>
               <div className="form-group">

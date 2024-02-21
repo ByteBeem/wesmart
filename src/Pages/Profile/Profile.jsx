@@ -5,7 +5,6 @@ import axios from "axios";
 import ProfileModal from "./ProfileModal";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import UserProfile from "../../assets/smart.jpg";
-import { Link } from "react-router-dom";
 import { FiLoader } from "react-icons/fi";
 import LoginModal from "../Home/LoginModal"
 
@@ -22,6 +21,11 @@ function Profile({ showSidebar, active, closeSidebar }) {
 
   const fullName = userData.name;
   const cellphone = userData.cell;
+
+  const  loggingOut = async() => {
+    localStorage.clear();
+    setModalOpenLogin(true);
+  };
 
 
   const handleOpenModal = (post) => {
@@ -123,10 +127,11 @@ function Profile({ showSidebar, active, closeSidebar }) {
             </div>
           </div>
         </div>
-        <Link className="form_btn" to="#">
-          Change Password
-        </Link>
+        <button className="form_btn" onClick={loggingOut}>
+          Log Out
+        </button>
 
+        
 
 
         <div className="posts_container">
